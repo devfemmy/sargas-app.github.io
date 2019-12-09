@@ -17,7 +17,7 @@ class Profile extends Component {
                 className="avatar2" alt="logo" /> 
                 </div>
                 <hr className= "horizontal-line" />
-                <div className= "section6">
+                <div className= "section10">
                 <InputGroup>
                 <Input id= "firstname" type= "text"  className = "profile-input" placeholder="First Name" />
                 </InputGroup>

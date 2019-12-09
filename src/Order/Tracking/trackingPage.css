@@ -1,0 +1,17 @@
+.counter {
+    padding-left: 20%;
+    padding-right: 20%;
+    padding-top: 15%;
+}
+.timer {
+    padding-top: 10%;
+}
+.timer h5 {
+    color: green;
+    text-align: center;
+}
+.timer h2 {
+    color: green;
+    text-align: center;
+    font-size: 58px;
+}

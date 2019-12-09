@@ -11,8 +11,24 @@
     font-size: 20px;
     text-align: left !important;
 }
+.Track-Img {
+    height: 60vmin;
+}
 .transaction-success {
-    padding-top: 50%
+    padding-top: 20%
+}
+.transaction-success h3{
+    text-align: center;
+    color: green;
+}
+.transaction-success .material-icons {
+    color: green;
+    font-size: 150px;
+    padding-left: 30%;
+    padding-right: 30%;
+}
+.transaction-success i{
+    text-align: center;
 }
 h3 {
     color: green
@@ -29,7 +45,7 @@ h5, p {
 .Track-btn {
     border-radius: 50px !important;
     width: 100%;
-    background: green;
+    background: green !important;
     color: white;
     margin-top: 2rem
     /* border: 1px solid green !important;

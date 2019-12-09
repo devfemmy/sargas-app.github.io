@@ -10,14 +10,17 @@
   .horizontal-line {
     border-top: 1px solid rgba(0,0,0,0.5);
    }
+.section10 {
+    padding: 5%;
+}
 .section6 {
-    padding: 10%;
+    padding: 5%;
 }
 .profile-input {
     /* background: #292929; */
     background: none !important;
     border: none !important;
-    color:#fff !important;
+    color:black !important;
     font-size:1.3rem ;
     border-bottom: 2px solid rgba(0, 0, 0, 0.384) !important;
     transition:all .2s ease-in;
@@ -27,22 +30,22 @@
   .profile-input:focus {
     background: none !important;
     border: none !important;
-    color:#fff !important;
+    color: black !important;
     outline: none !important;
     box-shadow: none !important;
-    border-bottom: 2px solid white !important
+    border-bottom: 2px solid rgba(0, 0, 0, 0.384) !important
     
 
   }
   .profile-btn {
-      background: green;
-      border-radius: 50px;
-      color: white;
+      background: green !important;
+      border-radius: 50px !important;
+      color: white !important;
       width: 100%;
     
   }
   .section6 {
     padding-top: 10%;
-    padding-left: 15%;
+    padding-left: 10%;
     padding-right: 15%
 }

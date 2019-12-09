@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
-import {FormGroup, Label, Input, Form, Button} from 'reactstrap'
+import {FormGroup, Input, Form, Button} from 'reactstrap'
+import DatePicker from "react-datepicker";
+import TimePicker from 'react-time-picker';
+import "react-datepicker/dist/react-datepicker.css";
 import SideDrawer from '../UI/SideDrawer/sideDrawer';
 import menu from '../assets/menu.png'
 import './refilSchedule.css';
+
 class RefilSchedule extends Component {
     state = { 
-        showSideDrawer : false
+        showSideDrawer : false,
+        startDate: null,
+        time: null,
      }
     sideDrawerHandler = () => {
         this.setState({showSideDrawer: false})
@@ -16,6 +22,18 @@ class RefilSchedule extends Component {
         return {showSideDrawer: !prevState.showSideDrawer};
            });
      }
+     handleChange = date => {
+        this.setState({
+          startDate: date
+        });
+      }
+      onChange = time => this.setState({ time })
+     pushToNextPage = () => {
+        this.props.history.push({
+          pathname: '/success'
+        })
+      
+      }
     render() { 
         return ( 
             <div className= "Refill">
@@ -33,16 +51,32 @@ class RefilSchedule extends Component {
                         Schedule A Refill
                     </h3>
                     <Form>
+                        <div className = "date-time-picker">
                         <FormGroup>
-                        <Input className='form-input' type="text" name="address" id="exampleEmail" placeholder="Set Date:" />
+                        <DatePicker
+                            className='form-input2'
+                            placeholderText = "Set Date"
+                            selected={this.state.startDate}
+                            onChange={this.handleChange}
+                        />
                         </FormGroup>
                         <FormGroup>
-                        <Input className='form-input' type="text" name="text" placeholder="Set Time:" id="exampleSelect" />
+                        <TimePicker
+                            id = "time-picker"
+                            className='form-input2'
+                            hourPlaceholder = "Hour"
+                            minutePlaceholder = "Min"
+                            onChange={this.onChange}
+                            value={this.state.time}
+                            />
                         </FormGroup>
+                        </div>
+                       
                         <br />
                         <Button style= {{color: "white"}} 
                         outline color="secondary" 
-                        className = "Refil-button"  
+                        className = "Refil-button" 
+                        onClick= {this.pushToNextPage} 
                         size="lg">SET DELIVERY WINDOW</Button>
                     </Form>
                 </div>

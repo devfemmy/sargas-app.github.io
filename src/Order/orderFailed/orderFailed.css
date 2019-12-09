@@ -1,11 +1,18 @@
 .order-failed {
-    padding-top: 80%;
+    padding-top: 30%;
 }
-h3 {
-    color: red;
+.order-failed h3 {
+    color: red !important;
+    text-align: center;
 }
 .section4 {
     padding-top: 50%;
     padding-left: 15%;
     padding-right: 15%
+}
+.order-failed .material-icons {
+    color: red;
+    font-size: 155px;
+    padding-left: 30%;
+    padding-right: 30%;
 }

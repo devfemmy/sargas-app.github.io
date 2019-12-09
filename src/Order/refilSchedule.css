@@ -3,13 +3,34 @@
     padding-right: 10%
 }
 .refil-container {
-    padding-top: 30%
+    padding-top: 30%;
 }
+.date-time-picker {
+    padding-top: 10%;
+    padding-left: 18%;
+}
+
 .refil-container h3 {
     text-align: center;
     color: black;
 }
-.form-input::placeholder { 
+#time-picker {
+    min-width: 9rem;
+}
+.form-input2 {
+    /* background: #292929; */
+    /* background: none; */
+    /* border: none; */
+    color:black;
+    font-size:1.3rem ;
+    border: 1px solid rgba(0, 0, 0, 0.603);
+    border-radius: 5px;
+    min-width: 12px;
+    transition:all .2s ease-in;
+    caret-color: black;
+
+  }
+.form-input2::placeholder { 
     color: black !important;
     opacity: 5 !important;
     text-align: center;
@@ -17,5 +38,5 @@
 .Refil-button {
     border-radius: 50px !important;
     width: 100% !important;
-    background: green;
+    background: green !important;
 }

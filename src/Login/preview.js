@@ -2,8 +2,14 @@ import React, { Component } from 'react';
 import './tokenPage.css';
 import {FormGroup, Label, Input, Form, Button} from 'reactstrap'
 import logo from '../assets/logo.png';
-class Preview extends Component {
+class PreviewPage extends Component {
     state = {  }
+    pushToNextPage = () => {
+        this.props.history.push({
+          pathname: '/refil'
+        })
+      
+      }
     render() { 
         return ( 
             <div className = "preview">
@@ -31,6 +37,7 @@ class Preview extends Component {
                     <br />
                     <Button style= {{color: "green"}} 
                     outline color="secondary" 
+                    onClick= {this.pushToNextPage}
                     className = "Login-button"  
                     size="lg">SUBMIT</Button>
             </Form>
@@ -41,4 +48,4 @@ class Preview extends Component {
     }
 }
  
-export default Preview;
+export default PreviewPage;

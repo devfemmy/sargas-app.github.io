@@ -17,6 +17,12 @@ class Login extends Component {
         return {showSideDrawer: !prevState.showSideDrawer};
            });
      }
+     pushToNextPage = () => {
+        this.props.history.push({
+          pathname: '/token'
+        })
+      
+      }
     render() { 
         return ( 
             <div className= "Login">
@@ -39,7 +45,9 @@ class Login extends Component {
                 <Input id = "password" className = "login-input" type= "password" placeholder="Password" />
                 </InputGroup>
                 <br />
-                <Button style= {{color: "white"}} outline color="secondary" className = "Login-btn"  size="lg">SIGN IN</Button>
+                <Button style= {{color: "white"}} outline
+                onClick= {this.pushToNextPage}
+                color="secondary" className = "Login-btn"  size="lg">SIGN IN</Button>
                 </div>
             </div>
             </div>
