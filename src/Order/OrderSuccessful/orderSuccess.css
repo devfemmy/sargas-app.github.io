@@ -1,0 +1,45 @@
+
+.order-header {
+    background-image: url('../../assets/gradient_top.png');
+    height: 5rem;
+    padding-left: 10%;
+    padding-top: 5%;
+}
+.para-header {
+    color: white;
+    font-weight: solid;
+    font-size: 20px;
+    text-align: left !important;
+}
+.transaction-success {
+    padding-top: 50%
+}
+h3 {
+    color: green
+}
+h5, p {
+    text-align: center;
+
+}
+.Order-btn {
+    border-radius: 50px !important;
+    width: 100%;
+    border: 1px solid green !important;
+}
+.Track-btn {
+    border-radius: 50px !important;
+    width: 100%;
+    background: green;
+    color: white;
+    margin-top: 2rem
+    /* border: 1px solid green !important;
+     */
+}
+.horizontal-line {
+ border-top: 1px solid rgba(0,0,0,0.5);
+}
+.section3 {
+    padding-top: 10%;
+    padding-left: 15%;
+    padding-right: 15%
+}

@@ -1,0 +1,48 @@
+.edit-profile {
+    padding-top: 10%;
+    padding-right: 10%;
+    padding-left: 10%;
+}
+.avatar2 {
+    height: 30vmin;
+    
+  }
+  .horizontal-line {
+    border-top: 1px solid rgba(0,0,0,0.5);
+   }
+.section6 {
+    padding: 10%;
+}
+.profile-input {
+    /* background: #292929; */
+    background: none !important;
+    border: none !important;
+    color:#fff !important;
+    font-size:1.3rem ;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.384) !important;
+    transition:all .2s ease-in;
+    caret-color: black;
+
+  }
+  .profile-input:focus {
+    background: none !important;
+    border: none !important;
+    color:#fff !important;
+    outline: none !important;
+    box-shadow: none !important;
+    border-bottom: 2px solid white !important
+    
+
+  }
+  .profile-btn {
+      background: green;
+      border-radius: 50px;
+      color: white;
+      width: 100%;
+    
+  }
+  .section6 {
+    padding-top: 10%;
+    padding-left: 15%;
+    padding-right: 15%
+}

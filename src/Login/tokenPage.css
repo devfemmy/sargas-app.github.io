@@ -1,0 +1,40 @@
+.token {
+    padding-left: 10%;
+    padding-right: 5%;
+    /* margin-top: 15px */
+}
+
+.token-header {
+    min-height: 20vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+  }
+  .Login-button {
+    border: 1px solid green !important;
+    border-radius: 50px !important;
+    width: 100%;
+}
+.token-body {
+    background-image: url('../assets/gradient_top.png');
+    min-height: 80vh;
+    padding: 0px;
+}
+h4 {
+    color: white;
+    padding-top: 2rem;
+}
+.arrow-back {
+    color: black;
+    font-size: 35px;
+    padding-left: 10%;
+    padding-top: 8%
+}
+.preview-body {
+    padding-top: 10%;
+    padding-left: 10%;
+    padding-right: 10%;
+}

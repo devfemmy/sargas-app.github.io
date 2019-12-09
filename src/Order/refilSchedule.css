@@ -1,0 +1,21 @@
+.Refill {
+    padding-left: 10%;
+    padding-right: 10%
+}
+.refil-container {
+    padding-top: 30%
+}
+.refil-container h3 {
+    text-align: center;
+    color: black;
+}
+.form-input::placeholder { 
+    color: black !important;
+    opacity: 5 !important;
+    text-align: center;
+  }
+.Refil-button {
+    border-radius: 50px !important;
+    width: 100% !important;
+    background: green;
+}

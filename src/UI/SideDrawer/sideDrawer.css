@@ -22,7 +22,10 @@
         display: none;
     }
 }
-
+.avatar {
+    height: 20vmin;
+    
+  }
 .Open {
     transform: translateX(0);
 }
@@ -32,5 +35,17 @@
 }
 .side-icons {
     margin-bottom: 1.7rem;
+}
+.dash-card {
+    background-image: url('../../assets/gradient_bottom.png');
+    min-height: 14rem
+}
+.card-body {
+    margin-top: 18%;
+    margin-right: 10%;
+    color: white
+}
+h3 {
+    margin-bottom: 10% !important;
 }
 

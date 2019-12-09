@@ -23,11 +23,7 @@ class Login extends Component {
             <SideDrawer 
             open = {this.state.showSideDrawer}
             closed = {this.sideDrawerToggleHandler} />
-            <h4 className= "">
-            <strong><span onClick= {this.sideDrawerToggleHandler}>
-                <img src={menu} className="" alt="logo" />
-                </span>&nbsp;&nbsp;&nbsp;&nbsp;Home</strong>
-             </h4>
+
             <header className= "Logo-header">
             <img src={logo} className="Special-logo" alt="logo" />   
             </header>
@@ -45,7 +41,7 @@ class Login extends Component {
                 <Input id = "password" className = "login-input" type= "password" placeholder="Password" />
                 </InputGroup>
                 <br />
-                <Button style= {{color: "white"}} outline color="secondary" className = "Login-button"  size="lg">SIGN IN</Button>
+                <Button style= {{color: "white"}} outline color="secondary" className = "Login-btn"  size="lg">SIGN IN</Button>
                 </div>
             </div>
             </div>

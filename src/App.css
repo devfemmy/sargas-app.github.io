@@ -1,5 +1,5 @@
 .App {
-  text-align: center;
+  /* text-align: center; */
 }
 
 .App-logo {
@@ -7,7 +7,18 @@
   height: 40vmin;
   pointer-events: none;
 }
-
+.order-header {
+  background-image: url('./assets/gradient_top.png');
+  height: 5rem;
+  padding-left: 10%;
+  padding-top: 5%;
+}
+.para-header {
+  color: white;
+  font-weight: solid;
+  font-size: 20px;
+  text-align: left !important;
+}
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

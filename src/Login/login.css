@@ -1,6 +1,6 @@
 .Login {
     /* background-image: linear-gradient(#292929, #000000); */
-    text-align: center;
+    /* text-align: center; */
   }
   
   .Special-logo {
@@ -9,7 +9,7 @@
   }
   
   .Logo-header {
-    min-height: 42vh;
+    min-height: 48vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -20,7 +20,7 @@
   .sign-up {
       /* background: blue; */
         background-image: url('../assets/gradient_bottom.png');
-      min-height: 65vh;
+      min-height: 53vh;
   }
   .Login-body {
     min-height: 40vh;
@@ -56,11 +56,11 @@
     
 
   }
-  ::placeholder { 
+  .login-input::placeholder { 
     color: white !important;
     opacity: 5 !important;
   }
-  .Login-button {
+  .Login-btn {
       border: 1px solid white !important;
       border-radius: 50px !important;
   }
