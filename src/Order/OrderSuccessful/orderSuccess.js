@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Button} from 'reactstrap'
 import './orderSuccess.css';
+import orderCheck from '../../assets/check_box.svg';
 
 class OrderSuccess extends Component {
     state = {  }
@@ -24,7 +25,7 @@ class OrderSuccess extends Component {
                 </div>  
                
                 <div className= "transaction-success">
-                    <i className="material-icons">check_circle</i>
+                <img src={orderCheck} className="order_img" alt="logo" />   
                     <h3>Transfer Successful</h3>
                 </div>
                 <br />

@@ -1,6 +1,6 @@
 
 .order-header {
-    background-image: url('../../assets/gradient_top.png');
+    background-image: linear-gradient(to right, #009245 , #8CC63F);;
     height: 5rem;
     padding-left: 10%;
     padding-top: 5%;
@@ -12,6 +12,9 @@
     text-align: left !important;
 }
 .Track-Img {
+    height: 60vmin;
+}
+.order_img {
     height: 60vmin;
 }
 .transaction-success {
