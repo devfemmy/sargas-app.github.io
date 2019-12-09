@@ -20,9 +20,7 @@ class Login extends Component {
     render() { 
         return ( 
             <div className= "Login">
-            <SideDrawer 
-            open = {this.state.showSideDrawer}
-            closed = {this.sideDrawerToggleHandler} />
+        
 
             <header className= "Logo-header">
             <img src={logo} className="Special-logo" alt="logo" />   
