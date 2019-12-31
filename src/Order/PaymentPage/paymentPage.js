@@ -9,6 +9,9 @@ class PaymentPage extends Component {
     state = {
 
       }
+      backToPrevPageHandler = () => {
+        this.props.history.goBack();
+    }
 
     goToCardPage = () => {
         this.props.history.push({
@@ -29,7 +32,7 @@ class PaymentPage extends Component {
             <div className= "payment">
                 <div className= "payment-header">
                     <div className = "header-wrapper">
-                            <p className= "para-header">&larr; &nbsp; &nbsp; &nbsp; &nbsp;
+                            <p onClick= {this.backToPrevPageHandler} className= "para-header">&larr; &nbsp; &nbsp; &nbsp; &nbsp;
                             Payment Options</p>
                             <p className= "header-text">Add A Payment Method</p>
                     </div>

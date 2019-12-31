@@ -11,12 +11,15 @@ class PaymentMethod extends Component {
             pathname: '/card'
           })
     }
+    backToPrevPageHandler = () => {
+        this.props.history.goBack();
+    }
     render() { 
         return ( 
             <div className= "payment-method">
                 <div className= "payment-header2">
                     <div className = "header-wrapper">
-                            <p className= "payment-text">&larr; 
+                            <p onClick= {this.backToPrevPageHandler} className= "payment-text">&larr; 
                             </p>
                          <h5 className= "payment-text2">Add Payment Method</h5>   
                     </div>

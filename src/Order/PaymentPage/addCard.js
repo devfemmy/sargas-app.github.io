@@ -37,12 +37,15 @@ class AddCard extends Component {
     )
     
     }
+    backToPrevPageHandler = () => {
+        this.props.history.goBack();
+    }
     render() { 
         return (  
             <div className = "add-card">
                   <div className= "payment-header2">
                     <div className = "header-wrapper">
-                            <p className= "payment-text">&larr; 
+                            <p onClick= {this.backToPrevPageHandler} className= "payment-text">&larr; 
                             </p>
                          <h5 className= "payment-text2">Add Card</h5>   
                     </div>

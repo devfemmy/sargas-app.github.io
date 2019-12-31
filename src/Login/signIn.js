@@ -10,7 +10,8 @@ class SignIn extends Component {
       // home_details: null
       loader: true,
       alertMessage: null,
-      displayAlert: false
+      displayAlert: false,
+      home_details: []
      }
     pushToNextPage = () => {
         this.props.history.push({
@@ -41,6 +42,7 @@ class SignIn extends Component {
                    
                     if (response.status === 1001) {
                       const home_details = response.home_details;
+                      this.setState({home_details: home_details})
                       if (response.first_time === '1') {
                         this.props.history.push({
                           pathname: '/preview',
@@ -73,6 +75,11 @@ class SignIn extends Component {
       
       }
     render() { 
+      const home_details = this.state.home_details;
+      const firstname = home_details.firstname;
+      const lastname = home_details.lastname;
+      localStorage.setItem('lastname', lastname)
+      localStorage.setItem('firstname', firstname)
       let showAlert = null;
       if (this.state.displayAlert) {
         showAlert = 

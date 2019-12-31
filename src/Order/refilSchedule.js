@@ -5,7 +5,7 @@ import TimePicker from 'rc-time-picker';
 import "react-datepicker/dist/react-datepicker.css";
 import 'rc-time-picker/assets/index.css';
 import SideDrawer from '../UI/SideDrawer/sideDrawer';
-import menu from '../assets/menu.svg';
+import checkIcon from '../assets/clear.svg';
 import './refilSchedule.css';
 import trackImg from '../assets/track.png';
 
@@ -18,6 +18,11 @@ class RefilSchedule extends Component {
         date_picked: null,
         use12Hours: true
      }
+     returnHome = () => {
+        this.props.history.push(
+            {pathname: '/home'}
+        )
+    }
     sideDrawerHandler = () => {
         this.setState({showSideDrawer: false})
      }
@@ -64,13 +69,11 @@ class RefilSchedule extends Component {
                 closed = {this.sideDrawerToggleHandler}
                 />
             <div className= "order-header">
-            <div >
-                <p className= "para-header">
-                    <span onClick= {this.sideDrawerToggleHandler}>
-                    <img src={menu} className="" alt="logo" />
+            <p className= "para-header"><span>
+                    <img onClick={this.returnHome} src={checkIcon} className="" alt="logo" />
                     </span>&nbsp;&nbsp;&nbsp;&nbsp;Refill Schedule</p>
             
-            </div>
+        
                   {/* <p className= "para-header"><span><strong>X</strong></span> &nbsp;&nbsp; Track Order</p> */}
             </div> 
    

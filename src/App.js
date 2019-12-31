@@ -17,6 +17,7 @@ import HomePage from './Home/homePage';
 import ConfirmOrder from './Order/confirmOrder';
 import PayStackPay from './Order/paystackPay';
 import ForgotPassword from './Login/forgotPassword';
+import History from './Order/OrderHistory/history';
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
       <Route path= "/pricing"  component={ConfirmOrder}/>
       <Route path= "/paystack"  component={PayStackPay}/>
       <Route path= "/password"  component={ForgotPassword}/>
+      <Route path= "/history"  component={History}/>
 
 
     </div>

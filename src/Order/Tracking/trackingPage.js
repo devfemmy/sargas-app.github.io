@@ -8,12 +8,17 @@ import checkIcon from '../../assets/clear.svg';
 
 class TrackingPage extends Component {
     state = {  }
+    returnHome = () => {
+        this.props.history.push(
+            {pathname: '/home'}
+        )
+    }
     render() { 
         return (  
             <div className= "">
                 <div className= "order-header">
                 <p className= "para-header"><span>
-                    <img src={checkIcon} className="" alt="logo" />
+                    <img onClick={this.returnHome} src={checkIcon} className="" alt="logo" />
                     </span>&nbsp;&nbsp;&nbsp;&nbsp;Track Order</p>
                 </div> 
                 <div className= "counter">

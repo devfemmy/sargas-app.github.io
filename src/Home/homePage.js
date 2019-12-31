@@ -4,22 +4,37 @@ import trackImg from '../assets/track.png'
 import SideDrawer from '../UI/SideDrawer/sideDrawer';
 import menu from '../assets/menu.svg';
 import {Button} from 'reactstrap'
+import axios from 'axios';
+import Spinner from '../UI/Spinner/spinner';
 
 class HomePage extends Component {
     state = { 
         showSideDrawer : false,
+        loader: false,
+        home_details: []
      }
      sideDrawerHandler = () => {
         this.setState({showSideDrawer: false})
      }
      componentDidMount() {
-        const home_details = this.props.location.state.home_details;
-        if (home_details.apartment === '' && home_details.firstname === '') {
-        
-            this.props.history.push({
-                pathname: 'profile'
-            })
+        // const home_details = this.props.location.state.home_details;
+        const data = {
+            token: localStorage.getItem('token')
         }
+        axios.post('http://sargasoms.com/api/customer/?API_flag=fetchcusprofile', data)
+        .then(res => {
+            const home_details = res.data
+            if (home_details.apartment === '' && home_details.firstname === '') {
+        
+                this.props.history.push({
+                    pathname: 'profile'
+                })
+            }
+            this.setState({home_details: home_details, loader: true});
+        }).catch(err => {
+            console.log(err)
+        })
+      
      }
      pushToNextPage = (home_details) => {
         // const address = home_details.apartment;
@@ -43,16 +58,38 @@ class HomePage extends Component {
            });
      }
     render() { 
-        const home_details = this.props.location.state.home_details
+        const home_details = this.state.home_details
         const firstname = home_details.firstname;
+        const lastname = home_details.lastname;
+        localStorage.setItem('lastname', lastname)
+        localStorage.setItem('firstname', firstname)
+        // const name = firstname.toUpperCase()
         const apartment = home_details.apartment;
         localStorage.setItem('apartment', apartment)
         const street = home_details.street;
         localStorage.setItem('street', street)
+        let showName = <Spinner />
+        if (this.state.loader) {
+            showName = (
+                <div className = "home-content">
+                <h2>Hi, {firstname.toUpperCase()}</h2>
+                </div>
+            )
+        }
+        let showButton = null;
+        if (this.state.loader) {
+            showButton = (
+                <div className= "button-div">
+                <Button 
+                        outline color="secondary" 
+                        className = "home-button" 
+                        onClick= {()=> this.pushToNextPage(home_details)} 
+                        size="lg">ORDER REFILL
+                </Button>
+              </div>
+            )
+        }
 
-        const name = firstname.toUpperCase()
-        // const first = firstname.capitalize()
-        console.log(home_details)
         return ( 
         <div>
                <SideDrawer 
@@ -64,18 +101,9 @@ class HomePage extends Component {
                 <div className= "counter2">
                 <img src={trackImg} className="Track-Img" alt="img" />   
                 </div>
-                <div className = "home-content">
-                <h2>Hi, {name}</h2>
-                </div>
+                {showName}
             </div>
-              <div className= "button-div">
-                <Button 
-                        outline color="secondary" 
-                        className = "home-button" 
-                        onClick= {()=> this.pushToNextPage(home_details)} 
-                        size="lg">ORDER REFILL
-                </Button>
-              </div>
+            {showButton}
 
         </div>
             

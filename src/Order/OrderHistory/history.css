@@ -1,0 +1,27 @@
+.order-history {
+    padding-top: 5%;
+    padding-left: 8%;
+    padding-right: 10%;
+}
+.address {
+    font-weight: bolder;
+}
+.order-date {
+    opacity: 0.7;
+    margin-bottom: 0rem !important;
+}
+.status {
+    /* margin-bottom: 0rem !important; */
+    color: #009245;
+    font-weight: bold;
+}
+.order-history p:last-child {
+    margin-bottom: 0rem !important;
+}
+#sticky_elements {
+    position: sticky;
+    top: 0;
+}
+.no-order {
+    text-align: center;
+}

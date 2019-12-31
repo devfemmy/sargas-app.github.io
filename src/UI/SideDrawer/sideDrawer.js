@@ -5,12 +5,14 @@ import Backdrop from '../Backdrop/backdrop';
 import {Card,CardBody, Col, Row } from 'reactstrap';
 
 // import logOut from '../../assets/logout.svg';
-// import NavigationItems from '../Navigations/NavigationItems/navigationItems';
+import NavigationItems from '../Navigations/NavigationItems/navigationItems';
 import avatarIcon from '../../assets/avatar.png';
 class SideDrawer extends Component {
     state = {  }
     
     render() { 
+        const firstname = localStorage.getItem('firstname');
+        const lastname = localStorage.getItem('lastname')
         let attachedClasses = ["SideDrawer", "Close" ];
         if (this.props.open) {
             attachedClasses =  ["SideDrawer", "Open" ];
@@ -27,8 +29,8 @@ class SideDrawer extends Component {
                      <img src={avatarIcon} className="avatar" alt="logo" /> 
                      </Col>
                         <Col xs="8" sm="8" md="6">
-                        <h4>Nataniel Doe</h4>
-                        <p> Edit Profile</p>
+                            <h4>{firstname.toUpperCase()} {lastname.toUpperCase()}</h4>
+                        {/* <p> Edit Profile</p> */}
                         </Col>
                     </Row>
                 </CardBody>
@@ -39,13 +41,8 @@ class SideDrawer extends Component {
                     </div>
                    
                     <div className= "universal-pad2">
-                        <h3>Home</h3>
-                        <h3>Your Order</h3>
-                        <h3>Payment</h3>
-                        <h3>Freebies</h3>
-                        <h3>Tracking</h3>
-                        <hr className= "horizontal-line" />
-                        <h3>Log Out</h3>
+                        <NavigationItems />
+                      
                     </div>
                 </div>
                 

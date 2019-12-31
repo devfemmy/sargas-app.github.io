@@ -17,6 +17,9 @@ class Profile extends Component {
         street_name: null,
         loader: true
      }
+     backToPrevPageHandler = () => {
+        this.props.history.goBack();
+    }
     componentDidMount (){
         
         // let bodyFormData = new FormData();
@@ -67,7 +70,12 @@ class Profile extends Component {
       
     }
     editProfile = () => {
-        this.setState({loader: false})
+        // this.setState({loader: false})
+        const firstname = document.querySelector('#firstname').value;
+        const lastname = document.querySelector('#lastname').value;
+        const gender = document.querySelector('#gender').value;
+        const apt = document.querySelector('#apt').value;
+        const street = document.querySelector('#street').value;
         const data = {
             firstname: document.querySelector('#firstname').value,
             lastname: document.querySelector('#lastname').value,
@@ -83,24 +91,29 @@ class Profile extends Component {
 
     
         }
-        axios.post('http://sargasoms.com/api/customer/?API_flag=editcusprofile', data )
-        .then((res) => { 
-            const response = res.data;
-            if (response.status === 1001) {
-                this.setState({loader: true})
-                this.props.history.push(
-                    {
-                        pathname: '/'
-                    }
-                )
-            } else {
-                alert("please fill profile correctly")
-            }
-
-            console.log(res)
-        }).catch(
-            err => console.log(err)
-        )
+        if (firstname === '' || lastname === '' || gender === '' || apt === '' || street === '') {
+            alert("please fill up profile correctly")
+        }else {
+            this.setState({loader: false})
+            axios.post('http://sargasoms.com/api/customer/?API_flag=editcusprofile', data )
+            .then((res) => { 
+                // this.setState({loader: true})
+                const response = res.data;
+                if (response.status === 1001) {
+                    this.setState({loader: true})
+                    this.props.history.push(
+                        {
+                            pathname: '/home'
+                        }
+                    )
+                }
+    
+                console.log(res)
+            }).catch(
+                err => console.log(err)
+            )
+        }
+ 
 
     }
     render() { 
@@ -152,7 +165,7 @@ class Profile extends Component {
         return ( 
             <div>
                 <div className= "order-header">
-                <p className= "para-header">&larr; &nbsp;&nbsp;&nbsp;&nbsp; Edit Profile</p>
+                <p className= "para-header"><span onClick= {this.backToPrevPageHandler}>&larr; </span>&nbsp;&nbsp;&nbsp;&nbsp; Edit Profile</p>
                 </div> 
                 <div className= "edit-profile">
                 <img src={avatarIcon} 
