@@ -1,55 +1,92 @@
 
 .order-header {
-    background-image: linear-gradient(to right, #009245 , #8CC63F);;
-    height: 5rem;
+    background-image: linear-gradient( #8CC63F, #009245) !important;
+    height: 15vmin;
     padding-left: 10%;
-    padding-top: 5%;
+    /* padding-top: 3vmin; */
 }
 .para-header {
     color: white;
-    font-weight: solid;
+    font-weight: bold;
     font-size: 20px;
-    text-align: left !important;
+    display: table-cell;
+    /* text-align: center; */
+    vertical-align: middle;
+    line-height: 15vmin;
 }
 .Track-Img {
     height: 60vmin;
 }
+.icon-img .material-icons {
+    color: #8CC63F;
+    font-size: 190px;
+    text-align: center;
+    /* align-items: center; */
+    display: inherit;
+}
 .order_img {
-    height: 60vmin;
+    height: 45vmin;
+    border: none;
+    display: block;
+    margin: 0 auto;
+    padding-bottom: 5%;
+}
+.column {
+    border-left: 1px solid rgba(0,0,0,.1);
+}
+.wrapper-contents {
+    width: 70%;
+    /* text-align: center; */
+    /* display: table; */
+    margin: 0 auto;
+}
+.wrapper-contents p {
+    font-size: 12px;
+    line-height: 14px;
+    opacity: 0.6;
+}
+.wrapper-contents h5 {
+    font-size: 15px;
+    /* line-height: 14px; */
+}
+.grade-icons {
+    text-align: center;
+}
+.grade-icons .material-icons {
+    color: gold;
 }
 .transaction-success {
-    padding-top: 20%
+    padding-top: 10%
 }
 .transaction-success h3{
     text-align: center;
-    color: green;
+    color: #009245;
 }
-.transaction-success .material-icons {
-    color: green;
-    font-size: 150px;
-    padding-left: 30%;
-    padding-right: 30%;
-}
-.transaction-success i{
-    text-align: center;
-}
-h3 {
-    color: green
-}
-h5, p {
-    text-align: center;
+/* .icon-img {
+    padding-left: 27%;
+    padding-right: 27%;
+    padding-bottom: 5%;
+} */
+
+
+
+h5{
+   font-size: 13px; 
+    /* text-align: center; */
 
 }
 .Order-btn {
     border-radius: 50px !important;
     width: 100%;
-    border: 1px solid green !important;
+    border: 1px solid  #8CC63F !important;
 }
 .Track-btn {
     border-radius: 50px !important;
-    width: 100%;
-    background: green !important;
-    color: white;
+    border: none !important;
+    width: 100% !important;
+    font-size: 15px !important;
+    height: 3.4rem !important;
+    background-image: linear-gradient( #8CC63F, #009245) !important;
     margin-top: 2rem
     /* border: 1px solid green !important;
      */

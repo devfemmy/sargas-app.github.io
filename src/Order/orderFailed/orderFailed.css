@@ -11,8 +11,15 @@
     padding-right: 15%
 }
 .order-failed .material-icons {
-    color: red;
+    color: rgba(255, 60, 0, 0.877);
     font-size: 155px;
-    padding-left: 30%;
-    padding-right: 30%;
+    text-align: center;
+    /* align-items: center; */
+    display: inherit;
 }
+/* .order-header {
+    background-image: linear-gradient(to right, #009245 , #8CC63F);;
+    height: 15vmin;
+    padding-left: 10%;
+    padding-top: 3vmin;
+} */

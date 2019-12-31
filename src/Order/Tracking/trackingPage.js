@@ -3,6 +3,7 @@ import '../OrderSuccessful/orderSuccess.css';
 import trackImg from '../../assets/track.png';
 import './trackingPage.css';
 import Timer from 'react-compound-timer';
+import checkIcon from '../../assets/clear.svg';
 
 
 class TrackingPage extends Component {
@@ -11,8 +12,9 @@ class TrackingPage extends Component {
         return (  
             <div className= "">
                 <div className= "order-header">
-                <span><i style= {{color: 'white'}} className="material-icons">clear</i></span>
-                  <p style= {{paddingBottom: '1rem'}} className= "para-header">Track Order</p>
+                <p className= "para-header"><span>
+                    <img src={checkIcon} className="" alt="logo" />
+                    </span>&nbsp;&nbsp;&nbsp;&nbsp;Track Order</p>
                 </div> 
                 <div className= "counter">
                 <img src={trackImg} className="Track-Img" alt="img" />   

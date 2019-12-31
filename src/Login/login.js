@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
-import {Input,Button, InputGroup} from 'reactstrap'
+import {Input,Button, InputGroup, Alert} from 'reactstrap'
 import logo from '../assets/logo.png';
 import '../Login/login.css';
-import SideDrawer from '../UI/SideDrawer/sideDrawer.js';
-import menu from '../assets/menu.png'
+import axios from '../axios-req';
+import Spinner from '../UI/Spinner/spinner';
+import errorHandler from '../ErrorHandler/errorHandler';
+
+
+// import SideDrawer from '../UI/SideDrawer/sideDrawer.js';
+// import menu from '../assets/menu.png'
 class Login extends Component {
     state = {  
-        showSideDrawer : false
+        showSideDrawer : false,
+        loader: true,
+        error: false
     }
     sideDrawerHandler = () => {
         this.setState({showSideDrawer: false})
@@ -18,27 +25,66 @@ class Login extends Component {
            });
      }
      pushToNextPage = () => {
-        this.props.history.push({
-          pathname: '/token'
-        })
+         this.setState({loader: false})
+        const data = {
+            phone: document.querySelector('#number').value,
+            password: document.querySelector('#password').value,
+            email: document.querySelector('#email').value
+         
+          }
+          axios.post('http://sargasoms.com/api/customer/?API_flag=registercustomer', {...data})
+                .then((res) => {
+                this.setState({loader: true})
+                    const response = res.data;
+                    if (response.status === 1001) {
+
+                        this.props.history.push({
+                            pathname: '/token'
+                          })
+                          const id = response.temp_id
+                          localStorage.setItem("id", id);
+                    }
+                    else if (response.status === 2001) {
+                        const alertMessage = response.message
+                        this.setState({alertMessage: alertMessage, displayAlert: true})
+                      } else if (response.status === 2010) {
+                        const alertMessage = response.message
+                        this.setState({alertMessage: alertMessage, displayAlert: true})
+                      }
+                 
+
+                    console.log(res);
+                })
+                .catch(  error => {
+                   
+                    this.setState({error: true, loader: true})});
+                    
       
       }
     render() { 
-        return ( 
-            <div className= "Login">
-        
-
-            <header className= "Logo-header">
-            <img src={logo} className="Special-logo" alt="logo" />   
-            </header>
-            <div className= "sign-up">
+        let showAlert = null;
+        if (this.state.displayAlert) {
+          showAlert = 
+            <Alert>
+              {this.state.alertMessage}
+            </Alert>
+                setTimeout(() => {
+                          this.setState({displayAlert: false})
+                         
+                }, 3000);
+        }
+        let show = <Spinner />
+        if (this.state.loader) {
+            show = (
+                <div className= "sign-up">
                 <div className = "Login-body">
+                    {showAlert}
                 <InputGroup>
-                <Input id= "username" type= "email"  className = "login-input" placeholder="Email Address" />
+                <Input id= "email" type= "email"  className = "login-input" placeholder="Email Address" />
                 </InputGroup>
                 <br />
                 <InputGroup>
-                <Input id = "password" className = "login-input" type= "number" placeholder="Phone Number" />
+                <Input id = "number" className = "login-input" type= "number" placeholder="Phone Number" />
                 </InputGroup>
                 <br />
                 <InputGroup>
@@ -47,12 +93,22 @@ class Login extends Component {
                 <br />
                 <Button style= {{color: "white"}} outline
                 onClick= {this.pushToNextPage}
-                color="secondary" className = "Login-btn"  size="lg">SIGN IN</Button>
+                 className = "Login-btn"  size="lg">SIGN UP</Button>
                 </div>
             </div>
+            )
+        }
+        return ( 
+            <div className= "Login">
+        
+
+            <header className= "Logo-header">
+            <img src={logo} className="Special-logo" alt="logo" />   
+            </header>
+            {show}
             </div>
          );
     }
 }
  
-export default Login;
+export default errorHandler(Login, axios);

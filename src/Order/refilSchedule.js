@@ -1,17 +1,22 @@
 import React, { Component } from 'react';
-import {FormGroup, Input, Form, Button} from 'reactstrap'
+import {FormGroup,  Form, Button} from 'reactstrap'
 import DatePicker from "react-datepicker";
-import TimePicker from 'react-time-picker';
+import TimePicker from 'rc-time-picker';
 import "react-datepicker/dist/react-datepicker.css";
+import 'rc-time-picker/assets/index.css';
 import SideDrawer from '../UI/SideDrawer/sideDrawer';
-import menu from '../assets/menu.png'
+import menu from '../assets/menu.svg';
 import './refilSchedule.css';
+import trackImg from '../assets/track.png';
 
 class RefilSchedule extends Component {
     state = { 
+        showSecond: false,
         showSideDrawer : false,
-        startDate: null,
+        startDate: new Date(),
         time: null,
+        date_picked: null,
+        use12Hours: true
      }
     sideDrawerHandler = () => {
         this.setState({showSideDrawer: false})
@@ -29,57 +34,100 @@ class RefilSchedule extends Component {
       }
       onChange = time => this.setState({ time })
      pushToNextPage = () => {
-        this.props.history.push({
-          pathname: '/success'
-        })
+        const home_details = this.props.location.state.home_details
+        // console.log(this.state.time)
+        // console.log(this.state.date_picked)
+        const date = document.querySelector('#date-picker').value;
+        const time = document.querySelector('#time-picker').value;
+        if ( this.state.time === null) {
+            alert('time is not set')
+        }else {
+            console.log('going to pricing')
+            this.props.history.push({
+                pathname: 'pricing',
+                search: '?query=pricing',
+                state: {home_details: home_details, date: date, time: time}
+              })
+        }
+
+        // this.props.history.push({
+        //   pathname: '/success'
+        // })
       
       }
     render() { 
         return ( 
-            <div className= "Refill">
+      
+            <div className= "wrapper">
                 <SideDrawer 
                 open = {this.state.showSideDrawer}
                 closed = {this.sideDrawerToggleHandler}
                 />
-                <h4 className= "">
-                <strong><span onClick= {this.sideDrawerToggleHandler}>
+            <div className= "order-header">
+            <div >
+                <p className= "para-header">
+                    <span onClick= {this.sideDrawerToggleHandler}>
                     <img src={menu} className="" alt="logo" />
-                    </span>&nbsp;&nbsp;&nbsp;&nbsp;Home</strong>
-                </h4>
+                    </span>&nbsp;&nbsp;&nbsp;&nbsp;Refill Schedule</p>
+            
+            </div>
+                  {/* <p className= "para-header"><span><strong>X</strong></span> &nbsp;&nbsp; Track Order</p> */}
+            </div> 
+   
+            <div className= "counter">
+                <img src={trackImg} className="Track-Img" alt="img" />   
+            </div>
+              
+                <div className= "">
                 <div className="refil-container">
                     <h3>
                         Schedule A Refill
                     </h3>
-                    <Form>
+                <hr />
+                    <Form className= "form-picker">
                         <div className = "date-time-picker">
-                        <FormGroup>
+                        <FormGroup id= "form_grp">
+                        <label className= "label" >Set Date: </label>
                         <DatePicker
+                            id= 'date-picker'
+                            value = {this.state.date_picked}
+                            style = {{width: '100%'}}
                             className='form-input2'
-                            placeholderText = "Set Date"
                             selected={this.state.startDate}
                             onChange={this.handleChange}
+                            dateFormat="MMMM d, yyyy"
                         />
                         </FormGroup>
-                        <FormGroup>
+                <hr />
+                        <FormGroup id= "form_grp2">
+                        <label className= "label" >Set Time: </label>
                         <TimePicker
                             id = "time-picker"
                             className='form-input2'
-                            hourPlaceholder = "Hour"
-                            minutePlaceholder = "Min"
+                            placeholder= "00 00"
+                            use12Hours = {this.state.use12Hours}
+                            showSecond = {this.state.showSecond}
                             onChange={this.onChange}
                             value={this.state.time}
                             />
                         </FormGroup>
+                <hr />
                         </div>
                        
                         <br />
-                        <Button style= {{color: "white"}} 
+                      
+                    </Form>
+                <div id= "form_grp3">
+                <Button style= {{color: "white"}} 
                         outline color="secondary" 
                         className = "Refil-button" 
                         onClick= {this.pushToNextPage} 
                         size="lg">SET DELIVERY WINDOW</Button>
-                    </Form>
                 </div>
+                   
+                </div>
+                </div>
+               
             </div>
          );
     }

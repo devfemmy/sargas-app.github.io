@@ -1,0 +1,147 @@
+.payment-body {
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 8%;
+}
+.payment-header {
+    background-image: url('../../assets/gradient-top.png');
+    min-height: 25vh;
+}
+.payment-header2 {
+    background-image: url('../../assets/side_grad.png');
+    min-height: 5vh;
+}
+.payment-text {
+    padding-top: 5%;
+    margin-bottom: 0rem;
+    color: white;
+}
+.payment-text2 {
+    padding-bottom: 5%;
+    color: white;
+}
+.header-wrapper {
+    padding-left: 8%;
+    padding-right: 10%;
+}
+.header-wrapper .header-text {
+    color: white;
+    margin-top: 5rem;
+    font-size: 33px;
+    font-weight: normal !important;
+}
+.body-paragragh {
+    text-align: left !important;
+    opacity: 0.7;
+}
+.body-paragragh2 {
+    padding-top: 2rem;
+    text-align: left !important;
+    color: #009245;
+}
+.payment-body .input-group-text {
+    padding: 0 !important;
+    border: none !important;
+    background: white !important;
+}
+.payment-method .input-group-text {
+    padding: 0 !important;
+    border: none !important;
+    background: white !important;
+}
+.card-input-session {
+    padding-left: 8%;
+    padding-right: 10%;
+    padding-top: 5%;
+}
+.card-labels {
+    opacity: 0.4;
+}
+/* .paystack-container .test-mode-badge {
+    display: none !important;
+} */
+.card-input-session .input-group-text {
+    padding: 0 !important;
+    border: none !important;
+    border-bottom: 1px solid #2125293d !important;
+    border-radius: 0px !important;
+    background: white !important;
+}
+.card-input-session .form-control, 
+.card-input-session .form-control:focus {
+    border: none !important;
+    border-bottom: 1px solid #2125293d !important;
+    border-radius: 0px !important;
+    box-shadow: none !important;
+    
+}
+.card-input-session .form-control::placeholder {
+    color: #2125293d;
+}
+.master-img {
+    height: 1.9rem !important;
+}
+.master-img2 {
+    height: 2.65rem !important;
+}
+.master-img3 {
+    height: 1.65rem !important;
+}
+.first-input {
+    margin-bottom: 1rem;
+}
+.payment-body .form-control, 
+.payment-body .form-control:focus {
+    border: none !important;
+    box-shadow: none !important;
+    caret-color: white !important;
+}
+.payment-body .form-control, 
+.payment-body .form-control:disabled {
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+.payment-method2{
+    padding-top: 5%;
+    padding-left: 8%;
+    padding-right: 10%;
+}
+
+
+.payment-method2 .form-control, 
+.payment-method2 .form-control:focus {
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+    caret-color: white !important;
+}
+.payment-body .form-control, 
+.payment-body .form-control:disabled {
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+.card-button {
+    border-radius: 50px !important;
+    border: none !important;
+    font-weight: bold !important;
+    width: 80% !important;
+    font-size: 15px !important;
+    height: 3.4rem !important;
+    background-image: linear-gradient( #8CC63F, #009245) !important;
+    color: white !important;
+    position: absolute;
+    bottom: 8%;
+}
+.state-price {
+    color: #009245;
+}
+.card-buttons {
+    padding-right: 10%;
+    padding-left: 10%;
+}
+.current-price {
+    font-weight: bold;
+    margin-bottom: 2rem;
+}

@@ -3,29 +3,32 @@
     padding-right: 10%
 }
 .refil-container {
-    padding-top: 30%;
-}
-.date-time-picker {
     padding-top: 10%;
-    padding-left: 18%;
 }
+
 
 .refil-container h3 {
     text-align: center;
     color: black;
+    opacity: 0.6;
 }
 #time-picker {
     min-width: 9rem;
 }
+.label {
+    opacity: 0.5;
+}
+#form_grp3, #form_grp2, #form_grp {
+    padding-left: 10%;
+    padding-right: 10%
+}
 .form-input2 {
-    /* background: #292929; */
-    /* background: none; */
-    /* border: none; */
     color:black;
     font-size:1.3rem ;
-    border: 1px solid rgba(0, 0, 0, 0.603);
+    border: none;
+
+    /* border-bottom: 1px solid rgba(0, 0, 0, 0.603); */
     border-radius: 5px;
-    min-width: 12px;
     transition:all .2s ease-in;
     caret-color: black;
 
@@ -37,6 +40,15 @@
   }
 .Refil-button {
     border-radius: 50px !important;
+    border: none !important;
     width: 100% !important;
-    background: green !important;
+    font-size: 15px !important;
+    height: 3.4rem !important;
+    background-image: linear-gradient( #8CC63F, #009245) !important;
+}
+
+.rc-time-picker-input {
+    border: none;
+    font-size: 20px;
+    color: black !important;
 }

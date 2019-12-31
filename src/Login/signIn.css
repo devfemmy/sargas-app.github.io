@@ -1,0 +1,23 @@
+.password_text {
+    font-size: 12px;
+    opacity: 0.9;
+}
+.outer-text p {
+    color: white;
+    font-size: 10px;
+    opacity: 0.9;
+    text-align: center;
+
+}
+.outer-text h5 {
+    color: white;
+    text-align: center;
+    font-size: 15px;
+}
+.sign-up {
+    overflow: scroll;
+}
+
+.btn-outline-secondary:not(:disabled):not(.disabled).active, .btn-outline-secondary:not(:disabled):not(.disabled):active, .show>.btn-outline-secondary.dropdown-toggle {
+    background-color: white;
+}

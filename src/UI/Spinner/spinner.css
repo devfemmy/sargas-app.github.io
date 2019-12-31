@@ -2,7 +2,7 @@
 .loader,
 .loader:before,
 .loader:after {
-  background: #DA0000;
+  background: #009245;
   -webkit-animation: load1 1s infinite ease-in-out;
   animation: load1 1s infinite ease-in-out;
   width: 1em;
@@ -10,7 +10,7 @@
 }
 
 .loader {
-  color: #DA0000;
+  color: #009245;
   /* z-index: 99999999; */
   position: relative;
   top: 15;

@@ -16,6 +16,16 @@
 .section6 {
     padding: 5%;
 }
+#currency:focus{
+  background: none;
+  border: none;
+  color: black;
+  opacity: 0.9;
+  outline: none;
+  box-shadow: none;
+  border-bottom: 2px solid #fff
+
+}
 .profile-input {
     /* background: #292929; */
     background: none !important;
@@ -37,11 +47,34 @@
     
 
   }
+  .profile-input:hover {
+    background: none !important;
+    border: none !important;
+    color: black !important;
+    outline: none !important;
+    box-shadow: none !important;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.384) !important
+    
+
+  }
+  .profile-input:active {
+    background: none !important;
+    border: none !important;
+    color: black !important;
+    outline: none !important;
+    box-shadow: none !important;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.384) !important
+    
+
+  }
   .profile-btn {
-      background: green !important;
-      border-radius: 50px !important;
-      color: white !important;
-      width: 100%;
+    border-radius: 50px !important;
+    border: none !important;
+    width: 100% !important;
+    font-size: 15px !important;
+    height: 3.4rem !important;
+    color: white !important;
+    background-image: linear-gradient( #8CC63F, #009245) !important;
     
   }
   .section6 {
