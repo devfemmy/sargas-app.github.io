@@ -3,7 +3,7 @@ import {Input,Button, InputGroup, Alert} from 'reactstrap'
 import logo from '../assets/logo.png';
 import '../Login/login.css';
 import axios from '../axios-req';
-import Spinner from '../UI/Spinner/spinner';
+import Spinners from '../UI/Spinner/spinner';
 import errorHandler from '../ErrorHandler/errorHandler';
 
 
@@ -73,7 +73,7 @@ class Login extends Component {
                          
                 }, 3000);
         }
-        let show = <Spinner />
+        let show = <Spinners />
         if (this.state.loader) {
             show = (
                 <div className= "sign-up">

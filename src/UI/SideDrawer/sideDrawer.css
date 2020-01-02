@@ -40,6 +40,9 @@
     background-image: url('../../assets/gradient_bottom.png');
     min-height: 14rem
 }
+.dash-card h4 {
+    font-size: 1.2rem !important;
+}
 .card-body {
     margin-top: 18%;
     margin-right: 10%;

@@ -12,7 +12,7 @@ class SideDrawer extends Component {
     
     render() { 
         const firstname = localStorage.getItem('firstname');
-        const lastname = localStorage.getItem('lastname')
+        // const lastname = localStorage.getItem('lastname')
         let attachedClasses = ["SideDrawer", "Close" ];
         if (this.props.open) {
             attachedClasses =  ["SideDrawer", "Open" ];
@@ -29,16 +29,12 @@ class SideDrawer extends Component {
                      <img src={avatarIcon} className="avatar" alt="logo" /> 
                      </Col>
                         <Col xs="8" sm="8" md="6">
-                            <h4>{firstname.toUpperCase()} {lastname.toUpperCase()}</h4>
+                            <h4>{firstname.toUpperCase()}</h4>
                         {/* <p> Edit Profile</p> */}
                         </Col>
                     </Row>
                 </CardBody>
             </Card>
-                    <div className= "universal-pad2">
-                
-                   
-                    </div>
                    
                     <div className= "universal-pad2">
                         <NavigationItems />

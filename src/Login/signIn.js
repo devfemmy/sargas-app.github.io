@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import {Input,Button, InputGroup, Alert} from 'reactstrap'
+import {Input,Button, InputGroup, Alert,} from 'reactstrap'
 import logo from '../assets/logo.png';
 import '../Login/login.css';
 import './signIn.css';
 import axios from 'axios';
-import Spinner from '../UI/Spinner/spinner';
+import Spinners from '../UI/Spinner/spinner';
+// import Spinner from 'reactstrap';
 class SignIn extends Component {
     state = { 
       // home_details: null
@@ -91,7 +92,8 @@ class SignIn extends Component {
                        
               }, 3000);
       }
-      let show = <Spinner />
+      let show = <Spinners />
+     
       if (this.state.loader) {
         show = (
           <div className= "sign-up">

@@ -4,7 +4,7 @@ import {Alert} from 'reactstrap';
 import PinInput from 'react-pin-input';
 import logo from '../assets/logo.png';
 import axios from 'axios';
-import Spinner from '../UI/Spinner/spinner';
+import Spinners from '../UI/Spinner/spinner';
 class TokenPage extends Component {
     state = { 
         loader: true,
@@ -55,7 +55,7 @@ class TokenPage extends Component {
                          
                 }, 3000);
         }
-        let show = <Spinner />
+        let show = <Spinners />
         if (this.state.loader) {
             show = (
                 

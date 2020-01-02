@@ -22,13 +22,12 @@ class OrderSuccess extends Component {
       
       }
     render() { 
-      const customer_address = localStorage.getItem('customer_address');
       const apartment = localStorage.getItem('apartment');
       const street = localStorage.getItem('street')
         return ( 
             <div className= "order-success">
                 <div className= "order-header">
-        <p className= "para-header"><span onClick= {this.backToPrevPageHandler}>&larr; </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Sargas to {customer_address}</p>
+        <p className= "para-header"><span onClick= {this.backToPrevPageHandler}>&larr; </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Sargas to  {apartment} {street}</p>
                 </div>  
                
                 <div className= "transaction-success">
@@ -49,7 +48,7 @@ class OrderSuccess extends Component {
                         <Col className= "column" xs = "8">
                         <h5>Sargas Energy</h5>
                         <p>
-                          {apartment} {street} {customer_address}
+                          {apartment} {street}
                         </p>
                         </Col>
 

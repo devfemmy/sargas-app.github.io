@@ -1,16 +1,16 @@
 import React, {Component} from 'react';
-
+import {Spinner} from 'reactstrap';
 import './spinner.css';
 
-class Spinner extends Component {
+class Spinners extends Component {
     state = {  }
     render() { 
         return ( 
-            <div id="loader-container">
-                <div className = "loader">Loading...</div> 
+            <div className="spinner-container">
+               <Spinner color= "secondary" classname= "spinner" />
             </div>
          );
     }
 }
  
-export default Spinner;
+export default Spinners;

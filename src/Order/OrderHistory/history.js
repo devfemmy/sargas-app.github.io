@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 // import { Row } from 'reactstrap';
 import './history.css';
 import axios from 'axios';
-import Spinner from '../../UI/Spinner/spinner';
+import Spinners from '../../UI/Spinner/spinner';
 
 class History extends Component {
     state = { 
@@ -36,7 +36,7 @@ class History extends Component {
     }
 
     render() { 
-        let showOrder = <Spinner />
+        let showOrder = <Spinners />
         let showNoOrder = null
         if (this.state.loader2) {
             showNoOrder = (

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Input,Button, InputGroup,Alert} from 'reactstrap';
-import Spinner from '../UI/Spinner/spinner.js';
+import Spinners from '../UI/Spinner/spinner.js';
 import logo from '../assets/logo.png';
 import '../Login/login.css';
 import './signIn.css';
@@ -51,7 +51,7 @@ class ForgotPassword extends Component {
                          
                 }, 3000);
         }
-        let showResult = <Spinner />
+        let showResult = <Spinners />
         if (this.state.loader) {
             showResult = (
                 <div className = "Login-body">

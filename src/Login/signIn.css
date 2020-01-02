@@ -2,6 +2,9 @@
     font-size: 12px;
     opacity: 0.9;
 }
+.outer-text {
+    margin-top: 0.5rem;
+}
 .outer-text p {
     color: white;
     font-size: 10px;
@@ -17,6 +20,7 @@
 .sign-up {
     overflow: scroll;
 }
+
 
 .btn-outline-secondary:not(:disabled):not(.disabled).active, .btn-outline-secondary:not(:disabled):not(.disabled):active, .show>.btn-outline-secondary.dropdown-toggle {
     background-color: white;

@@ -5,7 +5,7 @@ import SideDrawer from '../UI/SideDrawer/sideDrawer';
 import menu from '../assets/menu.svg';
 import {Button} from 'reactstrap'
 import axios from 'axios';
-import Spinner from '../UI/Spinner/spinner';
+import Spinners from '../UI/Spinner/spinner';
 
 class HomePage extends Component {
     state = { 
@@ -40,16 +40,14 @@ class HomePage extends Component {
         // const address = home_details.apartment;
         // const street = home_details.street;
         // const state = home_details.state;
-        const customer_address = localStorage.getItem('customer_address');
-        if (customer_address === null) {
-            alert('Please go to profile to fill in your address')
-        }else {
+        // const customer_address = localStorage.getItem('customer_address');
+     
             this.props.history.push({
                 pathname: 'refil',
                 search: '?query=refil',
                 state: {home_details: home_details}
               })
-        }
+        
      }
 
      sideDrawerToggleHandler = () => {
@@ -68,7 +66,7 @@ class HomePage extends Component {
         localStorage.setItem('apartment', apartment)
         const street = home_details.street;
         localStorage.setItem('street', street)
-        let showName = <Spinner />
+        let showName = <Spinners />
         if (this.state.loader) {
             showName = (
                 <div className = "home-content">

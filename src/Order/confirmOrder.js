@@ -4,7 +4,7 @@ import masterIcon from '../assets/mastercard.svg';
 import moneyIcon from '../assets/money.svg';
 import '../Order/PaymentPage/paymentPage.css';
 import axios from 'axios';
-import Spinner from '../UI/Spinner/spinner';
+import Spinners from '../UI/Spinner/spinner';
 class ConfirmOrder extends Component {
     state = { 
         oldPrice: null,
@@ -125,7 +125,7 @@ class ConfirmOrder extends Component {
     render() { 
         const state = this.props.location.state;
         console.log(state)
-        let renderData = <Spinner />;
+        let renderData = <Spinners />;
         if (this.state.loader) {
             renderData = (
                 this.state.payment_method.map(
@@ -139,7 +139,7 @@ class ConfirmOrder extends Component {
                                         <img className= "master-img" src = {masterIcon} alt= "master-icon" />
                                     </InputGroupText>
                                     </InputGroupAddon>
-                                    <Input onClick= {() => this.addClass(this.state.oldPrice, this.props.location.state)} type="text" name="number"  defaultValue= "**** **** ****" id="cash" />
+                                    <Input readOnly onClick= {() => this.addClass(this.state.oldPrice, this.props.location.state)} type="text" name="number"  defaultValue= "**** **** ****" id="cash" />
                                     <InputGroupAddon addonType="append">
                                     <InputGroupText>
                                     <i id= "material1" style= {{color: 'blue', display: 'none'}} className="material-icons">done</i>
@@ -157,7 +157,7 @@ class ConfirmOrder extends Component {
                                         <img className= "master-img2" src = {moneyIcon} alt= "master-icon" />
                                     </InputGroupText>
                                     </InputGroupAddon>
-                                    <Input onClick= {this.addToggle} type="text" defaultValue = {pm.payment} id="exampleSelect" />
+                                    <Input readOnly onClick= {this.addToggle} type="text" defaultValue = {pm.payment} id="exampleSelect" />
                                     <InputGroupAddon addonType="append">
                                     <InputGroupText>
                                     <i id= "material2" style= {{color: 'blue', display: 'none'}} className="material-icons">done</i>

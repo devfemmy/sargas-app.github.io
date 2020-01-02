@@ -5,7 +5,7 @@ import './profile.css';
 import '../../Order/orderFailed/orderFailed.css';
 import avatarIcon from '../../assets/avatar.png';
 import axios from 'axios';
-import Spinner from '../../UI/Spinner/spinner';
+import Spinners from '../../UI/Spinner/spinner';
 class Profile extends Component {
     state = { 
         first_name: null,
@@ -117,7 +117,7 @@ class Profile extends Component {
 
     }
     render() { 
-        let showProfile = <Spinner />
+        let showProfile = <Spinners />
         if (this.state.loader) {
             showProfile = (
             <div>
