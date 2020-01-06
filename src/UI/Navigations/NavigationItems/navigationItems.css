@@ -7,6 +7,9 @@
     align-items: center;
     height: 100%;
 }
+.home-logo {
+    height: 2vh;
+}
 
 @media (min-width: 500px) {
     .NavigationItems {

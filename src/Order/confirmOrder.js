@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
-import { InputGroup, Button, InputGroupAddon, InputGroupText, Input } from 'reactstrap';
+import { InputGroup, Button, InputGroupAddon, 
+    InputGroupText, Input} from 'reactstrap';
 import masterIcon from '../assets/mastercard.svg';
+import trackImg from '../assets/track.png'
 import moneyIcon from '../assets/money.svg';
 import '../Order/PaymentPage/paymentPage.css';
 import axios from 'axios';
 import Spinners from '../UI/Spinner/spinner';
+import timer from '../assets/timer_icon.svg';
 class ConfirmOrder extends Component {
     state = { 
         oldPrice: null,
@@ -132,14 +135,14 @@ class ConfirmOrder extends Component {
                     (pm, index) => {
                         if (pm.pm_id === "4") {
                             return (
-                                <div key = {index}>
+                                <div className= "confirm_order_div" key = {index}>
                                 <InputGroup className= "first-input">
                                     <InputGroupAddon addonType="prepend">
                                     <InputGroupText>
                                         <img className= "master-img" src = {masterIcon} alt= "master-icon" />
                                     </InputGroupText>
                                     </InputGroupAddon>
-                                    <Input readOnly onClick= {() => this.addClass(this.state.oldPrice, this.props.location.state)} type="text" name="number"  defaultValue= "**** **** ****" id="cash" />
+                                    <Input readOnly onClick= {() => this.addClass(this.state.oldPrice, this.props.location.state)} type="text" name="number"  defaultValue= "Card Payment" id="cash" />
                                     <InputGroupAddon addonType="append">
                                     <InputGroupText>
                                     <i id= "material1" style= {{color: 'blue', display: 'none'}} className="material-icons">done</i>
@@ -175,6 +178,7 @@ class ConfirmOrder extends Component {
             )
         }
         return (  
+        <div style={{backgroundColor: 'white'}}>
             <div className= "payment">
                 <div className= "payment-header2">
                     <div className = "header-wrapper">
@@ -185,21 +189,40 @@ class ConfirmOrder extends Component {
               
                 </div> 
                 <div className= "payment-body">
+                        <div className= "counter3">
+                        <img src={trackImg} className="Track-Img" alt="img" />   
+                        </div>
+                        {/* <FormGroup>
+                            <Label for="exampleText">Text Area</Label>
+                            <Input className= "profile-input" type="textarea" name="text" id="exampleText" />
+                        </FormGroup> */}
+                       <hr />
                     <p className= "current-price">Your Current Order Price is : <span className= "state-price">{this.state.price}</span> </p>
                     <p className= "body-paragragh">Select Payment Method</p>
                    
                     {renderData}
 
                 </div>
-                <div className= "card-buttons">
-                <Button 
-                        outline color="secondary" 
-                        className = "card-button" 
-                        onClick= {()=> this.confirmOrder(state)} 
-                        size="lg">CONFIRM ORDER
-                </Button>
-                </div>
+        
             </div>
+                    <div className= "card-buttons">
+                    <Button 
+                            outline color="secondary" 
+                            className = "card-button" 
+                            onClick= {()=> this.confirmOrder(state)} 
+                            size="lg">CONFIRM ORDER
+                    </Button>
+                    <Button 
+                            disabled
+                            outline color="secondary" 
+                            className = "card-button2" 
+                            onClick= {()=> this.confirmOrder(state)} 
+                            size="lg">
+                                <img src={timer} className= "timer-img" alt= "timer" />
+                    </Button>
+                    
+            </div>
+        </div>
         );
     }
 }

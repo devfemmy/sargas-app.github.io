@@ -11,7 +11,7 @@ class SideDrawer extends Component {
     state = {  }
     
     render() { 
-        const firstname = localStorage.getItem('firstname');
+       const firstname = localStorage.getItem('usersfirstname');
         // const lastname = localStorage.getItem('lastname')
         let attachedClasses = ["SideDrawer", "Close" ];
         if (this.props.open) {

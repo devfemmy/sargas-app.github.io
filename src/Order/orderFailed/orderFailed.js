@@ -11,16 +11,16 @@ class OrderFailed extends Component {
     }
     pushToNextPage = () => {
         this.props.history.push({
-          pathname: '/profile'
+          pathname: '/home'
         })
       
       }
     render() { 
-        const customer_address = localStorage.getItem('customer_address');
+        // const customer_address = localStorage.getItem('customer_address');
         return (  
-            <div>
+            <div style={{backgroundColor: 'white'}}>
                 <div className= "order-header">
-            <p className= "para-header">&larr; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Sargas to {customer_address}</p>
+            <p className= "para-header">&larr; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Failed Order</p>
                 </div>  
                 <div className= "order-failed">
                 <img src={orderFailedIcon} className="order_img" alt="logo" />

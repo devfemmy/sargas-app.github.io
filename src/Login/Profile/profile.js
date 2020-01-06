@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Input,InputGroup} from 'reactstrap';
+import {Input,InputGroup, Label, Row, Col} from 'reactstrap';
 import {Button} from 'reactstrap';
 import './profile.css';
 import '../../Order/orderFailed/orderFailed.css';
@@ -15,6 +15,8 @@ class Profile extends Component {
         gender: null,
         apart_no: null,
         street_name: null,
+        city: null,
+        state: null,
         loader: true
      }
      backToPrevPageHandler = () => {
@@ -34,23 +36,31 @@ class Profile extends Component {
                     const response = res.data;
                     const firstname = response.firstname;
                     const lastname = response.lastname;
+                    const nameCapitalized = firstname.charAt(0).toUpperCase() + firstname.slice(1)
+                    const nameCapitalized2 = lastname.charAt(0).toUpperCase() + lastname.slice(1)
                     const phone_no = response.phone;
                     const email = response.email;
                     const gender = response.gender
                     const apart_no = response.apartment;
                     const street_name = response.street;
+                    const city= response.city;
+                    const state = response.state
                     this.setState({
                         first_name: firstname, last_name:lastname,
                         phone_no: phone_no, email: email, gender: gender,
-                        apart_no: apart_no, street_name: street_name
+                        apart_no: apart_no, street_name: street_name,
+                        city: city, state: state
+
                     })
-                    document.querySelector('#firstname').value = firstname;
-                    document.querySelector('#lastname').value = lastname;
+                    document.querySelector('#firstname').value = nameCapitalized;
+                    document.querySelector('#lastname').value = nameCapitalized2;
                     document.querySelector('#phone_number').value = phone_no;
                     document.querySelector('#email').value = email;
                     document.querySelector('#gender').value = gender;
                     document.querySelector('#apt').value = apart_no;
                     document.querySelector('#street').value = street_name;
+                    document.querySelector('#city').value = city;
+                    document.querySelector('#state').value = state;
                     console.log(response.status)
                     if (response.status === 1001) {
                       
@@ -122,33 +132,104 @@ class Profile extends Component {
             showProfile = (
             <div>
                <div className= "section10">
+                <Row>
+                    <Col>
+                    <Label className= "profile-label">First Name:</Label>
+                    <InputGroup>
+                    <Input id= "firstname" type= "text"  className = "profile-input" placeholder="First Name" />
+                    </InputGroup>
+                    </Col>
+                    <Col>
+                    <Label className= "profile-label">Last Name:</Label>
+                    <InputGroup>
+                    <Input id= "lastname" type= "text"  className = "profile-input" placeholder="Last Name" />
+                    </InputGroup>
+                    </Col>
+                </Row>
+            
+                <br />
+                <Row>
+                    <Col>
+                        <Label className= "profile-label">Phone No:</Label>
+                        <InputGroup>
+                        <Input id = "phone_number" className = "profile-input" type= "number" placeholder="Phone Number" />
+                        </InputGroup>
+                    </Col>
+                    <Col>
+                    <Label className= "profile-label">Gender:</Label>
                 <InputGroup>
-                <Input id= "firstname" type= "text"  className = "profile-input" placeholder="First Name" />
+                <Input id= "gender2" type= "select"  className = "profile-input" placeholder="Gender">
+                    <option id="">
+                        {this.state.gender}
+                    </option>
+                    <option id="gender">
+                        female
+                    </option>
+                </Input>
+                </InputGroup>
+                  
+                    </Col>
+                </Row>
+     
+                <br />
+                <Label className= "profile-label">Email:</Label>
+                    <InputGroup>
+                    <Input id= "email" type= "email"  className = "profile-input" placeholder="Email" />
+                    </InputGroup>
+                <br />
+                <Row>
+                    <Col>
+                    <Label className= "profile-label">Apartment No:</Label>
+                    <InputGroup>
+                    <Input id= "apt" type= "number"  className = "profile-input" placeholder="Apartment No" />
+                    </InputGroup>
+                    </Col>
+                    <Col>
+                    <Label className= "profile-label">Nearest Bus-Stop:</Label>
+                    <InputGroup>
+                    <Input id= "street" type= "text"  className = "profile-input" placeholder="Street Name" />
+                    </InputGroup>
+                    </Col>
+                </Row>
+            
+                <br />
+                <Label className= "profile-label">Street:</Label>
+                    <InputGroup>
+                    <Input id= "street2" type= "text"  className = "profile-input" placeholder="Street Name" />
                 </InputGroup>
                 <br />
-                <InputGroup>
-                <Input id= "lastname" type= "text"  className = "profile-input" placeholder="Last Name" />
-                </InputGroup>
-                <br />
-                <InputGroup>
-                <Input id = "phone_number" className = "profile-input" type= "number" placeholder="Phone Number" />
-                </InputGroup>
-                <br />
-                <InputGroup>
-                <Input id= "email" type= "email"  className = "profile-input" placeholder="Email" />
-                </InputGroup>
-                <br />
-                <InputGroup>
-                <Input id= "gender" type= "text"  className = "profile-input" placeholder="Gender" />
-                </InputGroup>
-                <br />
-                <InputGroup>
-                <Input id= "apt" type= "number"  className = "profile-input" placeholder="Apartment No" />
-                </InputGroup>
-                <br />
-                <InputGroup>
-                <Input id= "street" type= "text"  className = "profile-input" placeholder="Street Name" />
-                </InputGroup>
+                <Row>
+                    <Col>
+                    <Label className= "profile-label">City:</Label>
+                    <InputGroup>
+                    <Input id= "city" type= "select"  className = "profile-input" placeholder="city">
+                    <option id="">
+                            Select
+                        </option>
+                    <option id="">
+                            {this.state.city}
+                    </option>
+                
+                    </Input>
+                    </InputGroup>
+                    </Col>
+                    <Col>
+                    <Label className= "profile-label">State:</Label>
+                        <InputGroup>
+                        <Input id= "state" type= "select"  className = "profile-input" placeholder="state">
+                            <option id="">
+                                Select
+                            </option>
+                            <option id="">
+                                {this.state.state}
+                            </option>
+                    
+                        </Input>
+                        </InputGroup>
+                    </Col>
+                </Row>
+                
+              
 
                 </div>
                <div className= "section6">
@@ -163,8 +244,8 @@ class Profile extends Component {
             )
         }
         return ( 
-            <div>
-                <div className= "order-header">
+            <div style={{backgroundColor: 'white'}}>
+                <div id="sticky_element"  className= "order-header">
                 <p className= "para-header"><span onClick= {this.backToPrevPageHandler}>&larr; </span>&nbsp;&nbsp;&nbsp;&nbsp; Edit Profile</p>
                 </div> 
                 <div className= "edit-profile">

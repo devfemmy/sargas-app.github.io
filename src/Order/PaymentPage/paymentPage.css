@@ -4,11 +4,13 @@
     padding-top: 8%;
 }
 .payment-header {
-    background-image: url('../../assets/gradient-top.png');
+    background-image: url('../../assets/add_payment_bg.svg');
+    background-size: cover;
     min-height: 25vh;
 }
 .payment-header2 {
-    background-image: url('../../assets/side_grad.png');
+    background-image: url('../../assets/add_payment_bg.svg');
+    background-size: cover;
     min-height: 5vh;
 }
 .payment-text {
@@ -94,7 +96,7 @@
 .payment-body .form-control:focus {
     border: none !important;
     box-shadow: none !important;
-    caret-color: white !important;
+    /* caret-color: white !important; */
 }
 .payment-body .form-control, 
 .payment-body .form-control:disabled {
@@ -126,22 +128,50 @@
     border-radius: 50px !important;
     border: none !important;
     font-weight: bold !important;
-    width: 80% !important;
-    font-size: 15px !important;
-    height: 3.4rem !important;
+    /* display: inline-block; */
+    width: 55% !important;
+    font-size: 14px !important;
+    height: 3.6rem !important;
     background-image: linear-gradient( #8CC63F, #009245) !important;
     color: white !important;
-    position: absolute;
-    bottom: 8%;
+    vertical-align: middle;
+    /* position: absolute;
+    bottom: 8%; */
 }
+.confirm_order_div {
+    margin-top: 1rem;
+}
+.card-button2 {
+    border-radius: 50px !important;
+    border: 1px solid #8CC63F !important;
+    font-weight: bold !important;
+    /* display: inline-block; */
+    width: 40% !important;
+    font-size: 15px !important;
+    height: 3.6rem !important;
+    /* background-image: linear-gradient( #8CC63F, #009245) !important; */
+    /* color: white !important; */
+    vertical-align: middle;
+    margin-left: 12px;
+ 
+}
+
 .state-price {
     color: #009245;
 }
 .card-buttons {
-    padding-right: 10%;
-    padding-left: 10%;
+    padding-right: 18%;
+    padding-left: 15%;
+    /* text-align: center; */
+    position: absolute;
+    bottom: 8%;
+    min-width: 100%;
 }
 .current-price {
     font-weight: bold;
     margin-bottom: 2rem;
+}
+.timer-img {
+
+    height: 4vh;
 }

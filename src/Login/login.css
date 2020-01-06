@@ -1,7 +1,7 @@
 
   
   .Special-logo {
-    height: 30vmin;
+    height: 25vmin;
     
   }
   
@@ -15,13 +15,24 @@
     color: white;
     background-color: white;
   }
-  .sign-up {
-      /* background: blue; */
-        background-image: url('../assets/gradient_bottom.png');
-      min-height: 53vh;
-  }
-  .Login-body {
+  .Logo-header2 {
     min-height: 40vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+    background-color: white;
+  }
+  .sign-up2 {
+      /* background: blue; */
+        background-image: url('../assets/register_bg.svg');
+      min-height: 60vh;
+      background-size: cover;
+  }
+  .Login-body2 {
+    min-height: 50vh;
     display: flex;
     flex-direction: column;
     /* align-items: center; */
@@ -40,6 +51,7 @@
     border-radius: 0px !important;
     color:#fff !important;
     font-size:1.3rem ;
+    opacity: 0.8;
     border-bottom: 2px solid white !important;
     transition:all .2s ease-in;
     caret-color: white;

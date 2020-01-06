@@ -2,16 +2,16 @@ import React from 'react';
 // import './navigationItems.css'
 import './navigationItems.css';
 import '../../SideDrawer/sideDrawer.css';
-// import home from '../../../assets/home-icon.svg';
-// import restaurant from '../../../assets/restaurants-icon.svg'
-// import profile from '../../../assets/profile-icon.svg';
-// import pointStatistics from '../../../assets/points-statistics-icon.svg';
-// import notications from '../../../assets/notification-icon.svg';
-// import transactions from '../../../assets/transaction-icon.svg';
+import home from '../../../assets/home_icon.svg';
+import order from '../../../assets/order_history_icon.svg';
+import profile from '../../../assets/profile.svg';
+import payment from '../../../assets/payment_icon.svg';
+import trackIcon from '../../../assets/tracking_icon.svg';
+import freebies from '../../../assets/freebies_icon.svg';
 // import survey from '../../../assets/survey-icon.svg';
 // import promoCode from '../../../assets/promo-icon.svg';
 // import security from '../../../assets/security-icon.svg';
-// import logOut from '../../../assets/logout.svg';
+import logOut from '../../../assets/log-out.svg';
 import NavigationItem from '../NavigationItem/navigationItem';
 
 const NavigationItems = (props) => (
@@ -19,37 +19,51 @@ const NavigationItems = (props) => (
         
     <NavigationItem link= '/home'>
     <p className= "side-icons">
-        Home
+    <strong><span>
+        <img src={home} className="home-logo" alt="logo" />
+        </span>&nbsp;&nbsp;<span>Home</span></strong>
     </p>
     </NavigationItem>
     <NavigationItem link= '/profile'>
     <p className= "side-icons">
-        Profile
+    <strong><span>
+        <img src={profile} className="home-logo" alt="logo" />
+        </span>&nbsp;&nbsp;<span>Profile</span></strong>
     </p>
     </NavigationItem>
     <NavigationItem link= '/history'>
     <p className= "side-icons">
-        Orders
+    <strong><span>
+        <img src={order} className="home-logo" alt="logo" />
+        </span>&nbsp;&nbsp;<span>Orders</span></strong>
     </p>
     </NavigationItem>
     <NavigationItem link= '/payment'>
     <p className= "side-icons">
-        Payment
+    <strong><span>
+        <img src={payment} className="home-logo" alt="logo" />
+        </span>&nbsp;&nbsp;<span>Payment</span></strong>
     </p>
     </NavigationItem>
     <NavigationItem link= '/tracking'>
     <p className= "side-icons">
-        Track Orders
+    <strong><span>
+        <img src={trackIcon} className="home-logo" alt="logo" />
+        </span>&nbsp;<span>Track Orders</span></strong>
     </p>
     </NavigationItem>
     <NavigationItem link= '/'>
     <p className= "side-icons">
-        Freebies
+    <strong><span>
+        <img src={freebies} className="home-logo" alt="logo" />
+        </span>&nbsp;&nbsp;&nbsp;<span>Freebies</span></strong>
     </p>
     </NavigationItem>
     <NavigationItem link= '/'>
     <p className= "side-icons">
-        LogOut
+    <strong><span>
+        <img src={logOut} className="home-logo" alt="logo" />
+        </span>&nbsp;&nbsp;&nbsp;<span>Log Out</span></strong>
     </p>
     </NavigationItem>
     </ul>

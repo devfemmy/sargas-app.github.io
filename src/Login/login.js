@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Input,Button, InputGroup, Alert} from 'reactstrap'
-import logo from '../assets/logo.png';
+import logo from '../assets/logo_new.svg';
 import '../Login/login.css';
 import axios from '../axios-req';
 import Spinners from '../UI/Spinner/spinner';
@@ -76,8 +76,8 @@ class Login extends Component {
         let show = <Spinners />
         if (this.state.loader) {
             show = (
-                <div className= "sign-up">
-                <div className = "Login-body">
+                <div className= "sign-up2">
+                <div className = "Login-body2">
                     {showAlert}
                 <InputGroup>
                 <Input id= "email" type= "email"  className = "login-input" placeholder="Email Address" />
@@ -91,6 +91,10 @@ class Login extends Component {
                 <Input id = "password" className = "login-input" type= "password" placeholder="Password" />
                 </InputGroup>
                 <br />
+                <InputGroup>
+                <Input id = "Confirm Password" className = "login-input" type= "password" placeholder="Confirm Password" />
+                </InputGroup>
+                <br />
                 <Button style= {{color: "white"}} outline
                 onClick= {this.pushToNextPage}
                  className = "Login-btn"  size="lg">SIGN UP</Button>
@@ -102,7 +106,7 @@ class Login extends Component {
             <div className= "Login">
         
 
-            <header className= "Logo-header">
+            <header className= "Logo-header2">
             <img src={logo} className="Special-logo" alt="logo" />   
             </header>
             {show}

@@ -8,13 +8,16 @@
     
   }
   .horizontal-line {
-    border-top: 1px solid rgba(0,0,0,0.5);
+    border-top: 1px solid rgba(0, 0, 0, 0.253);
    }
 .section10 {
-    padding: 5%;
+    padding: 8%;
 }
 .section6 {
     padding: 5%;
+}
+.profile-label {
+  opacity: 0.8;
 }
 #currency:focus{
   background: none;
@@ -31,8 +34,9 @@
     background: none !important;
     border: none !important;
     color:black !important;
+    border-radius: 0px !important;
     font-size:1.3rem ;
-    border-bottom: 2px solid rgba(0, 0, 0, 0.384) !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.384) !important;
     transition:all .2s ease-in;
     caret-color: black;
 
@@ -79,6 +83,11 @@
   }
   .section6 {
     padding-top: 10%;
-    padding-left: 10%;
-    padding-right: 15%
+    padding-left: 8%;
+    padding-right: 8%
+}
+#sticky_element {
+  position: sticky;
+  z-index: 99999;
+  top: 0;
 }

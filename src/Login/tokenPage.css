@@ -5,27 +5,45 @@
 }
 
 .token-header {
-    min-height: 20vh;
+    min-height: 23.6vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     font-size: calc(10px + 2vmin);
     color: white;
+    background-color: white;
   }
   .Login-button {
     border: 1px solid green !important;
     border-radius: 50px !important;
     width: 100%;
 }
+.token-div {
+    justify-items: center;
+    align-items: center;
+}
+.Login-button2 {
+    border: 1px solid white !important;
+    border-radius: 50px !important;
+    /* width: 100%; */
+}
 .token-body {
-    background-image: url('../assets/gradient_top.png');
-    min-height: 75vh;
+    background-image: url('../assets/login_bg.svg');
+    background-size: cover;
+    min-height: 70vh;
     padding: 0px;
 }
-h4 {
+.preview-body {
+    background-image: url('../assets/preview.png');
+    background-size: cover;
+    min-height: 70vh;
+}
+.token h4 {
     color: white;
     padding-top: 2rem;
+    font-size: 18px !important;
+    text-align: center;
 }
 .arrow-back {
     color: black;

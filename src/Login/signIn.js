@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Input,Button, InputGroup, Alert,} from 'reactstrap'
-import logo from '../assets/logo.png';
+import logo from '../assets/logo_new.svg';
 import '../Login/login.css';
 import './signIn.css';
 import axios from 'axios';
@@ -43,6 +43,11 @@ class SignIn extends Component {
                    
                     if (response.status === 1001) {
                       const home_details = response.home_details;
+                      const usersfirstname = home_details.firstname;
+                      const userslastname = home_details.lastname;
+                      console.log(usersfirstname)
+                      localStorage.setItem('usersfirstname', usersfirstname);
+                      localStorage.setItem('userslastname', userslastname);
                       this.setState({home_details: home_details})
                       if (response.first_time === '1') {
                         this.props.history.push({

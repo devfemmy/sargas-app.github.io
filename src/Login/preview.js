@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './tokenPage.css';
 import {FormGroup, Label, Input, Form, Button} from 'reactstrap'
-import logo from '../assets/logo.png';
+import logo from '../assets/logo_new.svg';
 import axios from 'axios';
 class PreviewPage extends Component {
     state = { 
@@ -96,11 +96,10 @@ class PreviewPage extends Component {
       localStorage.setItem('customer_address', customer_address)
         return ( 
             <div className = "preview">
-                <span className = "arrow-back">&larr;</span>
+                <span className = "arrow-back"></span>
                 <header className= "token-header">
                 <img src={logo} className="Special-logo" alt="logo" />   
                 </header>
-            <hr />
             <div className = "preview-body">
             <Form>
                         <FormGroup>
@@ -119,10 +118,10 @@ class PreviewPage extends Component {
                         </Input>
                     </FormGroup>
                     <br />
-                    <Button style= {{color: "green"}} 
+                    <Button style= {{color: "white", position: 'absolute', bottom: '45%', width: '80%', border: '2px solid white'}} 
                     outline color="secondary" 
                     onClick= {this.pushToNextPage}
-                    className = "Login-button"  
+                    className = "Login-button2"  
                     size="lg">SUBMIT</Button>
             </Form>
                 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './tokenPage.css';
 import {Alert} from 'reactstrap';
 import PinInput from 'react-pin-input';
-import logo from '../assets/logo.png';
+import logo from '../assets/logo_new.svg';
 import axios from 'axios';
 import Spinners from '../UI/Spinner/spinner';
 class TokenPage extends Component {
@@ -66,7 +66,7 @@ class TokenPage extends Component {
                 secret 
                 onChange={(value, index) => {}} 
                 type="numeric" 
-                style={{padding: '10px', marginLeft: '2rem'}}  
+                style={{padding: '10px', marginLeft: '3rem'}}  
                 inputStyle={{borderColor: 'white'}}
                 inputFocusStyle={{borderColor: 'blue'}}
                 onComplete={(value, index) => {this.pushToNextPage(value)}}
@@ -75,7 +75,7 @@ class TokenPage extends Component {
         }
         return ( 
         <div className = "token-top">
-        <span className = "arrow-back">&larr;</span>
+        <span className = "arrow-back"></span>
             <header className= "token-header">
             <img src={logo} className="Special-logo" alt="logo" />   
             </header>
@@ -84,7 +84,10 @@ class TokenPage extends Component {
                 <h4>Please Enter the Token sent to you</h4>
                 {showAlert}
                 <br />
-              {show}
+            <div className= "token-div">
+            {show}
+            </div>
+            
             <br />
             </div>
        

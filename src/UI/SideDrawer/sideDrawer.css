@@ -37,11 +37,13 @@
     margin-bottom: 1.7rem;
 }
 .dash-card {
-    background-image: url('../../assets/gradient_bottom.png');
+    background-image: url('../../assets/side_menu_bg.svg');
+    background-size: cover;
     min-height: 14rem
 }
 .dash-card h4 {
     font-size: 1.2rem !important;
+    padding-top: 1rem;
 }
 .card-body {
     margin-top: 18%;

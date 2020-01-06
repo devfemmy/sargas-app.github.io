@@ -5,7 +5,7 @@ import SideDrawer from '../UI/SideDrawer/sideDrawer';
 import menu from '../assets/menu.svg';
 import {Button} from 'reactstrap'
 import axios from 'axios';
-import Spinners from '../UI/Spinner/spinner';
+// import Spinners from '../UI/Spinner/spinner';
 
 class HomePage extends Component {
     state = { 
@@ -43,8 +43,8 @@ class HomePage extends Component {
         // const customer_address = localStorage.getItem('customer_address');
      
             this.props.history.push({
-                pathname: 'refil',
-                search: '?query=refil',
+                pathname: 'pricing',
+                search: '?query=pricing',
                 state: {home_details: home_details}
               })
         
@@ -57,7 +57,7 @@ class HomePage extends Component {
      }
     render() { 
         const home_details = this.state.home_details
-        const firstname = home_details.firstname;
+        const firstname = localStorage.getItem('usersfirstname');
         const lastname = home_details.lastname;
         localStorage.setItem('lastname', lastname)
         localStorage.setItem('firstname', firstname)
@@ -66,27 +66,13 @@ class HomePage extends Component {
         localStorage.setItem('apartment', apartment)
         const street = home_details.street;
         localStorage.setItem('street', street)
-        let showName = <Spinners />
-        if (this.state.loader) {
-            showName = (
-                <div className = "home-content">
-                <h2>Hi, {firstname.toUpperCase()}</h2>
-                </div>
-            )
-        }
-        let showButton = null;
-        if (this.state.loader) {
-            showButton = (
-                <div className= "button-div">
-                <Button 
-                        outline color="secondary" 
-                        className = "home-button" 
-                        onClick= {()=> this.pushToNextPage(home_details)} 
-                        size="lg">ORDER REFILL
-                </Button>
-              </div>
-            )
-        }
+        // let showName = <Spinners />
+        // if (this.state.loader) {
+        //     showName = (
+            
+        //     )
+        // }
+
 
         return ( 
         <div>
@@ -99,9 +85,18 @@ class HomePage extends Component {
                 <div className= "counter2">
                 <img src={trackImg} className="Track-Img" alt="img" />   
                 </div>
-                {showName}
+                <div className = "home-content">
+                <h2>Hi, {firstname.toUpperCase()}</h2>
+                </div>
             </div>
-            {showButton}
+            <div className= "button-div">
+                <Button 
+                        outline color="secondary" 
+                        className = "home-button" 
+                        onClick= {()=> this.pushToNextPage(home_details)} 
+                        size="lg">ORDER REFILL
+                </Button>
+            </div>
 
         </div>
             
