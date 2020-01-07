@@ -28,7 +28,7 @@ class OrderFailed extends Component {
                 </div>
                
                 <div className= "section4">
-                <Button style= {{color: "white"}} 
+                <Button style= {{color: "white", position: 'absolute', bottom: '8%', width: '80%'}} 
                 onClick= {this.pushToNextPage}
                 outline color="secondary"
                  className = "Track-btn"  

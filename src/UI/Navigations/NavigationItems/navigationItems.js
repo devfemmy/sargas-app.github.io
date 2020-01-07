@@ -5,7 +5,7 @@ import '../../SideDrawer/sideDrawer.css';
 import home from '../../../assets/home_icon.svg';
 import order from '../../../assets/order_history_icon.svg';
 import profile from '../../../assets/profile.svg';
-import payment from '../../../assets/payment_icon.svg';
+// import payment from '../../../assets/payment_icon.svg';
 import trackIcon from '../../../assets/tracking_icon.svg';
 import freebies from '../../../assets/freebies_icon.svg';
 // import survey from '../../../assets/survey-icon.svg';
@@ -21,21 +21,21 @@ const NavigationItems = (props) => (
     <p className= "side-icons">
     <strong><span>
         <img src={home} className="home-logo" alt="logo" />
-        </span>&nbsp;&nbsp;<span>Home</span></strong>
+        </span>&nbsp;&nbsp;<span className= "nav-text">Home</span></strong>
     </p>
     </NavigationItem>
     <NavigationItem link= '/profile'>
     <p className= "side-icons">
     <strong><span>
         <img src={profile} className="home-logo" alt="logo" />
-        </span>&nbsp;&nbsp;<span>Profile</span></strong>
+        </span>&nbsp;&nbsp;<span className= "nav-text">Profile</span></strong>
     </p>
     </NavigationItem>
     <NavigationItem link= '/history'>
     <p className= "side-icons">
     <strong><span>
         <img src={order} className="home-logo" alt="logo" />
-        </span>&nbsp;&nbsp;<span>Orders</span></strong>
+        </span>&nbsp;&nbsp;<span className= "nav-text">Orders</span></strong>
     </p>
     </NavigationItem>
     {/* <NavigationItem link= '/payment'>
@@ -49,21 +49,21 @@ const NavigationItems = (props) => (
     <p className= "side-icons">
     <strong><span>
         <img src={trackIcon} className="home-logo" alt="logo" />
-        </span>&nbsp;<span>Track Orders</span></strong>
+        </span>&nbsp;<span className= "nav-text">Track Orders</span></strong>
     </p>
     </NavigationItem>
     <NavigationItem link= '/'>
     <p className= "side-icons">
     <strong><span>
         <img src={freebies} className="home-logo" alt="logo" />
-        </span>&nbsp;&nbsp;&nbsp;<span>Freebies</span></strong>
+        </span>&nbsp;&nbsp;&nbsp;<span className= "nav-text">Freebies</span></strong>
     </p>
     </NavigationItem>
     <NavigationItem link= '/'>
     <p className= "side-icons">
     <strong><span>
         <img src={logOut} className="home-logo" alt="logo" />
-        </span>&nbsp;&nbsp;&nbsp;<span>Log Out</span></strong>
+        </span>&nbsp;&nbsp;&nbsp;<span className= "nav-text">Log Out</span></strong>
     </p>
     </NavigationItem>
     </ul>

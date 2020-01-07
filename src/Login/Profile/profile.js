@@ -6,6 +6,7 @@ import '../../Order/orderFailed/orderFailed.css';
 import avatarIcon from '../../assets/avatar.png';
 import axios from 'axios';
 import Spinners from '../../UI/Spinner/spinner';
+import errorHandler from '../../ErrorHandler/errorHandler';
 class Profile extends Component {
     state = { 
         first_name: null,
@@ -17,7 +18,8 @@ class Profile extends Component {
         street_name: null,
         city: null,
         state: null,
-        loader: true
+        loader: true,
+        error: false
      }
      backToPrevPageHandler = () => {
         this.props.history.goBack();
@@ -73,10 +75,9 @@ class Profile extends Component {
 
                     console.log(res);
                 })
-                .catch((err) => {
-                    //handle error
-                    console.log(err);
-                });
+                .catch(error => {
+                   
+                this.setState({error: true, loader: true})});;
       
     }
     editProfile = () => {
@@ -113,15 +114,15 @@ class Profile extends Component {
                     this.setState({loader: true})
                     this.props.history.push(
                         {
-                            pathname: '/home'
+                            pathname: '/'
                         }
                     )
                 }
     
                 console.log(res)
-            }).catch(
-                err => console.log(err)
-            )
+            }).catch(  error => {
+                   
+                this.setState({error: true, loader: true})});
         }
  
 
@@ -158,12 +159,12 @@ class Profile extends Component {
                     <Col>
                     <Label className= "profile-label">Gender:</Label>
                 <InputGroup>
-                <Input id= "gender2" type= "select"  className = "profile-input" placeholder="Gender">
+                <Input id= "gender" type= "select"  className = "profile-input" placeholder="Gender">
                     <option id="">
-                        {this.state.gender}
+                        Male
                     </option>
                     <option id="gender">
-                        female
+                        Female
                     </option>
                 </Input>
                 </InputGroup>
@@ -185,7 +186,7 @@ class Profile extends Component {
                     </InputGroup>
                     </Col>
                     <Col>
-                    <Label className= "profile-label">Nearest Bus-Stop:</Label>
+                    <Label className= "profile-label">Nearest B/Stop:</Label>
                     <InputGroup>
                     <Input id= "street" type= "text"  className = "profile-input" placeholder="Street Name" />
                     </InputGroup>
@@ -264,4 +265,4 @@ class Profile extends Component {
     }
 }
  
-export default Profile;
+export default errorHandler (Profile, axios);

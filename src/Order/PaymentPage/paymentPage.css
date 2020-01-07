@@ -17,6 +17,7 @@
     padding-top: 5%;
     margin-bottom: 0rem;
     color: white;
+    font-size: 20px;
 }
 .payment-text2 {
     padding-bottom: 5%;
@@ -35,6 +36,7 @@
 .body-paragragh {
     text-align: left !important;
     opacity: 0.7;
+    font-size: 15px;
 }
 .body-paragragh2 {
     padding-top: 2rem;
@@ -169,6 +171,7 @@
 }
 .current-price {
     font-weight: bold;
+    font-size: 15px;
     margin-bottom: 2rem;
 }
 .timer-img {

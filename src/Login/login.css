@@ -75,6 +75,11 @@
       border: 1px solid white !important;
       border-radius: 50px !important;
   }
+  .Login-btn:hover {
+    background: transparent !important;
+    /* border: none !important; */
+    outline: transparent !important;
+  }
   .btn-outline-secondary:hover {
     /* background: none !important; */
     outline: none !important;

@@ -3,13 +3,15 @@ import React, { Component } from 'react';
 import './history.css';
 import axios from 'axios';
 import Spinners from '../../UI/Spinner/spinner';
+import errorHandler from '../../ErrorHandler/errorHandler';
 
 class History extends Component {
     state = { 
         loader: false,
         loader2: false,
         orders: [],
-        noOrder: null
+        noOrder: null,
+        error: false
      }
     componentDidMount() {
         const data = {
@@ -27,9 +29,9 @@ class History extends Component {
                 // console.log(response)
                 this.setState({loader: true, loader2: true, noOrder: 'No Order History'})
             }
-        }).catch(err => {
-            console.log(err)
-        })
+        }).catch(  error => {
+                   
+            this.setState({error: true, loader: true})});
     }
     backToPrevPageHandler = () => {
         this.props.history.goBack();
@@ -95,4 +97,4 @@ class History extends Component {
     }
 }
  
-export default History;
+export default errorHandler (History, axios);

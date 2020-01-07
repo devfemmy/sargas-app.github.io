@@ -8,13 +8,15 @@ import '../Order/PaymentPage/paymentPage.css';
 import axios from 'axios';
 import Spinners from '../UI/Spinner/spinner';
 import timer from '../assets/timer_icon.svg';
+import errorHandler from '../ErrorHandler/errorHandler';
 class ConfirmOrder extends Component {
     state = { 
         oldPrice: null,
         price: null,
         payment_method: [],
         loader: false,
-        payment_id: null
+        payment_id: null,
+        error: false
      }
      backToPrevPageHandler = () => {
         this.props.history.goBack();
@@ -30,9 +32,9 @@ class ConfirmOrder extends Component {
                 const data = response.data;
                 this.setState({payment_method: data, loader: true})
             }
-        }).catch(err => {
-            console.log(err)
-        })
+        }).catch(  error => {
+                   
+            this.setState({error: true, loader: true})});
         const data = {
             token : localStorage.getItem('token'),
             size: 3,
@@ -49,18 +51,16 @@ class ConfirmOrder extends Component {
                 }
                 console.log(res);
             }
-        ).catch(
-            err => {
-                console.log(err)
-            }
-        )
+        ).catch(  error => {
+                   
+            this.setState({error: true, loader: true})});
     }
     confirmOrder = (state) => {
        
         const dayOfDelivery = state.date;
         const timeOfDelivery = state.time;
         const scheduled_time = `${dayOfDelivery} ${timeOfDelivery}`
-        // console.log(scheduled_time)
+        console.log(scheduled_time)
         if (this.state.payment_id=== null) {
             alert('please add payment method');
         }else {
@@ -69,7 +69,7 @@ class ConfirmOrder extends Component {
                 pm_id: this.state.payment_id,
                 trans_ref_id: "A29o33",
                 price: this.state.oldPrice,
-                scheduled_time: scheduled_time,
+                scheduled_time: '',
                 scheduled_status: "0",
                 promo_code: "",
                 cylinder_size: localStorage.getItem('cylinder_size')
@@ -90,11 +90,9 @@ class ConfirmOrder extends Component {
                     )
                 }
                 console.log(res)
-            }).catch(
-                err => {
-                    console.log(err)
-                }
-            )
+            })  .catch(  error => {
+                   
+                this.setState({error: true, loader: true})});
         }
     }
     addClass = (data, data2) => {
@@ -227,4 +225,4 @@ class ConfirmOrder extends Component {
     }
 }
  
-export default ConfirmOrder;
+export default errorHandler(ConfirmOrder, axios);

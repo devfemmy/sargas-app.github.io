@@ -3,9 +3,11 @@ import './tokenPage.css';
 import {FormGroup, Label, Input, Form, Button} from 'reactstrap'
 import logo from '../assets/logo_new.svg';
 import axios from 'axios';
+import errorHandler from '../ErrorHandler/errorHandler';
 class PreviewPage extends Component {
     state = { 
-      cylinder_size: []
+      cylinder_size: [],
+      error: false
      }
     pushToNextPage = () => {
       const home_details = this.props.location.state.home_details
@@ -56,21 +58,19 @@ class PreviewPage extends Component {
                   }
     
                 }
-              ).catch(
-                err => console.log(err)
-              )
+              )  .catch(  error => {
+                   
+                this.setState({error: true, loader: true})});
 
             }
-          ).catch(
-            err => console.log(err)
-          )
+          )  .catch(  error => {
+                   
+            this.setState({error: true, loader: true})});
           // console.log(response.data[0].state,response.data[0].state_id )
 
-        }).catch(
-          err => {
-            console.log(err)
-          }
-        )
+        }).catch(  error => {
+                   
+          this.setState({error: true, loader: true})});
         axios.post('http://sargasoms.com/api/customer/?API_flag=fetchcylindersize', data)
         .then(
           (res) => {
@@ -79,11 +79,9 @@ class PreviewPage extends Component {
             this.setState({cylinder_size: cylinder_size});
             console.log(res)
           }
-        ).catch(
-          err => {
-            console.log(err)
-          }
-        )
+        ).catch(  error => {
+                   
+          this.setState({error: true, loader: true})});
 
       }
     render() { 
@@ -103,7 +101,7 @@ class PreviewPage extends Component {
             <div className = "preview-body">
             <Form>
                         <FormGroup>
-                        <Label for="exampleSelect">Select Cylinder Size:</Label>
+                        <Label className= "preview-label" for="exampleSelect">Select Cylinder Size:</Label>
                         <Input type="select" name="select" id="exampleSelect">
                           {this.state.cylinder_size.map(
                             (size, id) => {
@@ -131,4 +129,4 @@ class PreviewPage extends Component {
     }
 }
  
-export default PreviewPage;
+export default errorHandler(PreviewPage, axios);

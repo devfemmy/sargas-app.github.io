@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import {Input,Button, InputGroup,Alert} from 'reactstrap';
 import Spinners from '../UI/Spinner/spinner.js';
-import logo from '../assets/logo.png';
+import logo from '../assets/logo_new.svg';
 import '../Login/login.css';
 import './signIn.css';
 import axios from 'axios';
+import errorHandler from '../ErrorHandler/errorHandler.js';
 
 class ForgotPassword extends Component {
     state = { 
         loader: true,
         alertMessage: null,
-        displayAlert: false
+        displayAlert: false,
+        error: false
      }
     getPassword = () => {
         this.setState({loader: false});
@@ -33,17 +35,15 @@ class ForgotPassword extends Component {
                 const alertMessage = response.message
                 this.setState({alertMessage: alertMessage, displayAlert: true})
               }
-        }).catch(
-            err => {
-                console.log(err)
-            }
-        )
+        })  .catch(  error => {
+                   
+            this.setState({error: true, loader: true})});
     }
     render() { 
         let showAlert = null;
         if (this.state.displayAlert) {
           showAlert = 
-            <Alert>
+            <Alert color="info">
               {this.state.alertMessage}
             </Alert>
                 setTimeout(() => {
@@ -86,4 +86,4 @@ class ForgotPassword extends Component {
     }
 }
  
-export default ForgotPassword;
+export default errorHandler(ForgotPassword, axios);

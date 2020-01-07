@@ -17,7 +17,8 @@
     padding: 5%;
 }
 .profile-label {
-  opacity: 0.8;
+  font-size: 18px;
+  opacity: 0.7;
 }
 #currency:focus{
   background: none;

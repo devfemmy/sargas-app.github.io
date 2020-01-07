@@ -9,11 +9,13 @@
 .order-date {
     opacity: 0.7;
     margin-bottom: 0rem !important;
+    font-size: 15px;
 }
 .status {
     /* margin-bottom: 0rem !important; */
     color: #009245;
     font-weight: bold;
+    font-size: 15px;
 }
 .order-history p:last-child {
     margin-bottom: 0rem !important;
@@ -21,6 +23,7 @@
 #sticky_elements {
     position: sticky;
     top: 0;
+    z-index: 999;
 }
 .no-order {
     text-align: center;

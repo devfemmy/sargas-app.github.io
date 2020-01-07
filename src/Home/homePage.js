@@ -5,13 +5,15 @@ import SideDrawer from '../UI/SideDrawer/sideDrawer';
 import menu from '../assets/menu.svg';
 import {Button} from 'reactstrap'
 import axios from 'axios';
+import errorHandler from '../ErrorHandler/errorHandler';
 // import Spinners from '../UI/Spinner/spinner';
 
 class HomePage extends Component {
     state = { 
         showSideDrawer : false,
         loader: false,
-        home_details: []
+        home_details: [],
+        error: false
      }
      sideDrawerHandler = () => {
         this.setState({showSideDrawer: false})
@@ -23,7 +25,14 @@ class HomePage extends Component {
         }
         axios.post('http://sargasoms.com/api/customer/?API_flag=fetchcusprofile', data)
         .then(res => {
+            console.log(res.data)
             const home_details = res.data
+            // const home_details = response.home_details;
+            // const usersfirstname = home_details.firstname;
+            // const userslastname = home_details.lastname;
+            // console.log(usersfirstname)
+            // localStorage.setItem('usersfirstname', usersfirstname);
+            // localStorage.setItem('userslastname', userslastname);
             if (home_details.apartment === '' && home_details.firstname === '') {
         
                 this.props.history.push({
@@ -31,9 +40,9 @@ class HomePage extends Component {
                 })
             }
             this.setState({home_details: home_details, loader: true});
-        }).catch(err => {
-            console.log(err)
-        })
+        }).catch(  error => {
+                   
+            this.setState({error: true, loader: true})});
       
      }
      pushToNextPage = (home_details) => {
@@ -104,4 +113,4 @@ class HomePage extends Component {
     }
 }
  
-export default HomePage;
+export default errorHandler (HomePage, axios);

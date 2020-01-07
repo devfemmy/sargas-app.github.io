@@ -65,7 +65,7 @@ class Login extends Component {
         let showAlert = null;
         if (this.state.displayAlert) {
           showAlert = 
-            <Alert>
+            <Alert color="info">
               {this.state.alertMessage}
             </Alert>
                 setTimeout(() => {

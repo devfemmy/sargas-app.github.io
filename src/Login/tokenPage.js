@@ -24,6 +24,7 @@ class TokenPage extends Component {
               this.setState({loader: true})
                   const response = res.data;
                   if (response.status === 1001) {
+                    alert('Registration Successful!')
                       this.props.history.push({
                           pathname: '/'
                         })

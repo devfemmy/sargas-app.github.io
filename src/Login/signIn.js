@@ -5,6 +5,7 @@ import '../Login/login.css';
 import './signIn.css';
 import axios from 'axios';
 import Spinners from '../UI/Spinner/spinner';
+import errorHandler from '../ErrorHandler/errorHandler';
 // import Spinner from 'reactstrap';
 class SignIn extends Component {
     state = { 
@@ -12,7 +13,8 @@ class SignIn extends Component {
       loader: true,
       alertMessage: null,
       displayAlert: false,
-      home_details: []
+      home_details: [],
+      error: false
      }
     pushToNextPage = () => {
         this.props.history.push({
@@ -33,51 +35,58 @@ class SignIn extends Component {
             password: document.querySelector('#password').value,
          
           }
-        axios.post('http://sargasoms.com/api/customer/?API_flag=customerlogin', {...data})
-                .then((res) => {
-                this.setState({loader: true})
-                    const response = res.data;
-                    console.log(response.status)
-                    const token = response.token;
-                    localStorage.setItem("token", token);
-                   
-                    if (response.status === 1001) {
-                      const home_details = response.home_details;
-                      const usersfirstname = home_details.firstname;
-                      const userslastname = home_details.lastname;
-                      console.log(usersfirstname)
-                      localStorage.setItem('usersfirstname', usersfirstname);
-                      localStorage.setItem('userslastname', userslastname);
-                      this.setState({home_details: home_details})
-                      if (response.first_time === '1') {
-                        this.props.history.push({
-                          pathname: '/preview',
-                          search: '?query=preview',
-                          state: {home_details: home_details}
-                        })
-                      }else {
-                        this.props.history.push({
-                          pathname: 'home',
-                          search: '?query=home',
-                          state: {home_details: home_details}
-                        })
-                      }
-                 
-                    } else if (response.status === 2001) {
-                      const alertMessage = response.message
-                      this.setState({alertMessage: alertMessage, displayAlert: true})
-                    } else if (response.status === 2010) {
-                      const alertMessage = response.message
-                      this.setState({alertMessage: alertMessage, displayAlert: true})
-                    }
-               
+         const phone =document.querySelector('#number').value;
+         const password = document.querySelector('#password').value;
+          if (phone === '' || password === '') {
+            alert("please fill up details correctly")
+            this.setState({loader: true})
+        }else {
+          axios.post('http://sargasoms.com/api/customer/?API_flag=customerlogin', {...data})
+          .then((res) => {
+          this.setState({loader: true})
+              const response = res.data;
+              console.log(response.status)
+              const token = response.token;
+              localStorage.setItem("token", token);
+             
+              if (response.status === 1001) {
+                const home_details = response.home_details;
+                const usersfirstname = home_details.firstname;
+                const userslastname = home_details.lastname;
+                console.log(usersfirstname)
+                localStorage.setItem('usersfirstname', usersfirstname);
+                localStorage.setItem('userslastname', userslastname);
+                this.setState({home_details: home_details})
+                if (response.first_time === '1') {
+                  this.props.history.push({
+                    pathname: '/preview',
+                    search: '?query=preview',
+                    state: {home_details: home_details}
+                  })
+                }else {
+                  this.props.history.push({
+                    pathname: 'home',
+                    search: '?query=home',
+                    state: {home_details: home_details}
+                  })
+                }
+           
+              } else if (response.status === 2001) {
+                const alertMessage = response.message
+                this.setState({alertMessage: alertMessage, displayAlert: true})
+              } else if (response.status === 2010) {
+                const alertMessage = response.message
+                this.setState({alertMessage: alertMessage, displayAlert: true})
+              }
+         
 
-                    console.log(res);
-                })
-                .catch((err) => {
-                    //handle error
-                    console.log(err);
-                });
+              console.log(res);
+          })
+          .catch(  error => {
+                   
+            this.setState({error: true, loader: true})});
+        }
+ 
       
       }
     render() { 
@@ -89,7 +98,7 @@ class SignIn extends Component {
       let showAlert = null;
       if (this.state.displayAlert) {
         showAlert = 
-          <Alert>
+          <Alert  color="info">
             {this.state.alertMessage}
           </Alert>
               setTimeout(() => {
@@ -105,7 +114,7 @@ class SignIn extends Component {
           <div className = "Login-body">
             {showAlert}
           <InputGroup>
-          <Input id = "number" className = "login-input" type= "number" placeholder="Phone Number" />
+          <Input id = "number"  className = "login-input" type= "number" placeholder="Phone Number" />
           </InputGroup>
           <br />
           <InputGroup>
@@ -138,4 +147,4 @@ class SignIn extends Component {
     }
 }
  
-export default SignIn;
+export default errorHandler (SignIn, axios);
