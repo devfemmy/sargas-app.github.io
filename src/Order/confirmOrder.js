@@ -55,15 +55,24 @@ class ConfirmOrder extends Component {
                    
             this.setState({error: true, loader: true})});
     }
-    confirmOrder = (state) => {
-       
-        const dayOfDelivery = state.date;
-        const timeOfDelivery = state.time;
-        const scheduled_time = `${dayOfDelivery} ${timeOfDelivery}`
-        console.log(scheduled_time)
+    confirmOrder = (data, data2, state) => {
         if (this.state.payment_id=== null) {
             alert('please add payment method');
-        }else {
+        } else {
+            const dayOfDelivery = state.date;
+            const timeOfDelivery = state.time;
+            const scheduled_time = `${dayOfDelivery} ${timeOfDelivery}`
+            console.log(scheduled_time)
+    
+       
+           if (this.state.payment_id === '4') {
+            const payment_id = '4';
+            this.props.history.push({
+                pathname: 'paystack',
+                search: '?query=paystack',
+                state: {data: data, data2: data2, payment_id: payment_id}
+              })
+           }else if (this.state.payment_id === '1') {
             const data = {
                 token : localStorage.getItem('token'),
                 pm_id: this.state.payment_id,
@@ -94,14 +103,33 @@ class ConfirmOrder extends Component {
                    
                 this.setState({error: true, loader: true})});
         }
+        }
+      
+
+        // const payment_id = '1';
+    
+       
+
     }
-    addClass = (data, data2) => {
-        const payment_id = '4';
-        this.props.history.push({
-            pathname: 'paystack',
-            search: '?query=paystack',
-            state: {data: data, data2: data2, payment_id: payment_id}
-          })
+    confirmReschedule = (data, data2, data3) => {
+        if (this.state.payment_id=== null) {
+            alert('please add payment method');
+        } else {
+            this.props.history.push({
+                pathname: 'refil',
+                search: '?query=refil',
+                state: {data: data, data2: data2, data3: data3}
+              })
+        }
+  
+    }
+    payWithCard = (data, data2) => {
+        // const payment_id = '4';
+        // this.props.history.push({
+        //     pathname: 'paystack',
+        //     search: '?query=paystack',
+        //     state: {data: data, data2: data2, payment_id: payment_id}
+        //   })
         document.querySelector("#material1").style.display = 'block';
         document.querySelector("#material2").style.display = 'none';
         const block =  document.querySelector("#material1").style.display
@@ -112,7 +140,7 @@ class ConfirmOrder extends Component {
         }
     
     }
-    addToggle = () => {
+    payWithCash = () => {
         document.querySelector("#material2").style.display = 'block';
         document.querySelector("#material1").style.display = 'none';
 
@@ -140,7 +168,7 @@ class ConfirmOrder extends Component {
                                         <img className= "master-img" src = {masterIcon} alt= "master-icon" />
                                     </InputGroupText>
                                     </InputGroupAddon>
-                                    <Input readOnly onClick= {() => this.addClass(this.state.oldPrice, this.props.location.state)} type="text" name="number"  defaultValue= "Card Payment" id="cash" />
+                                    <Input readOnly onClick= {() => this.payWithCard()} type="text" name="number"  defaultValue= "Card Payment" id="cash" />
                                     <InputGroupAddon addonType="append">
                                     <InputGroupText>
                                     <i id= "material1" style= {{color: 'blue', display: 'none'}} className="material-icons">done</i>
@@ -158,7 +186,7 @@ class ConfirmOrder extends Component {
                                         <img className= "master-img2" src = {moneyIcon} alt= "master-icon" />
                                     </InputGroupText>
                                     </InputGroupAddon>
-                                    <Input readOnly onClick= {this.addToggle} type="text" defaultValue = {pm.payment} id="exampleSelect" />
+                                    <Input readOnly onClick= {this.payWithCash} type="text" defaultValue = {pm.payment} id="exampleSelect" />
                                     <InputGroupAddon addonType="append">
                                     <InputGroupText>
                                     <i id= "material2" style= {{color: 'blue', display: 'none'}} className="material-icons">done</i>
@@ -207,14 +235,13 @@ class ConfirmOrder extends Component {
                     <Button 
                             outline color="secondary" 
                             className = "card-button" 
-                            onClick= {()=> this.confirmOrder(state)} 
+                            onClick= {()=> this.confirmOrder(this.state.oldPrice, this.props.location.state, state)} 
                             size="lg">CONFIRM ORDER
                     </Button>
                     <Button 
-                            disabled
                             outline color="secondary" 
                             className = "card-button2" 
-                            onClick= {()=> this.confirmOrder(state)} 
+                            onClick= {()=> this.confirmReschedule(this.state.oldPrice, this.props.location.state, this.state.payment_id)} 
                             size="lg">
                                 <img src={timer} className= "timer-img" alt= "timer" />
                     </Button>

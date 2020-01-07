@@ -8,6 +8,8 @@ import SideDrawer from '../UI/SideDrawer/sideDrawer';
 import checkIcon from '../assets/clear.svg';
 import './refilSchedule.css';
 import trackImg from '../assets/track.png';
+import axios from 'axios'
+import Spinners from '../UI/Spinner/spinner';
 
 class RefilSchedule extends Component {
     state = { 
@@ -16,7 +18,8 @@ class RefilSchedule extends Component {
         startDate: new Date(),
         time: null,
         date_picked: null,
-        use12Hours: true
+        use12Hours: true,
+        loader: true
      }
      returnHome = () => {
         this.props.history.push(
@@ -39,28 +42,122 @@ class RefilSchedule extends Component {
       }
       onChange = time => this.setState({ time })
      pushToNextPage = () => {
-        const home_details = this.props.location.state.home_details
-        // console.log(this.state.time)
-        // console.log(this.state.date_picked)
         const date = document.querySelector('#date-picker').value;
         const time = document.querySelector('#time-picker').value;
+        const scheduledtime = `${date} ${time}`
+        // console.log(Scheduledtime)
         if ( this.state.time === null) {
             alert('time is not set')
-        }else {
-            console.log('going to pricing')
-            this.props.history.push({
-                pathname: 'pricing',
-                search: '?query=pricing',
-                state: {home_details: home_details, date: date, time: time}
-              })
         }
+        else {
+        this.setState({loader: false})
+        const data = this.props.location.state.data;
+        const data2 = this.props.location.state.data2;
+        const data3 = this.props.location.state.data3;
+        if (data3 === '4') {
+            this.props.history.push({
+                pathname: 'paystack',
+                search: '?query=paystack',
+                state: {data: data, data2: data2, payment_id: data3, scheduledtime: scheduledtime}
+              })
+        }else {
+            console.log("cash payment")
+            const data4 = {
+                token : localStorage.getItem('token'),
+                pm_id: data3,
+                trans_ref_id: "A29o33",
+                price: data,
+                scheduled_time: scheduledtime,
+                scheduled_status: "0",
+                promo_code: "",
+                cylinder_size: localStorage.getItem('cylinder_size')
+            }
+            // this.setState({loader: false})
+            axios.post('http://sargasoms.com/api/customer/?API_flag=order', data4)
+            .then(res => {
+                this.setState({loader: false})
+                const response = res.data;
+                if (response.status === 1001) {
+                    this.props.history.push({
+                        pathname: '/success'
+                      })
+                }else {
+                    this.props.history.push(
+                        {
+                            pathname: '/failed'
+                        }
+                    )
+                }
+                console.log(res)
+            }).catch(  error => {
+                   
+                this.setState({error: true, loader: true})});
+        }
+           
+        }
+       
 
-        // this.props.history.push({
-        //   pathname: '/success'
-        // })
+        
+
+
+ 
       
       }
     render() { 
+        const state = this.props.location.state;
+        console.log(state)
+        let showRefill = <Spinners />
+        if (this.state.loader) {
+            showRefill = (
+                <div className="refil-container">
+                <h3>
+                    Schedule A Refill
+                </h3>
+            <hr />
+                <Form className= "form-picker">
+                    <div className = "date-time-picker">
+                    <FormGroup id= "form_grp">
+                    <label className= "label" >Set Date: </label>
+                    <DatePicker
+                        id= 'date-picker'
+                        value = {this.state.date_picked}
+                        style = {{width: '100%'}}
+                        className='form-input2'
+                        selected={this.state.startDate}
+                        onChange={this.handleChange}
+                        dateFormat="MMMM d, yyyy"
+                    />
+                    </FormGroup>
+            <hr />
+                    <FormGroup id= "form_grp2">
+                    <label className= "label" >Set Time: </label>
+                    <TimePicker
+                        id = "time-picker"
+                        className='form-input2'
+                        placeholder= "00 00"
+                        use12Hours = {this.state.use12Hours}
+                        showSecond = {this.state.showSecond}
+                        onChange={this.onChange}
+                        value={this.state.time}
+                        />
+                    </FormGroup>
+            <hr />
+                    </div>
+                   
+                    <br />
+                  
+                </Form>
+            <div id= "form_grp3">
+            <Button style= {{color: "white", position: 'absolute', bottom: '8%', width: '80%'}} 
+                    outline color="secondary" 
+                    className = "Refil-button" 
+                    onClick= {this.pushToNextPage} 
+                    size="lg">SET DELIVERY WINDOW</Button>
+            </div>
+               
+            </div>
+            )
+        }
         return ( 
       
             <div className= "wrapper">
@@ -82,53 +179,7 @@ class RefilSchedule extends Component {
             </div>
               
                 <div className= "">
-                <div className="refil-container">
-                    <h3>
-                        Schedule A Refill
-                    </h3>
-                <hr />
-                    <Form className= "form-picker">
-                        <div className = "date-time-picker">
-                        <FormGroup id= "form_grp">
-                        <label className= "label" >Set Date: </label>
-                        <DatePicker
-                            id= 'date-picker'
-                            value = {this.state.date_picked}
-                            style = {{width: '100%'}}
-                            className='form-input2'
-                            selected={this.state.startDate}
-                            onChange={this.handleChange}
-                            dateFormat="MMMM d, yyyy"
-                        />
-                        </FormGroup>
-                <hr />
-                        <FormGroup id= "form_grp2">
-                        <label className= "label" >Set Time: </label>
-                        <TimePicker
-                            id = "time-picker"
-                            className='form-input2'
-                            placeholder= "00 00"
-                            use12Hours = {this.state.use12Hours}
-                            showSecond = {this.state.showSecond}
-                            onChange={this.onChange}
-                            value={this.state.time}
-                            />
-                        </FormGroup>
-                <hr />
-                        </div>
-                       
-                        <br />
-                      
-                    </Form>
-                <div id= "form_grp3">
-                <Button style= {{color: "white", position: 'absolute', bottom: '8%', width: '80%'}} 
-                        outline color="secondary" 
-                        className = "Refil-button" 
-                        onClick= {this.pushToNextPage} 
-                        size="lg">SET DELIVERY WINDOW</Button>
-                </div>
-                   
-                </div>
+                    {showRefill}
                 </div>
                
             </div>

@@ -19,7 +19,7 @@ class History extends Component {
         }
         axios.post('http://sargasoms.com/api/customer/?API_flag=fetchcustomertransactions', data)
         .then(res => {
-          
+          console.log(res)
             const response = res.data;
             const orders = response.data;
             if (response.status === 1001) {
@@ -65,7 +65,7 @@ class History extends Component {
                             </h6>
                             <p className= "order-date">
                             
-                                December 31st 2019 9:32pm
+                                {order.date}
                             </p>
                         <p className= "status">{order.order_status.toUpperCase()}</p>
                             <hr />

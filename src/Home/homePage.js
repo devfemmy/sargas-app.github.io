@@ -50,12 +50,16 @@ class HomePage extends Component {
         // const street = home_details.street;
         // const state = home_details.state;
         // const customer_address = localStorage.getItem('customer_address');
-     
-            this.props.history.push({
-                pathname: 'pricing',
-                search: '?query=pricing',
-                state: {home_details: home_details}
-              })
+            if (home_details === null) {
+                
+            }else {
+                this.props.history.push({
+                    pathname: 'pricing',
+                    search: '?query=pricing',
+                    state: {home_details: home_details}
+                  })
+            }
+      
         
      }
 
