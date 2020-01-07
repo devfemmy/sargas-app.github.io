@@ -38,13 +38,13 @@ const NavigationItems = (props) => (
         </span>&nbsp;&nbsp;<span>Orders</span></strong>
     </p>
     </NavigationItem>
-    <NavigationItem link= '/payment'>
+    {/* <NavigationItem link= '/payment'>
     <p className= "side-icons">
     <strong><span>
         <img src={payment} className="home-logo" alt="logo" />
         </span>&nbsp;&nbsp;<span>Payment</span></strong>
     </p>
-    </NavigationItem>
+    </NavigationItem> */}
     <NavigationItem link= '/tracking'>
     <p className= "side-icons">
     <strong><span>
