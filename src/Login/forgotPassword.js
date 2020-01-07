@@ -35,9 +35,8 @@ class ForgotPassword extends Component {
                 const alertMessage = response.message
                 this.setState({alertMessage: alertMessage, displayAlert: true})
               }
-        })  .catch(  error => {
-                   
-            this.setState({error: true, loader: true})});
+        }).catch(error => {
+    this.setState({error: true, loader: true})});
     }
     render() { 
         let showAlert = null;

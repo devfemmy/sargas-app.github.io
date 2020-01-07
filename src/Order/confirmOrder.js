@@ -90,7 +90,7 @@ class ConfirmOrder extends Component {
                     )
                 }
                 console.log(res)
-            })  .catch(  error => {
+            }).catch(  error => {
                    
                 this.setState({error: true, loader: true})});
         }

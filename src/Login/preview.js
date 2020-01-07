@@ -58,12 +58,12 @@ class PreviewPage extends Component {
                   }
     
                 }
-              )  .catch(  error => {
+              ).catch(  error => {
                    
                 this.setState({error: true, loader: true})});
 
             }
-          )  .catch(  error => {
+          ).catch(  error => {
                    
             this.setState({error: true, loader: true})});
           // console.log(response.data[0].state,response.data[0].state_id )
