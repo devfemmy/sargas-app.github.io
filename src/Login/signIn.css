@@ -1,7 +1,7 @@
-.sign-up {
-    /* background: blue; */
-      background-image: url('../assets/login_bg.svg');
-    min-height: 52vh;
+
+.Login {
+    background-image: url('../assets/sargas_bg.svg');
+    min-height: 100vh;
     background-size: cover;
 }
 .Login-body {
@@ -17,7 +17,18 @@
     text-align: left;
     color: white;
   }
-
+  .Login-body2 {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: center;
+    padding-left: 10%;
+    padding-right: 10%;
+    font-size: 20px;
+    font-weight: solid;
+    text-align: left;
+    color: white;
+  }
 .password_text {
     font-size: 12px;
     opacity: 0.9;

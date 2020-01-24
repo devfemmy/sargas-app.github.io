@@ -106,7 +106,7 @@ class Login extends Component {
             <div className= "Login">
         
 
-            <header className= "Logo-header2">
+            <header className= "Logo-header">
             <img src={logo} className="Special-logo" alt="logo" />   
             </header>
             {show}

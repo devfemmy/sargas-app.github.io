@@ -6,6 +6,7 @@ import '../Login/login.css';
 import './signIn.css';
 import axios from 'axios';
 import errorHandler from '../ErrorHandler/errorHandler.js';
+import backIcon from '../assets/back.svg';
 
 class ForgotPassword extends Component {
     state = { 
@@ -13,6 +14,9 @@ class ForgotPassword extends Component {
         alertMessage: null,
         displayAlert: false,
         error: false
+     }
+     backToPrevious = () => {
+         this.props.history.goBack()
      }
     getPassword = () => {
         this.setState({loader: false});
@@ -53,7 +57,7 @@ class ForgotPassword extends Component {
         let showResult = <Spinners />
         if (this.state.loader) {
             showResult = (
-                <div className = "Login-body">
+                <div className = "Login-body3">
                       {showAlert}
                 <InputGroup>
                 <Input id = "email" className = "login-input" type= "email" placeholder="Email" />
@@ -68,8 +72,10 @@ class ForgotPassword extends Component {
         return (  
             <div>
         <div className= "Login">
-        
-
+            <div className= "back-div">
+            <img onClick= {this.backToPrevious} src= {backIcon}  alt= "backIcon" className= "back-icon2" />
+            </div>
+       
         <header className= "Logo-header">
         <img src={logo} className="Special-logo" alt="logo" />   
         </header>

@@ -46,9 +46,15 @@
     padding-top: 1rem;
 }
 .card-body {
-    margin-top: 18%;
+    margin-top: 6%;
     margin-right: 10%;
     color: white
+}
+.clear-icon {
+    height: 40px;
+    position: relative;
+    right: -131px;
+    top: 7px;
 }
 .universal-pad2
 h3 {

@@ -56,6 +56,12 @@ class SignIn extends Component {
                 console.log(usersfirstname)
                 localStorage.setItem('usersfirstname', usersfirstname);
                 localStorage.setItem('userslastname', userslastname);
+                const city_id = home_details.city_id;
+                const zone_id = home_details.zone_id;
+                const state = home_details.state;
+                localStorage.setItem('city_id', city_id);
+                localStorage.setItem('zone_id', zone_id);
+                localStorage.setItem('state', state);
                 this.setState({home_details: home_details})
                 if (response.first_time === '1') {
                   this.props.history.push({

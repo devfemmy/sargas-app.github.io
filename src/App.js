@@ -18,12 +18,16 @@ import ConfirmOrder from './Order/confirmOrder';
 import PayStackPay from './Order/paystackPay';
 import ForgotPassword from './Login/forgotPassword';
 import History from './Order/OrderHistory/history';
+import Freebies from './Order/Freebies/freebies';
+import Blog from './Order/Freebies/blog';
+import Splash from './splashscreen/splash';
+
 
 function App() {
   return (
     <div className="App">
-      <Route path= "/" exact component={SignIn}/>
-      <Route path= "/home" exact component={HomePage}/>
+      <Route path= "/login"  component={SignIn}/>
+      <Route path= "/home"  component={HomePage}/>
       <Route path= "/token"  component={TokenPage}/>
       <Route path= "/tracking"  component={TrackingPage}/>
       <Route path= "/refil"  component={RefilSchedule}/>
@@ -39,6 +43,10 @@ function App() {
       <Route path= "/paystack"  component={PayStackPay}/>
       <Route path= "/password"  component={ForgotPassword}/>
       <Route path= "/history"  component={History}/>
+      <Route path= "/freebies"  component={Freebies}/>
+      <Route path= "/blog"  component={Blog}/>
+      <Route path= "/" exact component={Splash}/>
+      
 
 
     </div>

@@ -180,7 +180,7 @@ class Profile extends Component {
                 <br />
                 <Row>
                     <Col>
-                    <Label className= "profile-label">Apartment No:</Label>
+                    <Label className= "profile-label">Apt/House No:</Label>
                     <InputGroup>
                     <Input id= "apt" type= "number"  className = "profile-input" placeholder="Apartment No" />
                     </InputGroup>

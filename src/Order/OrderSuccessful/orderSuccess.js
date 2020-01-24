@@ -68,19 +68,12 @@ class OrderSuccess extends Component {
                   <i style = {{color: "grey"}} className="material-icons">grade</i>
                   </div>
                 <div className = "section3">
-                <Button style= {{color: " #8CC63F"}} 
-                outline 
-                onClick= {this.pushToTrackingPage}
-                color="secondary"
-                 className = "Order-btn"  
-                 size="lg">Track Order Now</Button>
-                 <br />
                  <Button style= {{color: "white"}} 
 
                  outline color="secondary"
-                 onClick= {this.pushToNextPage}
+                 onClick= {this.pushToTrackingPage}
                   className = "Track-btn"  
-                  size="lg">START A NEW REFILL</Button>
+                  size="lg">TRACK ORDER</Button>
                 </div>
             </div>
          );

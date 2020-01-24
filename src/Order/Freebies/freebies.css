@@ -1,0 +1,13 @@
+.freebies-text h5 {
+    padding-top: 20px;
+    font-size: 15px;
+    columns: black;
+    text-align: center !important;
+}
+.blogs-div {
+    padding: 31px
+}
+
+.blogs-div .card {
+    margin-bottom: 30px;
+}

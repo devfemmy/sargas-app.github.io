@@ -223,7 +223,7 @@ class ConfirmOrder extends Component {
                             <Input className= "profile-input" type="textarea" name="text" id="exampleText" />
                         </FormGroup> */}
                        <hr />
-                    <p className= "current-price">Your Current Order Price is : <span className= "state-price">{this.state.price}</span> </p>
+                    <p className= "current-price">Your Current Order Price is : <span style= {{fontSize: '17px'}} className= "state-price">{this.state.price}</span> </p>
                     <p className= "body-paragragh">Select Payment Method</p>
                    
                     {renderData}

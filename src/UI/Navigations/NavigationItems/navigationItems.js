@@ -52,14 +52,21 @@ const NavigationItems = (props) => (
         </span>&nbsp;<span className= "nav-text">Track Orders</span></strong>
     </p>
     </NavigationItem>
-    <NavigationItem link= '/'>
+    <NavigationItem link= '/freebies'>
     <p className= "side-icons">
     <strong><span>
         <img src={freebies} className="home-logo" alt="logo" />
         </span>&nbsp;&nbsp;&nbsp;<span className= "nav-text">Freebies</span></strong>
     </p>
     </NavigationItem>
-    <NavigationItem link= '/'>
+    <NavigationItem link= '/blog'>
+    <p className= "side-icons">
+    <strong><span>
+        <img src={freebies} className="home-logo" alt="logo" />
+        </span>&nbsp;&nbsp;&nbsp;<span className= "nav-text">Blog</span></strong>
+    </p>
+    </NavigationItem>
+    <NavigationItem link= '/login'>
     <p className= "side-icons">
     <strong><span>
         <img src={logOut} className="home-logo" alt="logo" />
