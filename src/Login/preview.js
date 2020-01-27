@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './tokenPage.css';
 import {FormGroup, Label, Input, Form, Button} from 'reactstrap'
-import logo from '../assets/logo_new.svg';
+import logo from '../assets/sargas_new_logo2.png';
 import axios from 'axios';
 import errorHandler from '../ErrorHandler/errorHandler';
 class PreviewPage extends Component {
@@ -93,7 +93,7 @@ class PreviewPage extends Component {
       customer_address = `${city}, ${zone}, ${state}`
       localStorage.setItem('customer_address', customer_address)
         return ( 
-            <div className = "preview">
+            <div className = "preview2">
                 <span className = "arrow-back"></span>
                 <header className= "token-header">
                 <img src={logo} className="Special-logo" alt="logo" />   

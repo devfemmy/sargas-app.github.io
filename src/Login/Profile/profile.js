@@ -246,8 +246,13 @@ class Profile extends Component {
         }
         return ( 
             <div style={{backgroundColor: 'white'}}>
-                <div id="sticky_element"  className= "order-header">
-                <p className= "para-header"><span onClick= {this.backToPrevPageHandler}>&larr; </span>&nbsp;&nbsp;&nbsp;&nbsp; Edit Profile</p>
+               <div id= "sticky_element" className= "payment-header2">
+                    <div className = "header-wrapper">
+                            <p onClick={this.backToPrevPageHandler} className= "payment-text">&larr; 
+                            </p>
+                         <h5 className= "payment-text2">Profile</h5>   
+                    </div>
+              
                 </div> 
                 <div className= "edit-profile">
                 <img src={avatarIcon} 

@@ -5,6 +5,7 @@ import '../Login/login.css';
 import axios from '../axios-req';
 import Spinners from '../UI/Spinner/spinner';
 import errorHandler from '../ErrorHandler/errorHandler';
+import backIcon from '../assets/back.svg';
 
 
 // import SideDrawer from '../UI/SideDrawer/sideDrawer.js';
@@ -18,7 +19,9 @@ class Login extends Component {
     sideDrawerHandler = () => {
         this.setState({showSideDrawer: false})
      }
-
+     backToPrevious = () => {
+      this.props.history.goBack()
+      }
      sideDrawerToggleHandler = () => {
         this.setState((prevState) => {
         return {showSideDrawer: !prevState.showSideDrawer};
@@ -104,9 +107,11 @@ class Login extends Component {
         }
         return ( 
             <div className= "Login">
-        
+               <div className= "back-div">
+              <img onClick= {this.backToPrevious} src= {backIcon}  alt= "backIcon" className= "back-icon2" />
+              </div>
 
-            <header className= "Logo-header">
+            <header className= "Logo-header4">
             <img src={logo} className="Special-logo" alt="logo" />   
             </header>
             {show}

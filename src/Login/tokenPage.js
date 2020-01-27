@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './tokenPage.css';
 import {Alert} from 'reactstrap';
 import PinInput from 'react-pin-input';
-import logo from '../assets/logo_new.svg';
+import logo from '../assets/sargas_new_logo2.png';
 import axios from 'axios';
 import Spinners from '../UI/Spinner/spinner';
 class TokenPage extends Component {

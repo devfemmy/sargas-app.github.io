@@ -91,4 +91,10 @@
   position: sticky;
   z-index: 99999;
   top: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+#sticky_element span {
+  font-size: 22px;
 }
