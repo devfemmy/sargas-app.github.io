@@ -1,0 +1,32 @@
+.span-icon {
+    font-size: 27px;
+    float: right;
+    margin-top: -7px;
+}
+.collapsable-div {
+    padding-right: 0px;
+    padding-left: 9px;
+    min-height: 41px;
+    border-bottom:  1px solid rgba(0,0,0,.1);
+    padding-top: 5px;
+}
+.collapsable-div h5 {
+    font-size: 15px;
+    opacity: 0.9;
+}
+.collapsable-div2 {
+    padding-right: 0px;
+    color: white;
+    padding-left: 38px;
+    min-height: 41px;
+    border-bottom:  1px solid rgba(255,255,255,0.3);
+    padding-top: 5px;
+    margin-right: 12px;
+    margin-left: 10px;
+  
+}
+.collapsable-div2 h5 {
+    font-size: 15px;
+    opacity: 0.9;
+    color: white;
+}

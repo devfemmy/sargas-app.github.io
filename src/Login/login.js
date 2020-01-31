@@ -35,6 +35,13 @@ class Login extends Component {
             email: document.querySelector('#email').value
          
           }
+          const email = document.querySelector('#email').value;
+          const phone = document.querySelector('#number').value;
+          const password = document.querySelector('#password').value;
+          if (email === '' || password === '' || phone === '') {
+            alert("please fill up details correctly")
+            this.setState({loader: true})
+        }else {
           axios.post('http://sargasoms.com/api/customer/?API_flag=registercustomer', {...data})
                 .then((res) => {
                 this.setState({loader: true})
@@ -61,6 +68,8 @@ class Login extends Component {
                 .catch(  error => {
                    
                     this.setState({error: true, loader: true})});
+        }
+
                     
       
       }
@@ -98,9 +107,11 @@ class Login extends Component {
                 <Input id = "Confirm Password" className = "login-input" type= "password" placeholder="Confirm Password" />
                 </InputGroup>
                 <br />
+                <p style= {{fontSize: '14px'}}><input type="checkbox" required name="terms" /> I accept the <u>Terms and Conditions</u></p>
                 <Button style= {{color: "white"}} outline
                 onClick= {this.pushToNextPage}
                  className = "Login-btn"  size="lg">SIGN UP</Button>
+
                 </div>
             </div>
             )

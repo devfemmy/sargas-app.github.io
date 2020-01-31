@@ -4,9 +4,10 @@ import './freebies.css';
 import axios from 'axios'
 import {
     Card, CardImg, CardText, CardBody,
-    CardTitle, CardSubtitle, Button, UncontrolledCollapse
+    CardTitle, CardSubtitle,
   } from 'reactstrap';
 import Spinners from '../../UI/Spinner/spinner';
+import CollapseUi from '../../UI/Collapse/collapse';
 
 class Blog extends Component {
     state = { 
@@ -54,21 +55,17 @@ class Blog extends Component {
                      const newMonth = month[mm]
                      const year = date.getFullYear();
                      const displayDate = `${newMonth} ${day}, ${year}`
-                    const toggler = `#${blog.slug}`;
+                    // const toggler = `#${blog.slug}`;
                     return (
                         <Card key = {index}>
                         <CardImg top width="100%" src={blog.jetpack_featured_media_url} alt="Card image cap" />
-                        <CardBody>
+                        <CardBody style= {{color: 'black'}}>
                     <CardTitle style={{color: 'black', fontWeight: 'bold', fontSize: '24px'}}>{blog.title.rendered}</CardTitle>
-                <CardSubtitle style={{color: 'black', opacity: '0.6'}}><span style= {{color: '#009245'}}>{displayDate}</span> {time}</CardSubtitle>
-                    <CardText  dangerouslySetInnerHTML={{ __html: blog.excerpt.rendered}} style={{color: 'black'}}></CardText>
-                        <UncontrolledCollapse toggler={toggler}>
-                            <div>
-                                <p  dangerouslySetInnerHTML={{ __html: blog.content.rendered}} style= {{color: 'black'}}>
-                                </p>
-                            </div>
-                        </UncontrolledCollapse>
-                        <Button outline color="success"  id={blog.slug} >CONTINUE READING</Button>
+                    <CardSubtitle style={{color: 'black', opacity: '0.6'}}><span style= {{color: '#009245'}}>{displayDate}</span> {time}</CardSubtitle>
+                     <CardText  dangerouslySetInnerHTML={{ __html: `${blog.excerpt.rendered.slice(0,100)}...`}} style={{color: 'black'}}></CardText>
+                     <CollapseUi style= {{color: 'black'}}>
+                     <p dangerouslySetInnerHTML={{ __html: blog.content.rendered}}></p>
+                    </CollapseUi>
                         </CardBody>
                     </Card>
                     )
@@ -85,7 +82,7 @@ class Blog extends Component {
                             </p>
                          <h5 className= "payment-text2">Blog</h5>   
                     </div>
-                   
+                
                 </div> 
                 {showBlogs}
               
