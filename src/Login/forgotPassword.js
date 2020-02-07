@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import {Input,Button, InputGroup,Alert} from 'reactstrap';
+import {Input,Button, InputGroup,Alert,Col, Row} from 'reactstrap';
 import Spinners from '../UI/Spinner/spinner.js';
-import logo from '../assets/logo_new.svg';
+import passwordBg from '../assets/password_bg.svg';
 import '../Login/login.css';
 import './signIn.css';
 import axios from 'axios';
@@ -73,11 +73,18 @@ class ForgotPassword extends Component {
             <div>
         <div className= "Login">
             <div className= "back-div">
-            <img onClick= {this.backToPrevious} src= {backIcon}  alt= "backIcon" className= "back-icon2" />
+            <Row>
+                <Col xs= "2"><img onClick= {this.backToPrevious} src= {backIcon}  alt= "backIcon" className= "back-icon2" /></Col>
+                <Col xs= "7">
+                    <p style={{color: 'white'}}>Forgot Password</p>
+                </Col>
+            </Row>
+          
+
             </div>
        
-        <header className= "Logo-header">
-        <img src={logo} className="Special-logo" alt="logo" />   
+        <header className= "Logo-header10">
+        <img src={passwordBg} alt="logo" />   
         </header>
       
         <div className= "sign-up">

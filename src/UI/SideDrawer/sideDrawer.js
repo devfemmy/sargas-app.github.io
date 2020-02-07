@@ -4,14 +4,15 @@ import './sideDrawer.css';
 import Backdrop from '../Backdrop/backdrop';
 import {Card,CardBody, Col, Row } from 'reactstrap';
 import clearIcon from '../../assets/clear.svg';
-
-// import logOut from '../../assets/logout.svg';
+import auth from '../../auth/auth';
+import logOut from '../../assets/log-out.svg';
 import NavigationItems from '../Navigations/NavigationItems/navigationItems';
 import avatarIcon from '../../assets/avatar.png';
 class SideDrawer extends Component {
     state = {  }
     
     render() { 
+        console.log(this.props)
        const firstname = localStorage.getItem('usersfirstname');
        const apartment = localStorage.getItem('apartment');
        const street = localStorage.getItem('street')
@@ -47,6 +48,17 @@ class SideDrawer extends Component {
                    
                     <div className= "universal-pad2">
                         <NavigationItems />
+                        <div>
+                            <p onClick={() => {
+                                auth.logout(() => {
+                                    this.props.props.history.push("/");
+                                });
+                                }} className= "side-icons">
+                            <strong><span>
+                                <img src={logOut} className="home-logo" alt="logo" />
+                                </span>&nbsp;&nbsp;&nbsp;<span className= "nav-text">Log Out</span></strong>
+                            </p>
+                            </div>
                       
                     </div>
                 </div>

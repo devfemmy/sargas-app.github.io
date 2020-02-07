@@ -25,6 +25,9 @@ class History extends Component {
             const reversedOrder = orders.reverse();
             if (response.status === 1001) {
                 this.setState({orders: reversedOrder, loader: true})
+                const firstOrder = reversedOrder[0].order_id;
+                localStorage.setItem('order_id', firstOrder)
+               
             }
             if (response.status === 2001) {
                 // console.log(response)

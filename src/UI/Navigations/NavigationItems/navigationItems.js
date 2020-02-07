@@ -13,6 +13,7 @@ import freebies from '../../../assets/freebies_icon.svg';
 // import security from '../../../assets/security-icon.svg';
 import logOut from '../../../assets/log-out.svg';
 import NavigationItem from '../NavigationItem/navigationItem';
+import auth from '../../../auth/auth';
 
 const NavigationItems = (props) => (
     <ul className = "NavigationItems">
@@ -66,13 +67,7 @@ const NavigationItems = (props) => (
         </span>&nbsp;&nbsp;&nbsp;<span className= "nav-text">Blog</span></strong>
     </p>
     </NavigationItem>
-    <NavigationItem link= '/login'>
-    <p className= "side-icons">
-    <strong><span>
-        <img src={logOut} className="home-logo" alt="logo" />
-        </span>&nbsp;&nbsp;&nbsp;<span className= "nav-text">Log Out</span></strong>
-    </p>
-    </NavigationItem>
+
     </ul>
 );
 

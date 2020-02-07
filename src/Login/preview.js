@@ -4,10 +4,12 @@ import {FormGroup, Label, Input, Form, Button} from 'reactstrap'
 import logo from '../assets/sargas_new_logo2.png';
 import axios from 'axios';
 import errorHandler from '../ErrorHandler/errorHandler';
+import Spinners from '../UI/Spinner/spinner';
 class PreviewPage extends Component {
     state = { 
       cylinder_size: [],
-      error: false
+      error: false,
+      loader: false
      }
     pushToNextPage = () => {
       const home_details = this.props.location.state.home_details
@@ -76,7 +78,7 @@ class PreviewPage extends Component {
           (res) => {
             const response = res.data
             const cylinder_size = response.data;
-            this.setState({cylinder_size: cylinder_size});
+            this.setState({cylinder_size: cylinder_size, loader: true});
             console.log(res)
           }
         ).catch(  error => {
@@ -92,14 +94,11 @@ class PreviewPage extends Component {
       // customer_address = city + " " + zone + " " + state;
       customer_address = `${city}, ${zone}, ${state}`
       localStorage.setItem('customer_address', customer_address)
-        return ( 
-            <div className = "preview2">
-                <span className = "arrow-back"></span>
-                <header className= "token-header">
-                <img src={logo} className="Special-logo" alt="logo" />   
-                </header>
-            <div className = "preview-body">
-            <Form>
+      let showPrev = <Spinners />
+      if (this.state.loader) {
+        showPrev = (
+          <div>
+                        <Form>
                         <FormGroup>
                         <Label className= "preview-label" for="exampleSelect">Select Cylinder Size:</Label>
                         <Input type="select" name="select" id="exampleSelect">
@@ -122,6 +121,17 @@ class PreviewPage extends Component {
                     className = "Login-button2"  
                     size="lg">SUBMIT</Button>
             </Form>
+          </div>
+        )
+      }
+        return ( 
+            <div className = "preview2">
+                <span className = "arrow-back"></span>
+                <header className= "token-header">
+                <img src={logo} className="Special-logo" alt="logo" />   
+                </header>
+            <div className = "preview-body">
+              {showPrev}
                 
             </div>
             </div>

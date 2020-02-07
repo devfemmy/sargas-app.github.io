@@ -6,6 +6,8 @@ import './signIn.css';
 import axios from 'axios';
 import Spinners from '../UI/Spinner/spinner';
 import errorHandler from '../ErrorHandler/errorHandler';
+import registerBg from '../assets/new_register_bg.svg';
+import auth from '../auth/auth'
 // import Spinner from 'reactstrap';
 class SignIn extends Component {
     state = { 
@@ -48,6 +50,7 @@ class SignIn extends Component {
               console.log(response.status)
               const token = response.token;
               localStorage.setItem("token", token);
+            
              
               if (response.status === 1001) {
                 const home_details = response.home_details;
@@ -64,17 +67,23 @@ class SignIn extends Component {
                 localStorage.setItem('state', state);
                 this.setState({home_details: home_details})
                 if (response.first_time === '1') {
-                  this.props.history.push({
-                    pathname: '/preview',
-                    search: '?query=preview',
-                    state: {home_details: home_details}
-                  })
+                  auth.login(() => {
+                    this.props.history.push({
+                      pathname: '/preview',
+                      search: '?query=preview',
+                      state: {home_details: home_details}
+                    })
+                  });
+
                 }else {
-                  this.props.history.push({
-                    pathname: 'home',
-                    search: '?query=home',
-                    state: {home_details: home_details}
-                  })
+                  auth.login(() => {
+                    this.props.history.push('/home');
+                  });
+                  // this.props.history.push({
+                  //   pathname: 'home',
+                  //   // search: '?query=home',
+                  //   // state: {home_details: home_details}
+                  // })
                 }
            
               } else if (response.status === 2001) {
@@ -128,7 +137,7 @@ class SignIn extends Component {
           </InputGroup>
           <br />
           <p onClick = {this.forgotPassword} className= "password_text">FORGOT PASSWORD?</p>
-          <Button style= {{color: "white"}} outline
+          <Button
           onClick= {this.logInUser}
            className = "Login-btn"  size="lg">LOG IN &rarr;</Button>
           </div>
@@ -144,7 +153,10 @@ class SignIn extends Component {
         
 
             <header className= "Logo-header">
-            <img src={logo} className="Special-logo" alt="logo" />   
+            <img src={logo} className="Special-logo" alt="logo" />  
+            <div>
+            <img src= {registerBg} alt= "registerbg" />
+            </div> 
             </header>
           {show}
             </div>

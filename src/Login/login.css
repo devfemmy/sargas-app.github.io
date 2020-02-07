@@ -1,12 +1,30 @@
 
   
   .Special-logo {
-    height: 25vmin;
+    height: 13vmin;
+    margin-bottom: 15px;
     
   }
   
   .Logo-header {
-    min-height: 48vh;
+    min-height: 47vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+    /* background-color: white; */
+  }
+  .register-session-div {
+    padding: 34px;
+  }
+  .tapped-button {
+    margin-top: 30px;
+    font-size: 28px;
+  }
+  .Logo-header10 {
+    min-height: 33vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -36,7 +54,7 @@
     background-color: white;
   }
 .back-icon2 {
-  height: 30px;
+  height: 25px;
 }
 .back-div {
   padding: 30px;
@@ -83,9 +101,13 @@
   .Login-btn {
       border: 1px solid white !important;
       border-radius: 50px !important;
+      background-color: white !important;
+      color: #009245 !important;
+      font-size: 15px !important;
+      font-weight: bold !important;
   }
   .Login-btn:hover {
-    background: transparent !important;
+    /* background: transparent !important; */
     /* border: none !important; */
     outline: transparent !important;
   }

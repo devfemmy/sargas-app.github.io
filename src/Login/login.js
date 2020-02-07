@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import {Input,Button, InputGroup, Alert} from 'reactstrap'
-import logo from '../assets/logo_new.svg';
+import {Input,Button,InputGroup, Alert, Row, Col} from 'reactstrap';
+// import { AvForm, AvGroup, AvInput } from 'availity-reactstrap-validation';
+import registerBackbg from '../assets/bike_man.svg';
 import '../Login/login.css';
 import axios from '../axios-req';
 import Spinners from '../UI/Spinner/spinner';
@@ -8,14 +9,28 @@ import errorHandler from '../ErrorHandler/errorHandler';
 import backIcon from '../assets/back.svg';
 
 
+
 // import SideDrawer from '../UI/SideDrawer/sideDrawer.js';
 // import menu from '../assets/menu.png'
 class Login extends Component {
-    state = {  
-        showSideDrawer : false,
-        loader: true,
-        error: false
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      showSideDrawer : false,
+      loader: true,
+      error: false,
+      isGoing: false,
+      buttonDisabled: false
+    };
+
+    this.handleInputChange = this.handleInputChange.bind(this);
+  }
+    // state = {  
+    //     showSideDrawer : false,
+    //     loader: true,
+    //     error: false,
+    //     isChecked: false
+    // }
     sideDrawerHandler = () => {
         this.setState({showSideDrawer: false})
      }
@@ -73,6 +88,17 @@ class Login extends Component {
                     
       
       }
+      handleInputChange(event) {
+        const target = event.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const name = target.name;
+    
+        this.setState({
+          [name]: value,
+          buttonDisabled: true
+        });
+      }
+   
     render() { 
         let showAlert = null;
         if (this.state.displayAlert) {
@@ -107,9 +133,23 @@ class Login extends Component {
                 <Input id = "Confirm Password" className = "login-input" type= "password" placeholder="Confirm Password" />
                 </InputGroup>
                 <br />
-                <p style= {{fontSize: '14px'}}><input type="checkbox" required name="terms" /> I accept the <u>Terms and Conditions</u></p>
+                <p style= {{fontSize: '14px'}}><input 
+                 name="isGoing"
+                 checked={this.state.isGoing}
+                  onChange={this.handleInputChange}
+                type="checkbox" 
+                required /> I accept the <u>Terms and Conditions</u></p>
+                {/* <AvForm onSubmit={this.handleSubmit}>
+                <AvGroup check>
+                    <Label check>
+                      <AvInput type="checkbox" name="doNotAgree" falseValue="User Does Not Agreed" /> Agree to this!
+                    </Label>
+                  </AvGroup>
+                </AvForm> */}
+ 
                 <Button style= {{color: "white"}} outline
                 onClick= {this.pushToNextPage}
+                disabled= {!this.state.isGoing}
                  className = "Login-btn"  size="lg">SIGN UP</Button>
 
                 </div>
@@ -118,12 +158,33 @@ class Login extends Component {
         }
         return ( 
             <div className= "Login">
-               <div className= "back-div">
-              <img onClick= {this.backToPrevious} src= {backIcon}  alt= "backIcon" className= "back-icon2" />
-              </div>
+            <div className= "back-div">
+              <Row>
+                  <Col xs= "2"><img onClick= {this.backToPrevious} src= {backIcon}  alt= "backIcon" className= "back-icon2" /></Col>
+                  <Col xs= "7">
+                      <p style={{color: 'white'}}>Register</p>
+                  </Col>
+              </Row>
+          
+
+            </div>
+            
 
             <header className= "Logo-header4">
-            <img src={logo} className="Special-logo" alt="logo" />   
+              <div className= "register-session-div">
+                <Row>
+                  <Col xs= "7">
+                    <h4 className= "tapped-button">Tap a button, get a refill...</h4>
+                  </Col>
+                  <Col  xs= "5">
+                  <img src={registerBackbg} alt="logo" />  
+                  </Col>
+                </Row>
+              </div>
+
+          
+         
+          
             </header>
             {show}
             </div>

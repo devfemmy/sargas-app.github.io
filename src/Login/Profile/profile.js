@@ -99,7 +99,7 @@ class Profile extends Component {
             city: localStorage.getItem('city_id'),
             zone: localStorage.getItem('zone_id'),
             state: localStorage.getItem('state'),
-
+            cylinder_size: localStorage.getItem('cylinder_size')
     
         }
         if (firstname === '' || lastname === '' || gender === '' || apt === '' || street === '') {
@@ -114,7 +114,7 @@ class Profile extends Component {
                     this.setState({loader: true})
                     this.props.history.push(
                         {
-                            pathname: '/'
+                            pathname: '/home'
                         }
                     )
                 }

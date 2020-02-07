@@ -5,6 +5,7 @@ import PinInput from 'react-pin-input';
 import logo from '../assets/sargas_new_logo2.png';
 import axios from 'axios';
 import Spinners from '../UI/Spinner/spinner';
+import tokenImg from '../assets/token_page.svg';
 class TokenPage extends Component {
     state = { 
         loader: true,
@@ -64,10 +65,10 @@ class TokenPage extends Component {
                 className= "pin-input"
                 length={4} 
                 initialValue=""
-                secret 
+                secret={false}
                 onChange={(value, index) => {}} 
                 type="numeric" 
-                style={{padding: '10px', marginLeft: '3rem'}}  
+                style={{padding: '10px'}}  
                 inputStyle={{borderColor: 'white'}}
                 inputFocusStyle={{borderColor: 'blue'}}
                 onComplete={(value, index) => {this.pushToNextPage(value)}}
@@ -78,20 +79,23 @@ class TokenPage extends Component {
         <div className = "token-top">
         <span className = "arrow-back"></span>
             <header className= "token-header">
-            <img src={logo} className="Special-logo" alt="logo" />   
+                 <img src= {tokenImg} className= "token-img" alt= "token" />
             </header>
             <div className = "token-body">
             <div className= "token">
-                <h4>Please Enter the Token sent to you</h4>
                 {showAlert}
                 <br />
             <div className= "token-div">
             {show}
+           
             </div>
-            
+          
             <br />
             </div>
-       
+            <div className= "token-text-session">
+            <p>Enter 4 digit number sent to your phone number</p>
+            </div>
+           
             </div>
 
             </div>

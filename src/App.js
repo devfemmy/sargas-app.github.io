@@ -1,5 +1,7 @@
 import React from 'react';
-import {Route} from 'react-router-dom';
+import {Route, Switch} from 'react-router-dom';
+import { ProtectedRoute } from './auth/protected.route';
+import { GuestRoute } from './auth/guest.route';
 import './App.css';
 import Login from './Login/login';
 import TokenPage from './Login/tokenPage';
@@ -20,32 +22,38 @@ import ForgotPassword from './Login/forgotPassword';
 import History from './Order/OrderHistory/history';
 import Freebies from './Order/Freebies/freebies';
 import Blog from './Order/Freebies/blog';
-import Splash from './splashscreen/splash';
 
 
 function App() {
   return (
     <div className="App">
-      <Route path= "/login"  component={SignIn}/>
-      <Route path= "/home"  component={HomePage}/>
-      <Route path= "/token"  component={TokenPage}/>
-      <Route path= "/tracking"  component={TrackingPage}/>
-      <Route path= "/refil"  component={RefilSchedule}/>
-      <Route path= "/profile"  component={Profile}/>
-      <Route path= "/failed"  component={OrderFailed}/>
-      <Route path= "/success"  component={OrderSuccess}/>
-      <Route path= "/preview"  component={PreviewPage}/>
-      <Route path= "/payment"  component={PaymentPage}/>
-      <Route path= "/payment_method"  component={PaymentMethod}/>
-      <Route path= "/card"  component={AddCard}/>
-      <Route path= "/signup"  component={Login}/>
-      <Route path= "/pricing"  component={ConfirmOrder}/>
-      <Route path= "/paystack"  component={PayStackPay}/>
-      <Route path= "/password"  component={ForgotPassword}/>
-      <Route path= "/history"  component={History}/>
-      <Route path= "/freebies"  component={Freebies}/>
-      <Route path= "/blog"  component={Blog}/>
-      <Route path= "/" exact component={Splash}/>
+      <Switch>
+      <GuestRoute exact path= "/"  component={SignIn}/>
+      <GuestRoute exact path= "/token"  component={TokenPage}/>
+      <GuestRoute exact path= "/password"  component={ForgotPassword}/>
+      <GuestRoute exact path= "/signup"  component={Login}/>
+
+      <ProtectedRoute exact path= "/home"  component={HomePage}/>
+     
+      <ProtectedRoute exact path= "/tracking"  component={TrackingPage}/>
+      <ProtectedRoute exact path= "/refil"  component={RefilSchedule}/>
+      <ProtectedRoute exact path= "/profile"  component={Profile}/>
+      <ProtectedRoute exact path= "/failed"  component={OrderFailed}/>
+      <ProtectedRoute exact path= "/success"  component={OrderSuccess}/>
+      <ProtectedRoute exact path= "/preview"  component={PreviewPage}/>
+      <ProtectedRoute exact path= "/payment"  component={PaymentPage}/>
+      <ProtectedRoute exact path= "/payment_method"  component={PaymentMethod}/>
+      <ProtectedRoute exact path= "/card"  component={AddCard}/>
+      
+      <ProtectedRoute exact path= "/pricing"  component={ConfirmOrder}/>
+      <ProtectedRoute exact path= "/paystack"  component={PayStackPay}/>
+     
+      <ProtectedRoute exact path= "/history"  component={History}/>
+      <ProtectedRoute exact path= "/freebies"  component={Freebies}/>
+      <ProtectedRoute exact path= "/blog"  component={Blog}/>
+      <Route path="*" component={() => "404 NOT FOUND"} />
+      </Switch>
+
       
 
 
