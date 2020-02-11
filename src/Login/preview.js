@@ -104,7 +104,7 @@ class PreviewPage extends Component {
                         <Input type="select" name="select" id="exampleSelect">
                           {this.state.cylinder_size.map(
                             (size, id) => {
-                              localStorage.setItem('cylinder_size', size.size)
+                              localStorage.setItem('cylinder_size', size.size_id)
                               return (
                                 <option id="cylinder" key = {id}>{size.size}</option>
                               )

@@ -11,9 +11,9 @@ import freebies from '../../../assets/freebies_icon.svg';
 // import survey from '../../../assets/survey-icon.svg';
 // import promoCode from '../../../assets/promo-icon.svg';
 // import security from '../../../assets/security-icon.svg';
-import logOut from '../../../assets/log-out.svg';
+// import logOut from '../../../assets/log-out.svg';
 import NavigationItem from '../NavigationItem/navigationItem';
-import auth from '../../../auth/auth';
+// import auth from '../../../auth/auth';
 
 const NavigationItems = (props) => (
     <ul className = "NavigationItems">

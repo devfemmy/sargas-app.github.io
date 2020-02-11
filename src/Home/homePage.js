@@ -16,7 +16,8 @@ class HomePage extends Component {
         home_details: [],
         error: false,
         showButton: false,
-        time: 0
+        time: 0,
+        enableButton: false
      }
      sideDrawerHandler = () => {
         this.setState({showSideDrawer: false})
@@ -26,18 +27,44 @@ class HomePage extends Component {
         const data = {
             token: localStorage.getItem('token')
         }
-        const data2 = {
-            token: localStorage.getItem('token'),
-            order_id: localStorage.getItem('order_id')
-        }
-        axios.post('http://sargasoms.com/api/customer/?API_flag=getordertime', data2)
+        axios.post('http://sargasoms.com/api/customer/?API_flag=fetchcustomertransactions', data)
         .then(res => {
-            console.log ("fetchtime", res)
-            const time = res.data.time;
-            this.setState({time: time, showButton: true})
-        }).catch(  error => {
+            console.log("orders", res)
+            const response = res.data;
+                 if (response.status === 1001) {
+                const orders = response.data;
+                const reversedOrder = orders.reverse();
+                const firstOrder = reversedOrder[0].order_id;
+                localStorage.setItem('order_id', firstOrder);
+                const data2 = {
+                    token: localStorage.getItem('token'),
+                    order_id: firstOrder
+                }
+                axios.post('http://sargasoms.com/api/customer/?API_flag=getordertime', data2)
+                .then(res => {
+                    console.log ("fetchtime", res)
+                    if (res.data.status === 1001) {
+                        const status = Number(res.data.order_status)
+                        if (status >= 4) {
+                            this.setState({showButton: false, enableButton: true})
+                        }else {
+                        const time = res.data.time;
+                        this.setState({time: time, showButton: true})
+                        }
+                        
+                    } else {
+                        this.setState({enableButton: true})
+                    }
                    
-            this.setState({error: true, loader: true})});
+                }).catch(  error => {
+                           
+                this.setState({error: true, loader: true})});
+               
+            } else {
+                this.setState({enableButton: true})
+            }
+        })
+
         axios.post('http://sargasoms.com/api/customer/?API_flag=fetchcusprofile', data)
         .then(res => {
             console.log(res.data)
@@ -84,6 +111,16 @@ class HomePage extends Component {
            });
      }
     render() { 
+              const home_details = this.state.home_details
+        const firstname = localStorage.getItem('usersfirstname');
+        const lastname = home_details.lastname;
+        localStorage.setItem('lastname', lastname)
+        localStorage.setItem('firstname', firstname)
+        // const name = firstname.toUpperCase()
+        const apartment = home_details.apartment;
+        localStorage.setItem('apartment', apartment)
+        const street = home_details.street;
+        localStorage.setItem('street', street)
         let order_id = localStorage.getItem('order_id');
         let apartment2 = this.state.home_details.apartment;
         let street2 = this.state.home_details.street;
@@ -93,6 +130,7 @@ class HomePage extends Component {
         let displayButton = (
             <div className= "button-div">
             <Button 
+                    disabled = {!this.state.enableButton}
                     outline color="secondary" 
                     className = "home-button" 
                     onClick= {()=> this.pushToNextPage(home_details)} 
@@ -116,7 +154,7 @@ class HomePage extends Component {
                     initialTime={milliseconds}
                     direction="backward">
                         <Col xs= "5">
-                            <p class="animated infinite pulse delay-6s" style={{fontWeight: 'bolder', color: 'white', fontSize: '17px'}}>
+                            <p className="animated infinite pulse delay-6s" style={{fontWeight: 'bolder', color: 'white', fontSize: '17px'}}>
                             <Timer.Hours />hr:<Timer.Minutes />min:<Timer.Seconds />
                             </p>
                         </Col>     
@@ -184,16 +222,7 @@ class HomePage extends Component {
                 </div>
             )
         }
-        const home_details = this.state.home_details
-        const firstname = localStorage.getItem('usersfirstname');
-        const lastname = home_details.lastname;
-        localStorage.setItem('lastname', lastname)
-        localStorage.setItem('firstname', firstname)
-        // const name = firstname.toUpperCase()
-        const apartment = home_details.apartment;
-        localStorage.setItem('apartment', apartment)
-        const street = home_details.street;
-        localStorage.setItem('street', street)
+  
         // let showName = <Spinners />
         // if (this.state.loader) {
         //     showName = (

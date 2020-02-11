@@ -30,7 +30,7 @@ class ConfirmOrder extends Component {
             const response = res.data;
             if (response.status === 1001) {
                 const data = response.data;
-                this.setState({payment_method: data, loader: true})
+                this.setState({payment_method: data})
             }
         }).catch(  error => {
                    
@@ -47,7 +47,7 @@ class ConfirmOrder extends Component {
                 if (response.status === 1001) {
                     const price = response.price;
                     const realprice = `₦${price}`;
-                    this.setState({price: realprice, oldPrice: price})
+                    this.setState({price: realprice, oldPrice: price, loader: true})
                 }
                 console.log(res);
             }

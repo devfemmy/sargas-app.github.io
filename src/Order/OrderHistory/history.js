@@ -19,18 +19,16 @@ class History extends Component {
         }
         axios.post('http://sargasoms.com/api/customer/?API_flag=fetchcustomertransactions', data)
         .then(res => {
-          console.log(res)
             const response = res.data;
-            const orders = response.data;
-            const reversedOrder = orders.reverse();
-            if (response.status === 1001) {
+                 if (response.status === 1001) {
+                const orders = response.data;
+                const reversedOrder = orders.reverse();
                 this.setState({orders: reversedOrder, loader: true})
-                const firstOrder = reversedOrder[0].order_id;
-                localStorage.setItem('order_id', firstOrder)
+                // const firstOrder = reversedOrder[0].order_id;
+                // localStorage.setItem('order_id', firstOrder)
                
             }
             if (response.status === 2001) {
-                // console.log(response)
                 this.setState({loader: true, loader2: true, noOrder: 'No Order History'})
             }
         }).catch(  error => {

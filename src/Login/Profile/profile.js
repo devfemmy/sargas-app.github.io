@@ -16,6 +16,7 @@ class Profile extends Component {
         gender: null,
         apart_no: null,
         street_name: null,
+        nearest_bstop: null,
         city: null,
         state: null,
         loader: true,
@@ -25,7 +26,8 @@ class Profile extends Component {
         this.props.history.goBack();
     }
     componentDidMount (){
-        
+        const firstname = document.querySelector('#firstname').value;
+        localStorage.setItem('usersfirstname', firstname);
         // let bodyFormData = new FormData();
         const data = {
             token : localStorage.getItem('token')
@@ -45,12 +47,14 @@ class Profile extends Component {
                     const gender = response.gender
                     const apart_no = response.apartment;
                     const street_name = response.street;
+                    const nearest_bstop= response.street2;
                     const city= response.city;
                     const state = response.state
                     this.setState({
                         first_name: firstname, last_name:lastname,
                         phone_no: phone_no, email: email, gender: gender,
                         apart_no: apart_no, street_name: street_name,
+                        nearest_bstop: nearest_bstop,
                         city: city, state: state
 
                     })
@@ -61,6 +65,7 @@ class Profile extends Component {
                     document.querySelector('#gender').value = gender;
                     document.querySelector('#apt').value = apart_no;
                     document.querySelector('#street').value = street_name;
+                    document.querySelector('#street2').value = nearest_bstop;
                     document.querySelector('#city').value = city;
                     document.querySelector('#state').value = state;
                     console.log(response.status)
@@ -83,10 +88,12 @@ class Profile extends Component {
     editProfile = () => {
         // this.setState({loader: false})
         const firstname = document.querySelector('#firstname').value;
+        localStorage.setItem('usersfirstname', firstname);
         const lastname = document.querySelector('#lastname').value;
         const gender = document.querySelector('#gender').value;
         const apt = document.querySelector('#apt').value;
         const street = document.querySelector('#street').value;
+        const street2 = document.querySelector('#street2').value;
         const data = {
             firstname: document.querySelector('#firstname').value,
             lastname: document.querySelector('#lastname').value,
@@ -96,13 +103,14 @@ class Profile extends Component {
             token : localStorage.getItem('token'),
             apt : document.querySelector('#apt').value,
             street: document.querySelector('#street').value,
+            street2: document.querySelector('#street2').value,
             city: localStorage.getItem('city_id'),
             zone: localStorage.getItem('zone_id'),
             state: localStorage.getItem('state'),
             cylinder_size: localStorage.getItem('cylinder_size')
     
         }
-        if (firstname === '' || lastname === '' || gender === '' || apt === '' || street === '') {
+        if (firstname === '' || lastname === '' || gender === '' || apt === '' || street === '' || street2 === '') {
             alert("please fill up profile correctly")
         }else {
             this.setState({loader: false})
@@ -186,7 +194,7 @@ class Profile extends Component {
                     </InputGroup>
                     </Col>
                     <Col>
-                    <Label className= "profile-label">Nearest B/Stop:</Label>
+                    <Label className= "profile-label">Street:</Label>
                     <InputGroup>
                     <Input id= "street" type= "text"  className = "profile-input" placeholder="Street Name" />
                     </InputGroup>
@@ -194,9 +202,9 @@ class Profile extends Component {
                 </Row>
             
                 <br />
-                <Label className= "profile-label">Street:</Label>
+                <Label className= "profile-label">Nearest Bus Stop:</Label>
                     <InputGroup>
-                    <Input id= "street2" type= "text"  className = "profile-input" placeholder="Street Name" />
+                    <Input id= "street2" type= "text"  className = "profile-input" placeholder="Nearest B/Stop" />
                 </InputGroup>
                 <br />
                 <Row>

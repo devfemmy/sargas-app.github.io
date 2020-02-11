@@ -148,7 +148,7 @@ class RefilSchedule extends Component {
                   
                 </Form>
             <div id= "form_grp3">
-            <Button style= {{color: "white", position: 'absolute', bottom: '8%', width: '80%'}} 
+            <Button style= {{color: "white"}} 
                     outline color="secondary" 
                     className = "Refil-button" 
                     onClick= {this.pushToNextPage} 
