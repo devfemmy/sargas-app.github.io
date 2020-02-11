@@ -26,8 +26,7 @@ class Profile extends Component {
         this.props.history.goBack();
     }
     componentDidMount (){
-        const firstname = document.querySelector('#firstname').value;
-        localStorage.setItem('usersfirstname', firstname);
+
         // let bodyFormData = new FormData();
         const data = {
             token : localStorage.getItem('token')
