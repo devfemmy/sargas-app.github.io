@@ -16,6 +16,9 @@ class SideDrawer extends Component {
        const firstname = localStorage.getItem('usersfirstname');
        const apartment = localStorage.getItem('apartment');
        const street = localStorage.getItem('street')
+       const b_stop = localStorage.getItem('bstop')
+       const city = localStorage.getItem('city')
+    //    const state = localStorage.getItem('state')
         // const lastname = localStorage.getItem('lastname')
         let attachedClasses = ["SideDrawer", "Close" ];
         if (this.props.open) {
@@ -39,7 +42,8 @@ class SideDrawer extends Component {
                      </Col>
                         <Col xs="8" sm="8" md="6">
                             <h4>{firstname.toUpperCase()}</h4>
-                            <p style= {{opacity: '0.8'}}>{apartment} {street}</p>
+                            <p style= {{opacity: '0.8',lineHeight: '1', fontSize: '13px'}}>{apartment} {street} {b_stop}, <br /> {city}.</p>
+                            {/* <p style= {{opacity: '0.8'}}>{apartment} {street} {b_stop}</p> */}
                         {/* <p> Edit Profile</p> */}
                         </Col>
                     </Row>

@@ -74,9 +74,9 @@ class ForgotPassword extends Component {
         <div className= "Login">
             <div className= "back-div">
             <Row>
-                <Col xs= "2"><img onClick= {this.backToPrevious} src= {backIcon}  alt= "backIcon" className= "back-icon2" /></Col>
+                <Col xs= "1"><img onClick= {this.backToPrevious} src= {backIcon}  alt= "backIcon" className= "back-icon2" /></Col>
                 <Col xs= "7">
-                    <p style={{color: 'white'}}>Forgot Password</p>
+                    <p style={{color: 'white', marginLeft:'7px'}}>Forgot Password</p>
                 </Col>
             </Row>
           

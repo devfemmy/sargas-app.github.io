@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import {Input,Button, InputGroup, Alert,} from 'reactstrap'
+import {Button, Alert,} from 'reactstrap'
+import { Field, formInputData, formValidation } from 'reactjs-input-validator';
 import logo from '../assets/logo_new.svg';
 import '../Login/login.css';
 import './signIn.css';
@@ -10,14 +11,32 @@ import registerBg from '../assets/new_register_bg.svg';
 import auth from '../auth/auth'
 // import Spinner from 'reactstrap';
 class SignIn extends Component {
-    state = { 
-      // home_details: null
+  constructor(props) {
+    super(props);
+    this.state = {
       loader: true,
       alertMessage: null,
       displayAlert: false,
       home_details: [],
-      error: false
-     }
+      error: false,
+      data: {}
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+   
+  }
+  handleChange(event, inputValue, inputName, validationState, isRequired) {
+    const value = (event && event.target.value) || inputValue;
+    const { data } = this.state;
+    data[inputName] = { value, validation: validationState, isRequired };
+    this.setState({
+      data,
+    });
+    // if you want access to your form data
+    const formData = formInputData(this.state.data); // eslint-disable-line no-unused-vars
+    // tells you if the entire form validation is true or false
+    const isFormValid = formValidation(this.state.data); // eslint-disable-line no-unused-vars
+  }
     pushToNextPage = () => {
         this.props.history.push({
           pathname: '/signup'
@@ -30,20 +49,20 @@ class SignIn extends Component {
       })
     }
   
-      logInUser = () => {
+      handleSubmit = (event) => {
+      event.preventDefault();
+      const isFormValid = formValidation(this.state.data);
+   
+      if (isFormValid) {
         this.setState({loader: false})
         const data = {
-            phone: document.querySelector('#number').value,
-            password: document.querySelector('#password').value,
-         
-          }
-         const phone =document.querySelector('#number').value;
-         const password = document.querySelector('#password').value;
-          if (phone === '' || password === '') {
-            alert("please fill up details correctly")
-            this.setState({loader: true})
-        }else {
-          axios.post('http://sargasoms.com/api/customer/?API_flag=customerlogin', {...data})
+          phone: this.state.data.phone.value,
+          password: this.state.data.password.value,
+       
+        }
+        
+        
+        axios.post('http://sargasoms.com/api/customer/?API_flag=customerlogin', {...data})
           .then((res) => {
           this.setState({loader: true})
               const response = res.data;
@@ -100,7 +119,7 @@ class SignIn extends Component {
           .catch(  error => {
                    
             this.setState({error: true, loader: true})});
-        }
+      }
  
       
       }
@@ -128,17 +147,31 @@ class SignIn extends Component {
           <div className= "sign-up">
           <div className = "Login-body">
             {showAlert}
-          <InputGroup>
-          <Input id = "number"  className = "login-input" type= "number" placeholder="Phone Number" />
-          </InputGroup>
-          <br />
-          <InputGroup>
-          <Input id = "password" className = "login-input" type= "password" placeholder="Password" />
-          </InputGroup>
+            <Field
+                  className= "login-input"
+                  validator="isNumeric" required minLength={11}
+                  requiredErrMsg = "Required!"
+                  minLengthErrMsg="Invalid Characters"
+                 name="phone" type="number" placeholder="Phone Number"
+                  onChange={this.handleChange}
+                  value={this.state.data.phone}
+                  shouldValidateInputs={this.state.shouldValidateInputs}
+                />
+                <Field
+                className= "login-input"
+                requiredErrMsg = "Required!"
+                validator="isAlphanumeric" required minLength={8}
+                minLengthErrMsg="Short password. Try one with atleast 8 characters"
+               name="password" type="password" placeholder="Password"
+                onChange={this.handleChange}
+                value={this.state.data.password}
+                shouldValidateInputs={this.state.shouldValidateInputs}
+                />
+                
           <br />
           <p onClick = {this.forgotPassword} className= "password_text">FORGOT PASSWORD?</p>
           <Button
-          onClick= {this.logInUser}
+          onClick= {this.handleSubmit}
            className = "Login-btn"  size="lg">LOG IN &rarr;</Button>
           </div>
           <div className= "outer-text">

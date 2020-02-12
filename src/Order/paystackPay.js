@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PaystackButton from 'react-paystack';
 // import { Button } from 'reactstrap';
 import axios from 'axios';
+import backIcon from '../assets/back.svg';
 
 class PayStackPay extends Component {
     state = { 
@@ -73,14 +74,13 @@ class PayStackPay extends Component {
         console.log(state)
         return ( 
             <div className = "add-card">
-            <div className= "payment-header2">
-              <div className = "header-wrapper">
-                      <p onClick={this.backToPrevPageHandler} className= "payment-text">&larr; 
-                      </p>
-                   <h5 className= "payment-text2">Payment Page</h5>   
-              </div>
-        
-          </div> 
+               <div id= "sticky_element" className= "payment-header2">
+               <p style={{width: '500px',paddingTop: '5%', color: 'white', fontSize: '15px'}}>
+                    <img onClick={this.backToPrevPageHandler} src={backIcon} style={{float: 'left'}} alt= "float" />
+                   &nbsp; &nbsp; PayStackPay
+                </p> 
+                   
+            </div> 
           <PaystackButton
                 text="Make Payment"
                 class="payButton"

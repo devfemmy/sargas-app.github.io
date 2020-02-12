@@ -8,6 +8,7 @@ import {
   } from 'reactstrap';
 import Spinners from '../../UI/Spinner/spinner';
 import CollapseUi from '../../UI/Collapse/collapse';
+import backIcon from '../../assets/back.svg';
 
 class Blog extends Component {
     state = { 
@@ -60,11 +61,11 @@ class Blog extends Component {
                         <Card key = {index}>
                         <CardImg top width="100%" src={blog.jetpack_featured_media_url} alt="Card image cap" />
                         <CardBody style= {{color: 'black'}}>
-                    <CardTitle style={{color: 'black', fontWeight: 'bold', fontSize: '24px'}}>{blog.title.rendered}</CardTitle>
+                    <CardTitle style={{color: 'black', fontWeight: 'bold', fontSize: '18px'}}>{blog.title.rendered}</CardTitle>
                     <CardSubtitle style={{color: 'black', opacity: '0.6'}}><span style= {{color: '#009245'}}>{displayDate}</span> {time}</CardSubtitle>
-                     <CardText  dangerouslySetInnerHTML={{ __html: `${blog.excerpt.rendered.slice(0,100)}...`}} style={{color: 'black'}}></CardText>
-                     <CollapseUi style= {{color: 'black'}}>
-                     <p dangerouslySetInnerHTML={{ __html: blog.content.rendered}}></p>
+                     <CardText  dangerouslySetInnerHTML={{ __html: `${blog.excerpt.rendered.slice(0,100)}...`}} style={{color: 'black', textAlign: 'justify', textJustify: 'inter-word', fontSize: '12px'}}></CardText>
+                     <CollapseUi style= {{color: 'black', fontSize: '12px'}}>
+                     <p style={{fontSize: '12px', textAlign: 'justify', textJustify: 'inter-word'}} dangerouslySetInnerHTML={{ __html: blog.content.rendered}}></p>
                     </CollapseUi>
                         </CardBody>
                     </Card>
@@ -76,13 +77,12 @@ class Blog extends Component {
         }
         return ( 
             <div style={{backgroundColor: 'white'}}>
-                <div id = "sticky_elements" className= "payment-header2">
-                    <div className = "header-wrapper">
-                            <p onClick= {this.backToPrevPageHandler} className= "payment-text">&larr; 
-                            </p>
-                         <h5 className= "payment-text2">Blog</h5>   
-                    </div>
-                
+            <div id= "sticky_element" className= "payment-header2">
+               <p style={{width: '500px',paddingTop: '5%', color: 'white', fontSize: '15px'}}>
+                    <img onClick={this.backToPrevPageHandler} src={backIcon} style={{float: 'left'}} alt= "float" />
+                   &nbsp; &nbsp; Blog
+                </p> 
+                   
                 </div> 
                 {showBlogs}
               

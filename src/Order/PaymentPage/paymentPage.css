@@ -11,7 +11,9 @@
 .payment-header2 {
     background-image: url('../../assets/add_payment_bg.svg');
     background-size: cover;
-    min-height: 5vh;
+    min-height: 10vh;
+    padding-left: 10%;
+    padding-bottom: 0px;
 }
 .payment-text {
     padding-top: 0%;

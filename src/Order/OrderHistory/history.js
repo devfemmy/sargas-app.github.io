@@ -4,6 +4,7 @@ import './history.css';
 import axios from 'axios';
 import Spinners from '../../UI/Spinner/spinner';
 import errorHandler from '../../ErrorHandler/errorHandler';
+import backIcon from '../../assets/back.svg';
 
 class History extends Component {
     state = { 
@@ -83,12 +84,12 @@ class History extends Component {
         }
         return (  
             <div>
-                <div id = "sticky_elements" className= "payment-header2">
-                    <div className = "header-wrapper">
-                            <p onClick= {this.backToPrevPageHandler} className= "payment-text">&larr; 
-                            </p>
-                         <h5 className= "payment-text2">History</h5>   
-                    </div>
+                <div id= "sticky_element" className= "payment-header2">
+               <p style={{width: '500px',paddingTop: '5%', color: 'white', fontSize: '15px'}}>
+                    <img onClick={this.backToPrevPageHandler} src={backIcon} style={{float: 'left'}} alt= "float" />
+                   &nbsp; &nbsp; History
+                </p> 
+                   
                 </div> 
                 <div className= "order-history">
                     {showOrder}

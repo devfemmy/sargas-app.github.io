@@ -44,6 +44,22 @@ class TokenPage extends Component {
               });
     
     }
+    requestOTP = () => {
+      this.setState({loader: false})
+      const data = {
+        phone: localStorage.getItem('phone')
+      }
+      axios.post('http://sargasoms.com/api/customer/?API_flag=resendotp', data)
+      .then(res => {
+        this.setState({loader: true})
+        if (res.data.status === 1001) {
+          alert('Otp sent!')
+        }
+        console.log(res)
+      }).catch(err => {
+        console.log(err)
+      })
+    }
     render() { 
         let showAlert = null;
         if (this.state.displayAlert) {
@@ -93,6 +109,7 @@ class TokenPage extends Component {
             </div>
             <div className= "token-text-session">
             <p>Enter 4 digit number sent to your phone number</p>
+            <p onClick= {this.requestOTP}>REQUEST NEW OTP?</p>
             </div>
            
             </div>

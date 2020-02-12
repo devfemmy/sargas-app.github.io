@@ -3,8 +3,8 @@ import { Collapse} from 'reactstrap';
 import './collapse.css';
 
 const CollapseUi = (props) => {
-    const plus = 'Read More';
-    const minus = 'Show Less'
+    const plus = 'More';
+    const minus = 'Less'
     const [collapse, setCollapse] = useState(false);
     const [status, setStatus] = useState(plus);
     const onEntered = () => setStatus(minus);

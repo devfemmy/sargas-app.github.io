@@ -111,7 +111,7 @@ class HomePage extends Component {
            });
      }
     render() { 
-              const home_details = this.state.home_details
+        const home_details = this.state.home_details
         const firstname = localStorage.getItem('usersfirstname');
         const lastname = home_details.lastname;
         localStorage.setItem('lastname', lastname)
@@ -120,7 +120,13 @@ class HomePage extends Component {
         const apartment = home_details.apartment;
         localStorage.setItem('apartment', apartment)
         const street = home_details.street;
-        localStorage.setItem('street', street)
+        const b_stop = home_details.street2;
+        const city = home_details.city;
+        const state = home_details.state;
+        localStorage.setItem('street', street);
+        localStorage.setItem('bstop', b_stop);
+        localStorage.setItem('city', city)
+        localStorage.setItem('state', state)
         let order_id = localStorage.getItem('order_id');
         let apartment2 = this.state.home_details.apartment;
         let street2 = this.state.home_details.street;
@@ -154,8 +160,8 @@ class HomePage extends Component {
                     initialTime={milliseconds}
                     direction="backward">
                         <Col xs= "5">
-                            <p className="animated infinite pulse delay-6s" style={{fontWeight: 'bolder', color: 'white', fontSize: '17px'}}>
-                            <Timer.Hours />hr:<Timer.Minutes />min:<Timer.Seconds />
+                            <p className="animated infinite pulse delay-6s" style={{fontWeight: 'bolder', color: 'white', fontSize: '13px'}}>
+                            <Timer.Hours />hr: <Timer.Minutes />min: <Timer.Seconds />
                             </p>
                         </Col>     
                     </Timer>
@@ -208,7 +214,7 @@ class HomePage extends Component {
                             <p>DISPATCHER'S N0:</p>
                             </Col>
                             <Col xs= "5">
-                            <p>08090000009</p>
+                            <p type="tel" name="phone">08090000009</p>
                             </Col>
                         </Row>
                     </div>

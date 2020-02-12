@@ -24,6 +24,7 @@ class OrderSuccess extends Component {
     render() { 
       const apartment = localStorage.getItem('apartment');
       const street = localStorage.getItem('street')
+      const bstop = localStorage.getItem('bstop')
       const firstname = localStorage.getItem('usersfirstname');
       const lastname = localStorage.getItem('userslastname');
       const usersName = `${firstname} ${lastname}`
@@ -51,7 +52,7 @@ class OrderSuccess extends Component {
                         <Col className= "column" xs = "8">
                         <h5>{usersName}</h5>
                         <p>
-                          {apartment} {street}
+                          {apartment} {street} {bstop}
                         </p>
                         </Col>
 

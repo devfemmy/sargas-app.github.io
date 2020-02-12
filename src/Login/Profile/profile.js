@@ -7,6 +7,8 @@ import avatarIcon from '../../assets/avatar.png';
 import axios from 'axios';
 import Spinners from '../../UI/Spinner/spinner';
 import errorHandler from '../../ErrorHandler/errorHandler';
+import backIcon from '../../assets/back.svg';
+
 class Profile extends Component {
     state = { 
         first_name: null,
@@ -20,7 +22,8 @@ class Profile extends Component {
         city: null,
         state: null,
         loader: true,
-        error: false
+        error: false,
+        inputDisabled: false
      }
      backToPrevPageHandler = () => {
         this.props.history.goBack();
@@ -57,6 +60,11 @@ class Profile extends Component {
                         city: city, state: state
 
                     })
+                    if (firstname === '' || lastname === '' || gender === '' || apart_no === '' || city === ''
+                        || nearest_bstop === '' || state === ''
+                    ) {
+                        this.setState({inputDisabled: true})
+                    }
                     document.querySelector('#firstname').value = nameCapitalized;
                     document.querySelector('#lastname').value = nameCapitalized2;
                     document.querySelector('#phone_number').value = phone_no;
@@ -93,6 +101,8 @@ class Profile extends Component {
         const apt = document.querySelector('#apt').value;
         const street = document.querySelector('#street').value;
         const street2 = document.querySelector('#street2').value;
+        // const street2 = document.querySelector('#street2').value;
+
         const data = {
             firstname: document.querySelector('#firstname').value,
             lastname: document.querySelector('#lastname').value,
@@ -109,7 +119,7 @@ class Profile extends Component {
             cylinder_size: localStorage.getItem('cylinder_size')
     
         }
-        if (firstname === '' || lastname === '' || gender === '' || apt === '' || street === '' || street2 === '') {
+        if (firstname === '' || lastname === '' || gender === '' || apt === '' || street === '' || street2 === '' ) {
             alert("please fill up profile correctly")
         }else {
             this.setState({loader: false})
@@ -135,6 +145,7 @@ class Profile extends Component {
 
     }
     render() { 
+        console.log('red', this.state.first_name)
         let showProfile = <Spinners />
         if (this.state.loader) {
             showProfile = (
@@ -144,13 +155,13 @@ class Profile extends Component {
                     <Col>
                     <Label className= "profile-label">First Name:</Label>
                     <InputGroup>
-                    <Input id= "firstname" type= "text"  className = "profile-input" placeholder="First Name" />
+                    <Input disabled= {!this.state.inputDisabled}  id= "firstname" type= "text"  className = "profile-input" placeholder="First Name" />
                     </InputGroup>
                     </Col>
                     <Col>
                     <Label className= "profile-label">Last Name:</Label>
                     <InputGroup>
-                    <Input id= "lastname" type= "text"  className = "profile-input" placeholder="Last Name" />
+                    <Input disabled= {!this.state.inputDisabled}  id= "lastname" type= "text"  className = "profile-input" placeholder="Last Name" />
                     </InputGroup>
                     </Col>
                 </Row>
@@ -160,13 +171,13 @@ class Profile extends Component {
                     <Col>
                         <Label className= "profile-label">Phone No:</Label>
                         <InputGroup>
-                        <Input id = "phone_number" className = "profile-input" type= "number" placeholder="Phone Number" />
+                        <Input disabled id = "phone_number" className = "profile-input" type= "number" placeholder="Phone Number" />
                         </InputGroup>
                     </Col>
                     <Col>
                     <Label className= "profile-label">Gender:</Label>
                 <InputGroup>
-                <Input id= "gender" type= "select"  className = "profile-input" placeholder="Gender">
+                <Input disabled= {!this.state.inputDisabled} id= "gender" type= "select"  className = "profile-input" placeholder="Gender">
                     <option id="">
                         Male
                     </option>
@@ -182,20 +193,20 @@ class Profile extends Component {
                 <br />
                 <Label className= "profile-label">Email:</Label>
                     <InputGroup>
-                    <Input id= "email" type= "email"  className = "profile-input" placeholder="Email" />
+                    <Input disabled id= "email" type= "email"  className = "profile-input" placeholder="Email" />
                     </InputGroup>
                 <br />
                 <Row>
                     <Col>
                     <Label className= "profile-label">Apt/House No:</Label>
                     <InputGroup>
-                    <Input id= "apt" type= "number"  className = "profile-input" placeholder="Apartment No" />
+                    <Input disabled= {!this.state.inputDisabled} id= "apt" type= "number"  className = "profile-input" placeholder="Apartment No" />
                     </InputGroup>
                     </Col>
                     <Col>
                     <Label className= "profile-label">Street:</Label>
                     <InputGroup>
-                    <Input id= "street" type= "text"  className = "profile-input" placeholder="Street Name" />
+                    <Input disabled= {!this.state.inputDisabled} id= "street" type= "text"  className = "profile-input" placeholder="Street Name" />
                     </InputGroup>
                     </Col>
                 </Row>
@@ -203,18 +214,18 @@ class Profile extends Component {
                 <br />
                 <Label className= "profile-label">Nearest Bus Stop:</Label>
                     <InputGroup>
-                    <Input id= "street2" type= "text"  className = "profile-input" placeholder="Nearest B/Stop" />
+                    <Input disabled= {!this.state.inputDisabled} id= "street2" type= "text"  className = "profile-input" placeholder="Nearest B/Stop" />
                 </InputGroup>
                 <br />
                 <Row>
                     <Col>
                     <Label className= "profile-label">City:</Label>
                     <InputGroup>
-                    <Input id= "city" type= "select"  className = "profile-input" placeholder="city">
+                    <Input disabled= {!this.state.inputDisabled} id= "city" type= "select"  className = "profile-input" placeholder="city">
                     <option id="">
                             Select
                         </option>
-                    <option id="">
+                    <option selected id="">
                             {this.state.city}
                     </option>
                 
@@ -224,11 +235,11 @@ class Profile extends Component {
                     <Col>
                     <Label className= "profile-label">State:</Label>
                         <InputGroup>
-                        <Input id= "state" type= "select"  className = "profile-input" placeholder="state">
+                        <Input disabled= {!this.state.inputDisabled} id= "state" type= "select"  className = "profile-input" placeholder="state">
                             <option id="">
                                 Select
                             </option>
-                            <option id="">
+                            <option selected id="">
                                 {this.state.state}
                             </option>
                     
@@ -254,12 +265,11 @@ class Profile extends Component {
         return ( 
             <div style={{backgroundColor: 'white'}}>
                <div id= "sticky_element" className= "payment-header2">
-                    <div className = "header-wrapper">
-                            <p onClick={this.backToPrevPageHandler} className= "payment-text">&larr; 
-                            </p>
-                         <h5 className= "payment-text2">Profile</h5>   
-                    </div>
-              
+               <p style={{width: '500px',paddingTop: '5%', color: 'white', fontSize: '15px'}}>
+                    <img onClick={this.backToPrevPageHandler} src={backIcon} style={{float: 'left'}} alt= "float" />
+                   &nbsp; &nbsp; Profile
+                </p> 
+                   
                 </div> 
                 <div className= "edit-profile">
                 <img src={avatarIcon} 

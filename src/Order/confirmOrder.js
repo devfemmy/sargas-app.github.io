@@ -9,6 +9,7 @@ import axios from 'axios';
 import Spinners from '../UI/Spinner/spinner';
 import timer from '../assets/timer_icon.svg';
 import errorHandler from '../ErrorHandler/errorHandler';
+import backIcon from '../assets/back.svg';
 class ConfirmOrder extends Component {
     state = { 
         oldPrice: null,
@@ -88,6 +89,8 @@ class ConfirmOrder extends Component {
             .then(res => {
                 const response = res.data;
                 if (response.status === 1001) {
+                    const order_id = response.order_id;
+                    localStorage.setItem('order_id', order_id)
                     this.props.history.push({
                         pathname: '/success'
                       })
@@ -98,7 +101,7 @@ class ConfirmOrder extends Component {
                         }
                     )
                 }
-                console.log(res)
+                console.log("success", res)
             }).catch(  error => {
                    
                 this.setState({error: true, loader: true})});
@@ -206,13 +209,12 @@ class ConfirmOrder extends Component {
         return (  
         <div style={{backgroundColor: 'white'}}>
             <div className= "payment">
-                <div className= "payment-header2">
-                    <div className = "header-wrapper">
-                            <p onClick={this.backToPrevPageHandler} className= "payment-text">&larr; 
-                            </p>
-                         <h5 className= "payment-text2">Confirm Order</h5>   
-                    </div>
-              
+            <div id= "sticky_element" className= "payment-header2">
+               <p style={{width: '500px',paddingTop: '5%', color: 'white', fontSize: '15px'}}>
+                    <img onClick={this.backToPrevPageHandler} src={backIcon} style={{float: 'left'}} alt= "float" />
+                   &nbsp; &nbsp; Confirm Order
+                </p> 
+                   
                 </div> 
                 <div className= "payment-body">
                         <div className= "counter3">
