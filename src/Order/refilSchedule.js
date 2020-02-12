@@ -4,7 +4,7 @@ import DatePicker from "react-datepicker";
 import TimePicker from 'rc-time-picker';
 import "react-datepicker/dist/react-datepicker.css";
 import 'rc-time-picker/assets/index.css';
-import SideDrawer from '../UI/SideDrawer/sideDrawer';
+// import SideDrawer from '../UI/SideDrawer/sideDrawer';
 import checkIcon from '../assets/clear.svg';
 import './refilSchedule.css';
 import trackImg from '../assets/track.png';
@@ -22,9 +22,8 @@ class RefilSchedule extends Component {
         loader: true
      }
      returnHome = () => {
-        this.props.history.push(
-            {pathname: '/home'}
-        )
+         this.props.history.goBack()
+
     }
     sideDrawerHandler = () => {
         this.setState({showSideDrawer: false})
@@ -161,10 +160,6 @@ class RefilSchedule extends Component {
         return ( 
       
             <div className= "wrapper">
-                <SideDrawer 
-                open = {this.state.showSideDrawer}
-                closed = {this.sideDrawerToggleHandler}
-                />
             <div className= "order-header">
             <p className= "para-header"><span>
                     <img onClick={this.returnHome} src={checkIcon} className="" alt="logo" />

@@ -11,6 +11,7 @@
     text-align: center;
     color: black;
     opacity: 0.6;
+    font-size: 20px;
 }
 #time-picker {
     min-width: 9rem;
@@ -24,7 +25,7 @@
 }
 .form-input2 {
     color:black;
-    font-size:1.3rem ;
+    font-size:15px ;
     border: none;
 
     /* border-bottom: 1px solid rgba(0, 0, 0, 0.603); */
