@@ -191,7 +191,7 @@ class Login extends Component {
                   className= "login-input"
                   validator="isNumeric" required minLength={11}
                   requiredErrMsg = "Required!"
-                  minLengthErrMsg="Invalid Characters"
+                  minLengthErrMsg="Invalid Phone No"
                  name="phone" type="number" placeholder="Phone Number"
                   onChange={this.handleChange}
                   value={this.state.data.phone}

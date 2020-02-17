@@ -6,6 +6,7 @@
     flex-flow: column;
     align-items: center;
     height: 100%;
+    overflow: scroll;
 }
 .home-logo {
     height: 2vh;

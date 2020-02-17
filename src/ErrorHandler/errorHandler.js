@@ -12,11 +12,12 @@ const errorHandler = (WrappedComponent, axios) => {
                 return req;
             });
             this.resInterceptors = axios.interceptors.response.use((res) => {
-                // if (res.status === 401) {
-                //     this.props.history.push({
-                //         pathname: '/login'
-                //       })
-                // }
+                if (res.status === 401) {
+                    localStorage.setItem("isAuthenticated", false);
+                    this.props.history.push({
+                        pathname: '/'
+                      })
+                }
                 return res;
             }, (error) => {
                 console.log ("this error",)
