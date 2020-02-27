@@ -6,7 +6,7 @@ import home from '../../../assets/home_icon.svg';
 import order from '../../../assets/order_history_icon.svg';
 import profile from '../../../assets/profile.svg';
 // import payment from '../../../assets/payment_icon.svg';
-import trackIcon from '../../../assets/tracking_icon.svg';
+// import trackIcon from '../../../assets/tracking_icon.svg';
 import freebies from '../../../assets/freebies_icon.svg';
 import NavigationItem from '../NavigationItem/navigationItem';
 // import auth from '../../../auth/auth';
@@ -36,13 +36,13 @@ const NavigationItems = (props) => (
     </p>
     </NavigationItem>
  
-    <NavigationItem link= '/tracking'>
+    {/* <NavigationItem link= '/tracking'>
     <p className= "side-icons">
     <strong><span>
         <img src={trackIcon} className="home-logo" alt="logo" />
         </span>&nbsp;<span className= "nav-text">Track Orders</span></strong>
     </p>
-    </NavigationItem>
+    </NavigationItem> */}
     <NavigationItem link= '/freebies'>
     <p className= "side-icons">
     <strong><span>

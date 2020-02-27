@@ -17,7 +17,7 @@ class OrderSuccess extends Component {
       }
     pushToTrackingPage = () => {
         this.props.history.push({
-          pathname: '/tracking'
+          pathname: '/home'
         })
       
       }

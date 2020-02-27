@@ -41,8 +41,8 @@ class SideDrawer extends Component {
                      <img src={avatarIcon} className="avatar" alt="logo" /> 
                      </Col>
                         <Col xs="8" sm="8" md="6">
-                            <h4>{firstname.toUpperCase()}</h4>
-                            <p style= {{opacity: '0.8',lineHeight: '1', fontSize: '13px'}}>{apartment} {street} {b_stop}, <br /> {city}.</p>
+                            <h5 className= "first-name-class">{firstname.toUpperCase().slice(0, 12)}</h5>
+                            <p style= {{opacity: '0.8',lineHeight: '1', fontSize: '13px'}}>{apartment} {street} {b_stop}, {city}.</p>
                             {/* <p style= {{opacity: '0.8'}}>{apartment} {street} {b_stop}</p> */}
                         {/* <p> Edit Profile</p> */}
                         </Col>
@@ -62,7 +62,7 @@ class SideDrawer extends Component {
                                 <img src={logOut} className="home-logo" alt="logo" />
                                 </span>&nbsp;&nbsp;&nbsp;<span className= "nav-text">Log Out</span></strong>
                             </p>
-                            </div>
+                        </div>
                       
                     </div>
                 </div>

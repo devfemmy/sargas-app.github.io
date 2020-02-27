@@ -1,0 +1,80 @@
+.token-img {
+    height: 200px;
+    margin-top: 25px;
+}
+
+.token-header {
+    min-height: 23.6vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: black;
+    /* background-color: white; */
+  }
+  .preview-label {
+      font-size: 15px;
+      color: white;
+  }
+  .Login-button {
+    border: 1px solid green !important;
+    border-radius: 50px !important;
+    width: 100%;
+}
+
+.Login-button2 {
+    border: 1px solid white !important;
+    border-radius: 50px !important;
+    /* width: 100%; */
+}
+.token-body {
+    background-size: cover;
+    min-height: 31vh;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+.preview-body {
+    background-image: url('../assets/preview.png');
+    background-size: cover;
+    min-height: 70vh;
+}
+.token h4 {
+    color: white;
+    padding-top: 2rem;
+    font-size: 18px !important;
+    text-align: center;
+}
+.arrow-back {
+    color: black;
+    font-size: 35px;
+    padding-left: 10%;
+    padding-top: 8%
+}
+.preview-body {
+    padding-top: 10%;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+.pin-input {
+    background-color: red;
+}
+.pincode-input-text {
+    border: none !important;
+    border-bottom: 1px solid green !important;
+    font-size: 18px !important;
+    font-weight: bold !important;
+}
+.token-text-session {
+    text-align: center;
+    width: 50%;
+    opacity: 0.7;
+    margin-top: 15px;
+}
+.token-text-session p {
+    font-size: 11px;
+}

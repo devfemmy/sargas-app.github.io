@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Collapse} from 'reactstrap';
+import { Collapse, Row, Col} from 'reactstrap';
 import './collapse.css';
 
 const CollapseUi = (props) => {
@@ -26,7 +26,20 @@ const CollapseUi = (props) => {
                 
                 </div>
                 </Collapse>
-                <h5 style={{fontWeight: 'bolder', textAlign: 'right'}} className= "" onClick={toggle} >{status}</h5>
+                <div>
+                    <Row>
+                        <Col>
+                        <p style={{color: 'black', opacity: '0.6'}}>
+                        {props.date}
+                        </p>
+                           
+                        </Col>
+                        <Col>
+                        <p style={{color: 'black', opacity: '0.6', textAlign: 'right'}} className= "" onClick={toggle} >{status}</p>
+                        </Col>
+                    </Row>
+                </div>
+              
         </div>
    
      );

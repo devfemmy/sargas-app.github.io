@@ -1,0 +1,104 @@
+.edit-profile {
+    padding-top: 10%;
+    padding-right: 10%;
+    padding-left: 10%;
+}
+.avatar2 {
+    height: 30vmin;
+    
+  }
+  .horizontal-line {
+    border-top: 1px solid rgba(0, 0, 0, 0.253);
+   }
+.section10 {
+    padding: 8%;
+}
+.section6 {
+    padding: 5%;
+}
+.profile-label {
+  font-size: 18px;
+  opacity: 0.7;
+}
+#currency:focus{
+  background: none;
+  border: none;
+  color: black;
+  opacity: 0.9;
+  outline: none;
+  box-shadow: none;
+  border-bottom: 2px solid #fff
+
+}
+.profile-input {
+    /* background: #292929; */
+    background: none !important;
+    border: none !important;
+    color:black !important;
+    border-radius: 0px !important;
+    font-size:1.3rem ;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.384) !important;
+    transition:all .2s ease-in;
+    caret-color: black;
+
+  }
+  .profile-input:focus {
+    background: none !important;
+    border: none !important;
+    color: black !important;
+    outline: none !important;
+    box-shadow: none !important;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.384) !important
+    
+
+  }
+  .profile-input:hover {
+    background: none !important;
+    border: none !important;
+    color: black !important;
+    outline: none !important;
+    box-shadow: none !important;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.384) !important
+    
+
+  }
+  .profile-input:active {
+    background: none !important;
+    border: none !important;
+    color: black !important;
+    outline: none !important;
+    box-shadow: none !important;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.384) !important
+    
+
+  }
+  .profile-btn {
+    border-radius: 50px !important;
+    border: none !important;
+    width: 100% !important;
+    font-size: 15px !important;
+    height: 3.4rem !important;
+    color: white !important;
+    background-image: linear-gradient( #8CC63F, #009245) !important;
+    
+  }
+  .section6 {
+    padding-top: 10%;
+    padding-left: 8%;
+    padding-right: 8%
+}
+.centered-profile {
+  width: 50%;
+  margin: 0 auto;
+}
+#sticky_element {
+  position: sticky;
+  z-index: 99999;
+  top: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+#sticky_element span {
+  font-size: 22px;
+}

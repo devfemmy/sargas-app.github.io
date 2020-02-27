@@ -3,8 +3,7 @@ import '../OrderHistory/history.css';
 import './freebies.css';
 import axios from 'axios'
 import {
-    Card, CardImg, CardText, CardBody,
-    CardTitle, CardSubtitle,
+    Card, CardText, CardBody
   } from 'reactstrap';
 import Spinners from '../../UI/Spinner/spinner';
 import CollapseUi from '../../UI/Collapse/collapse';
@@ -58,17 +57,19 @@ class Blog extends Component {
                      const displayDate = `${newMonth} ${day}, ${year}`
                     // const toggler = `#${blog.slug}`;
                     return (
+                        <div>
+                        {/* <div  style={{backgroundImage: `url(${blog.jetpack_featured_media_url})`}} ></div> */}
+                        <img src={blog.jetpack_featured_media_url} className= "blogger-image" alt="Card" />
                         <Card key = {index}>
-                        <CardImg top width="100%" src={blog.jetpack_featured_media_url} alt="Card image cap" />
-                        <CardBody style= {{color: 'black'}}>
-                    <CardTitle style={{color: 'black', fontWeight: 'bold', fontSize: '18px'}}>{blog.title.rendered}</CardTitle>
-                    <CardSubtitle style={{color: 'black', opacity: '0.6'}}><span style= {{color: '#009245'}}>{displayDate}</span> {time}</CardSubtitle>
-                     <CardText  dangerouslySetInnerHTML={{ __html: `${blog.excerpt.rendered.slice(0,100)}...`}} style={{color: 'black', textAlign: 'justify', textJustify: 'inter-word', fontSize: '12px'}}></CardText>
-                     <CollapseUi style= {{color: 'black', fontSize: '12px'}}>
-                     <p style={{fontSize: '12px', textAlign: 'justify', textJustify: 'inter-word'}} dangerouslySetInnerHTML={{ __html: blog.content.rendered}}></p>
+                        <CardBody style= {{color: 'black', marginTop: '0px'}}>
+                    {/* <CardTitle style={{color: 'black', fontWeight: 'bold', fontSize: '18px'}}>{blog.title.rendered}</CardTitle> */}
+                     <CardText className= "blog-texts"  dangerouslySetInnerHTML={{ __html: `${blog.excerpt.rendered.slice(0,100)}...`}} style={{color: 'black', textAlign: 'justify', marginBottom: '0px', textJustify: 'inter-word'}}></CardText>
+                     <CollapseUi date= {`${displayDate} ${time}`} style= {{color: 'black', fontSize: '12px'}}>
+                     <CardText className= "blog-texts"  style={{ textAlign: 'justify', textJustify: 'inter-word'}} dangerouslySetInnerHTML={{ __html: blog.content.rendered}}></CardText>
                     </CollapseUi>
                         </CardBody>
                     </Card>
+                    </div>
                     )
                 })}
                 

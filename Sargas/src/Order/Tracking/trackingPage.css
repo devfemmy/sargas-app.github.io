@@ -1,0 +1,33 @@
+.counter {
+    padding-left: 20%;
+    padding-right: 20%;
+    padding-top: 15%;
+}
+.Track-Img {
+    border: none;
+    display: block;
+    margin: 0 auto;
+    padding-bottom: 5%;
+}
+
+.timer {
+    padding-top: 10%;
+}
+.timer h5 {
+    color: #009245;
+    text-align: center;
+}
+.timer h2 {
+    color: #009245;
+    text-align: center;
+    font-size: 50px;
+}
+.show-msg h5 {
+    text-align: center;
+}
+/* .order-header {
+    background-image: linear-gradient(to right, #009245 , #8CC63F);;
+    height: 15vmin;
+    padding-left: 10%;
+    padding-top: 3vmin;
+} */

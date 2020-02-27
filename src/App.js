@@ -22,6 +22,7 @@ import ForgotPassword from './Login/forgotPassword';
 import History from './Order/OrderHistory/history';
 import Freebies from './Order/Freebies/freebies';
 import Blog from './Order/Freebies/blog';
+import UIModal from './UI/UIModal/ui-modal';
 
 
 function App() {
@@ -47,11 +48,12 @@ function App() {
       
       <ProtectedRoute exact path= "/pricing"  component={ConfirmOrder}/>
       <ProtectedRoute exact path= "/paystack"  component={PayStackPay}/>
-     
+      <ProtectedRoute exact path="/modal" component={UIModal} />
       <ProtectedRoute exact path= "/history"  component={History}/>
       <ProtectedRoute exact path= "/freebies"  component={Freebies}/>
       <ProtectedRoute exact path= "/blog"  component={Blog}/>
       <Route path="*" component={() => "404 NOT FOUND"} />
+      
       </Switch>
 
       

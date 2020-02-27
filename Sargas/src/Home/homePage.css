@@ -1,0 +1,91 @@
+.home {
+    background-image: linear-gradient(to bottom,  #8CC63F, #009245);
+    min-height: 100vh;
+    /* min-width: 50vh; */
+}
+.counter2 {
+    padding-left: 20%;
+    padding-right: 20%;
+    padding-top: 3px;
+}
+.menu {
+    padding-top: 5%;
+    padding-left: 5%;
+}
+.home-content {
+    margin-top: 2%;
+}
+.timer-div {
+    width: 100%;
+    padding: 6%;
+   
+    /* position: absolute;
+    bottom: 15%; */
+
+}
+.odd-div {
+    background-color: rgba(255, 255, 255, 0.185);
+    border-radius: 50px;
+    min-height: 50px;
+    padding: 0.85rem;
+    padding-left: 1rem;
+    font-size: 12px;
+}
+.even-div {
+    min-height: 50px;
+    border-radius: 50px;
+    padding: 0.85rem;
+    padding-left: 1rem;
+    font-size: 12px;
+    /* background-color: rgba(255, 255, 255, 0.185); */
+    /* height: 50px; */
+    /* display: flex;
+    flex-direction: row;
+    align-items: center; */
+    /* justify-content: space-evenly; */
+}
+.timer-div p {
+    margin-bottom: 0px;
+    color: rgba(255, 255, 255, 0.925);
+    font-size: 12px;
+    word-spacing: 4px;
+    
+}
+@media (min-width: 321px) {
+  .timer-div p {
+      font-size: 13px !important;
+  }
+  .timer-div {
+    width: 100%;
+    padding: 10%;
+   
+    /* position: absolute;
+    bottom: 15%; */
+
+}
+}
+.timer-div span {
+    font-weight: normal;
+    opacity: 0.6;
+    font-size: 13px;
+}
+.home-button {
+    border-radius: 50px !important;
+    border: none !important;
+    font-weight: bold !important;
+    width: 80% !important;
+    font-size: 15px !important;
+    height: 3.4rem !important;
+    background: white !important;
+    color: #009245 !important;
+    position: absolute;
+    bottom: 8%;
+}
+.home-content h2 {
+    text-align: center;
+    color: white;
+}
+.button-div {
+    padding-right: 10%;
+    padding-left: 10%;
+}

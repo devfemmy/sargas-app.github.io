@@ -1,0 +1,66 @@
+
+.Login {
+    background-image: url('../assets/sargas_bg.svg');
+    min-height: 100vh;
+    background-size: cover;
+}
+.preview {
+    background-image: url('../assets/sargas_bg.svg');
+    min-height: 100vh;
+    background-size: cover;
+}
+.Login-body {
+    min-height: 35vh;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: center;
+    padding-left: 10%;
+    padding-right: 10%;
+    font-size: 20px;
+    font-weight: solid;
+    text-align: left;
+    color: white;
+  }
+  .Login-body2 {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: center;
+    padding-left: 10%;
+    padding-right: 10%;
+    font-size: 20px;
+    font-weight: solid;
+    text-align: left;
+    color: white;
+  }
+.password_text {
+    font-size: 12px;
+    opacity: 0.9;
+    text-align: right;
+}
+/* .outer-text {
+    margin-top: 0.5rem;
+} */
+.outer-text p {
+    color: white;
+    font-size: 10px;
+    opacity: 0.9;
+    text-align: center;
+
+}
+.outer-text h5 {
+    color: white;
+    text-align: center;
+    font-size: 15px;
+}
+.sign-up {
+    overflow: scroll;
+}
+
+.btn-outline-secondary:not(:disabled):not(.disabled).active, .btn-outline-secondary:not(:disabled):not(.disabled):active, .show>.btn-outline-secondary.dropdown-toggle {
+    background: transparent;
+}
+.btn-outline-secondary:not(:disabled):not(.disabled).active, .btn-outline-secondary:not(:disabled):not(.disabled):active, .show>.btn-outline-secondary.dropdown-toggle {
+    background-color: white;
+}

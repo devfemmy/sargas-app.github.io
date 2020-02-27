@@ -5,6 +5,9 @@ import axios from 'axios';
 import Spinners from '../../UI/Spinner/spinner';
 import errorHandler from '../../ErrorHandler/errorHandler';
 import backIcon from '../../assets/back.svg';
+import { Row } from 'reactstrap';
+import { Col } from 'reactstrap';
+import UIModal from "../../UI/UIModal/ui-modal";
 
 class History extends Component {
     state = { 
@@ -12,7 +15,9 @@ class History extends Component {
         loader2: false,
         orders: [],
         noOrder: null,
-        error: false
+        error: false,
+        receipts: null,
+        showRecep: false
      }
     componentDidMount() {
         const data = {
@@ -20,6 +25,7 @@ class History extends Component {
         }
         axios.post('http://sargasoms.com/api/customer/?API_flag=fetchcustomertransactions', data)
         .then(res => {
+            console.log('history', res)
             const response = res.data;
                  if (response.status === 1001) {
                 const orders = response.data;
@@ -39,8 +45,96 @@ class History extends Component {
     backToPrevPageHandler = () => {
         this.props.history.goBack();
     }
+    showReceipts = (data) => {
+        console.log(data)
+        this.setState({receipts: data, showRecep: true});
+      
+      
+    }
+    closeReceipts = () => {
+        this.setState({showRecep: false})
+    };
 
     render() { 
+        const receipts = this.state.receipts
+        let showReceipts = null;
+
+        if (this.state.showRecep) {
+            const orderId = receipts.order_id;
+            const status = receipts.order_status;
+            // const date = receipts.date;
+            const apt = receipts.apt;
+            const street = receipts.street;
+            const busstop = receipts.street2;
+            const city = receipts.city;
+            const customer_address = `${apt} ${street} ${busstop} ${city}`;
+            const cylinder_size = receipts.cylinder_size;
+            const payment_method = receipts.payment_method;
+            const rider = receipts.rider_name;
+            const delivery_date = receipts.delivery_date
+            showReceipts= (
+
+                <UIModal hideModal={this.closeReceipts} modal={this.state.showRecep}>
+                    {/* <h5 style={{textAlign: 'center', marginBottom: '10px'}}>Order Details</h5> */}
+                    <Row>
+                        <Col xs= "6">
+                            <p style={{fontWeight: 'bolder'}}>ID:</p>
+                        </Col>
+                        <Col  xs= "6">
+                            <p>{orderId}</p>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col xs= "6">
+                            <p style={{fontWeight: 'bolder'}}>Cylinder Size:</p>
+                        </Col>
+                        <Col  xs= "6">
+                            <p>{cylinder_size?cylinder_size:"-"}</p>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col  xs= "6">
+                            <p style={{fontWeight: 'bolder'}}>Status:</p>
+                        </Col>
+                        <Col  xs= "6">
+                            <p>{status?status:"null"}</p>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col xs= "6">
+                            <p style={{fontWeight: 'bolder'}}>Delivery Date:</p>
+                        </Col>
+                        <Col xs= "6">
+                            <p>{delivery_date?delivery_date:"-"}</p>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col xs= "6">
+                            <p style={{fontWeight: 'bolder'}}>Rider's Name:</p>
+                        </Col>
+                        <Col xs= "6">
+                            <p>{rider && rider!== " "?rider:"-"}</p>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col xs= "6">
+                            <p style={{fontWeight: 'bolder'}}>Payment Method:</p>
+                        </Col>
+                        <Col xs= "6">
+                            <p>{payment_method}</p>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col xs= "6">
+                            <p style={{fontWeight: 'bolder'}}>Address:</p>
+                        </Col>
+                        <Col xs= "6">
+                            <p>{customer_address}</p>
+                        </Col>
+                    </Row>
+                </UIModal>
+            )
+        }
         let showOrder = <Spinners />
         let showNoOrder = null
         if (this.state.loader2) {
@@ -59,7 +153,7 @@ class History extends Component {
                 {this.state.orders.map(
                     (order, index) => {
                         return (
-                            <div key = {index}>
+                            <div onClick={() => this.showReceipts(order)} key = {index}>
                             <h6> 
                                 {order.apt} &nbsp; 
                                 {order.street} &nbsp; 
@@ -94,6 +188,7 @@ class History extends Component {
                 <div className= "order-history">
                     {showOrder}
                     {showNoOrder}
+                    {showReceipts}
                 </div>
             </div>
         );

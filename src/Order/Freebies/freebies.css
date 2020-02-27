@@ -5,9 +5,24 @@
     text-align: center !important;
 }
 .blogs-div {
-    padding: 31px
+    padding: 31px;
+    padding-left: 0px;
+    padding-right: 0px;
 }
 
 .blogs-div .card {
     margin-bottom: 30px;
 }
+.blogger-image {
+    width: 100%;
+}
+@media (min-width: 760px) {
+   .blog-texts {
+       font-size: 18px;
+   }
+}
+@media (max-width: 760px) {
+    .blog-texts {
+        font-size: 12px;
+    }
+ }

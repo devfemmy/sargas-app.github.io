@@ -8,6 +8,9 @@ import axios from 'axios';
 import errorHandler from '../ErrorHandler/errorHandler';
 import Timer from 'react-compound-timer'
 // import Spinners from '../UI/Spinner/spinner';
+import RefreshSpinner from '../UI/Spinner/refreshSpinner';
+// import Spinners from '../UI/Spinner/spinner';
+import ReactPullToRefresh from 'react-pull-to-refresh';
 
 class HomePage extends Component {
     state = { 
@@ -17,7 +20,9 @@ class HomePage extends Component {
         error: false,
         showButton: false,
         time: 0,
-        enableButton: false
+        enableButton: false,
+        order_status: null,
+        showSpinner: false
      }
      sideDrawerHandler = () => {
         this.setState({showSideDrawer: false})
@@ -49,7 +54,7 @@ class HomePage extends Component {
                             this.setState({showButton: false, enableButton: true})
                         }else {
                         const time = res.data.time;
-                        this.setState({time: time, showButton: true})
+                        this.setState({time: time, showButton: true, order_status: 'Dispatched', showSpinner: false})
                         }
                         
                     } else {
@@ -104,13 +109,26 @@ class HomePage extends Component {
       
         
      }
+     RefreshHandler = () => {
+         this.setState({showSpinner: true})
+         this.componentDidMount()
+         this.forceUpdate()
+         console.log(this.state.loader, "loader9")
+         
+     }
 
      sideDrawerToggleHandler = () => {
         this.setState((prevState) => {
         return {showSideDrawer: !prevState.showSideDrawer};
            });
      }
-    render() { 
+    render() {
+        let reloadSpinner = null;
+        if (this.state.showSpinner) {
+            reloadSpinner = (
+                <RefreshSpinner />
+            )
+        }
         const home_details = this.state.home_details
         const firstname = localStorage.getItem('usersfirstname');
         const lastname = home_details.lastname;
@@ -133,6 +151,7 @@ class HomePage extends Component {
         console.log(apartment2, street2)
 
         const customer_address = `${apartment2} ${street2}`
+        const slice_custom_add = customer_address.slice(0, 12)
         let displayButton = (
             <div className= "button-div">
             <Button 
@@ -160,8 +179,8 @@ class HomePage extends Component {
                     initialTime={milliseconds}
                     direction="backward">
                         <Col xs= "5">
-                            <p className="animated infinite pulse delay-6s" style={{fontWeight: 'bolder', color: 'white', fontSize: '13px'}}>
-                            <Timer.Hours />hr: <Timer.Minutes />min: <Timer.Seconds />
+                            <p className="animated infinite pulse delay-6s" style={{fontWeight: 'bolder', color: 'white', fontSize: '11px'}}>
+                            <Timer.Hours />hr: <Timer.Minutes />mn: <Timer.Seconds />
                             </p>
                         </Col>     
                     </Timer>
@@ -174,7 +193,7 @@ class HomePage extends Component {
                             <p>ORDER STATUS:</p>
                             </Col>
                             <Col xs= "5">
-                            <p>Dispatched</p>
+                            <p>{this.state.order_status}</p>
                             </Col>
                         </Row>
                     </div>
@@ -191,20 +210,20 @@ class HomePage extends Component {
                     <div className= "odd-div">
                         <Row>
                             <Col xs= "7">
-                            <p>CUSTOMER ADDRESS:</p>
+                            <p>ADDRESS:</p>
                             </Col>
                             <Col xs= "5">
-                            <p>{customer_address}</p>
+                            <p>{slice_custom_add}</p>
                             </Col>
                         </Row>
                     </div>
                     <div className= "even-div">
                         <Row>
                             <Col xs= "7">
-                            <p>DISPATCHER'S NAME:</p>
+                            <p>DISPATCHER:</p>
                             </Col>
                             <Col xs= "5">
-                            <p>John Doe</p>
+                            <p>-</p>
                             </Col>
                         </Row>
                     </div>
@@ -214,7 +233,7 @@ class HomePage extends Component {
                             <p>DISPATCHER'S N0:</p>
                             </Col>
                             <Col xs= "5">
-                            <p type="tel" name="phone">08090000009</p>
+                            <p  type="tel" name="phone">-</p>
                             </Col>
                         </Row>
                     </div>
@@ -244,16 +263,24 @@ class HomePage extends Component {
                 closed = {this.sideDrawerToggleHandler}
                 props = {this.props}
                 />
-            <div className = "home">
-            <img  src={menu} onClick= {this.sideDrawerToggleHandler} className="menu" alt="logo" />
-                <div className= "counter2">
-                <img src={trackImg} className="Track-Img" alt="img" />   
+            <ReactPullToRefresh onRefresh={this.RefreshHandler}>
+                <div className = "home">
+                <img  src={menu} onClick= {this.sideDrawerToggleHandler} className="menu" alt="logo" />
+                    <div className= "counter2">
+                    <img src={trackImg} className="Track-Img" alt="img" />   
+                    <div>
+                    {reloadSpinner}
+                    </div>
+                    </div>
+                
+    
+                    <div className = "home-content">
+                    <h2>Hi, {firstname.toUpperCase()}</h2>
+                    </div>
+                    {displayButton}
                 </div>
-                <div className = "home-content">
-                <h2>Hi, {firstname.toUpperCase()}</h2>
-                </div>
-                {displayButton}
-            </div>
+            </ReactPullToRefresh>
+
 
 
         </div>

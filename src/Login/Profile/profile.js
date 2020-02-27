@@ -115,7 +115,7 @@ class Profile extends Component {
             street2: document.querySelector('#street2').value,
             city: localStorage.getItem('city_id'),
             zone: localStorage.getItem('zone_id'),
-            state: localStorage.getItem('state'),
+            state: localStorage.getItem('state_id'),
             cylinder_size: localStorage.getItem('cylinder_size')
     
         }

@@ -7,7 +7,7 @@ class Spinners extends Component {
     render() { 
         return ( 
             <div className="spinner-container">
-               <Spinner color= "secondary" classname= "spinner" />
+               <Spinner  color= "secondary" classname= "spinner" />
             </div>
          );
     }
