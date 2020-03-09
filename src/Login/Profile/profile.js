@@ -221,7 +221,7 @@ class Profile extends Component {
                     <Col>
                     <Label className= "profile-label">City:</Label>
                     <InputGroup>
-                    <Input disabled= {!this.state.inputDisabled} id= "city" type= "select"  className = "profile-input" placeholder="city">
+                    <Input disabled id= "city" type= "select"  className = "profile-input" placeholder="city">
                     <option id="">
                             Select
                         </option>
@@ -235,7 +235,7 @@ class Profile extends Component {
                     <Col>
                     <Label className= "profile-label">State:</Label>
                         <InputGroup>
-                        <Input disabled= {!this.state.inputDisabled} id= "state" type= "select"  className = "profile-input" placeholder="state">
+                        <Input disabled id= "state" type= "select"  className = "profile-input" placeholder="state">
                             <option id="">
                                 Select
                             </option>

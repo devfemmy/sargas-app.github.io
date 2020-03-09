@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Modal from '../UI/Modal/modal.js';
+import auth from '../auth/auth'
 
 const errorHandler = (WrappedComponent, axios) => {
     return class extends Component {
@@ -12,11 +13,12 @@ const errorHandler = (WrappedComponent, axios) => {
                 return req;
             });
             this.resInterceptors = axios.interceptors.response.use((res) => {
-                if (res.status === 401) {
-                    localStorage.setItem("isAuthenticated", false);
-                    this.props.history.push({
-                        pathname: '/'
-                      })
+                if ((res.data.status === 2001 && res.data.message === 'Invalid Token') 
+                || (res.data.status === 2001 && res.data.message === "Expired Token") 
+                || (res.data.status === 2001 && res.data.message === "Disabled Token" )) {
+                    auth.logout(() => {
+                        this.props.history.push("/");
+                    });
                 }
                 return res;
             }, (error) => {

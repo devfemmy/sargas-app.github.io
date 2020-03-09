@@ -29,8 +29,8 @@ class History extends Component {
             const response = res.data;
                  if (response.status === 1001) {
                 const orders = response.data;
-                const reversedOrder = orders.reverse();
-                this.setState({orders: reversedOrder, loader: true})
+                // const reversedOrder = orders.reverse();
+                this.setState({orders: orders, loader: true})
                 // const firstOrder = reversedOrder[0].order_id;
                 // localStorage.setItem('order_id', firstOrder)
                

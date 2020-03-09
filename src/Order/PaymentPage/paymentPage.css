@@ -164,12 +164,23 @@
     color: #009245;
 }
 .card-buttons {
-    padding-right: 18%;
-    padding-left: 15%;
+    padding-right: 10%;
+    padding-left: 10%;
+    margin-bottom: 5%;
+    margin-top: 5%;
     /* text-align: center; */
-    position: absolute;
-    bottom: 37px;
+    /* position: absolute; */
+    /* bottom: 37px; */
     min-width: 100%;
+}
+/* .btn-outline-secondary:not(:disabled):not(.disabled).active, .btn-outline-secondary:not(:disabled):not(.disabled):active, .show>.btn-outline-secondary.dropdown-toggle{
+    background-color: transparent !important;
+}
+.card-button2 :active {
+    background-color: red !important;
+} */
+.btn-outline-secondary:not(:disabled):not(.disabled).active, .btn-outline-secondary:not(:disabled):not(.disabled):active, .show>.btn-outline-secondary.dropdown-toggle{
+    background-color: transparent !important;
 }
 .current-price {
     font-weight: bold;

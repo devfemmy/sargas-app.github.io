@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './tokenPage.css';
 import {FormGroup, Label, Input, Form, Button} from 'reactstrap'
-import logo from '../assets/sargas_new_logo2.png';
 import axios from 'axios';
 import errorHandler from '../ErrorHandler/errorHandler';
 import Spinners from '../UI/Spinner/spinner';
@@ -97,7 +96,7 @@ class PreviewPage extends Component {
       let showPrev = <Spinners />
       if (this.state.loader) {
         showPrev = (
-          <div>
+          <div className= "preview-body-header">
                         <Form>
                         <FormGroup>
                         <Label className= "preview-label" for="exampleSelect">Select Cylinder Size:</Label>
@@ -114,8 +113,7 @@ class PreviewPage extends Component {
                         
                         </Input>
                     </FormGroup>
-                    <br />
-                    <Button style= {{color: "white", position: 'absolute', bottom: '45%', width: '80%', border: '2px solid white'}} 
+                    <Button style= {{color: "white", width: '100%', border: '2px solid white'}} 
                     outline color="secondary" 
                     onClick= {this.pushToNextPage}
                     className = "Login-button2"  
@@ -126,10 +124,6 @@ class PreviewPage extends Component {
       }
         return ( 
             <div className = "preview2">
-                <span className = "arrow-back"></span>
-                <header className= "token-header">
-                <img src={logo} className="Special-logo" alt="logo" />   
-                </header>
             <div className = "preview-body">
               {showPrev}
                 

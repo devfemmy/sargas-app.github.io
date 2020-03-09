@@ -11,6 +11,7 @@ import Timer from 'react-compound-timer'
 import RefreshSpinner from '../UI/Spinner/refreshSpinner';
 // import Spinners from '../UI/Spinner/spinner';
 import ReactPullToRefresh from 'react-pull-to-refresh';
+// import Headers from '../Headers/headers';
 
 class HomePage extends Component {
     state = { 
@@ -22,7 +23,9 @@ class HomePage extends Component {
         time: 0,
         enableButton: false,
         order_status: null,
-        showSpinner: false
+        showSpinner: false,
+        rider: null,
+        phone: null
      }
      sideDrawerHandler = () => {
         this.setState({showSideDrawer: false})
@@ -38,8 +41,7 @@ class HomePage extends Component {
             const response = res.data;
                  if (response.status === 1001) {
                 const orders = response.data;
-                const reversedOrder = orders.reverse();
-                const firstOrder = reversedOrder[0].order_id;
+                const firstOrder = orders[0].order_id;
                 localStorage.setItem('order_id', firstOrder);
                 const data2 = {
                     token: localStorage.getItem('token'),
@@ -49,12 +51,25 @@ class HomePage extends Component {
                 .then(res => {
                     console.log ("fetchtime", res)
                     if (res.data.status === 1001) {
-                        const status = Number(res.data.order_status)
-                        if (status >= 4) {
+                        const status = Number(res.data.order_status);
+                        localStorage.setItem('delivery_status', status);
+                        let getStatus = localStorage.getItem('delivery_status');
+                        if (Number(getStatus) >= 4) {
+                            localStorage.setItem('delivery_status', 1);
+                            // let confirmBtn = window.confirm('Confirm Order Delivery!');
+                            // if (confirmBtn === true) {
+                            //     localStorage.setItem('delivery_status', null)
+                            // }
                             this.setState({showButton: false, enableButton: true})
                         }else {
+                        localStorage.setItem('delivery_status', 0);
                         const time = res.data.time;
-                        this.setState({time: time, showButton: true, order_status: 'Dispatched', showSpinner: false})
+                        const status = res.data.status_name;
+                        const riderFirstName = res.data.rider_firstname.toUpperCase();
+                        const riderLastName = res.data.rider_lastname.toUpperCase();
+                        const rider = `${riderFirstName} ${riderLastName}`
+                        const riderPhone = res.data.rider_phone;
+                        this.setState({phone: riderPhone, time: time, rider: rider, showButton: true, order_status: status, showSpinner: false})
                         }
                         
                     } else {
@@ -80,12 +95,20 @@ class HomePage extends Component {
             // console.log(usersfirstname)
             // localStorage.setItem('usersfirstname', usersfirstname);
             // localStorage.setItem('userslastname', userslastname);
-            if (home_details.apartment === '' && home_details.firstname === '') {
+            setTimeout(
+                function() {
+                    if (home_details.apartment === '' && home_details.firstname === '') {
+                        this.props.history.push({
+                            pathname: 'profile'
+                        })
+              
+                    }
+                  
+                }
+                .bind(this),
+                1000
+            );
         
-                this.props.history.push({
-                    pathname: 'profile'
-                })
-            }
             this.setState({home_details: home_details, loader: true});
         }).catch(  error => {
                    
@@ -193,7 +216,7 @@ class HomePage extends Component {
                             <p>ORDER STATUS:</p>
                             </Col>
                             <Col xs= "5">
-                            <p>{this.state.order_status}</p>
+                            <p>{this.state.order_status.slice(0, 17)}</p>
                             </Col>
                         </Row>
                     </div>
@@ -223,7 +246,7 @@ class HomePage extends Component {
                             <p>DISPATCHER:</p>
                             </Col>
                             <Col xs= "5">
-                            <p>-</p>
+                            <p>{this.state.rider}</p>
                             </Col>
                         </Row>
                     </div>
@@ -233,7 +256,9 @@ class HomePage extends Component {
                             <p>DISPATCHER'S N0:</p>
                             </Col>
                             <Col xs= "5">
-                            <p  type="tel" name="phone">-</p>
+                            <p  type="tel" name="phone">
+                                {this.state.phone}
+                            </p>
                             </Col>
                         </Row>
                     </div>
@@ -264,8 +289,12 @@ class HomePage extends Component {
                 props = {this.props}
                 />
             <ReactPullToRefresh onRefresh={this.RefreshHandler}>
-                <div className = "home">
+                <div className= "sticky-div">
                 <img  src={menu} onClick= {this.sideDrawerToggleHandler} className="menu" alt="logo" />
+                </div>
+                <div className = "home">
+          
+                
                     <div className= "counter2">
                     <img src={trackImg} className="Track-Img" alt="img" />   
                     <div>

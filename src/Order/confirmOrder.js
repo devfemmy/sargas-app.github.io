@@ -17,7 +17,8 @@ class ConfirmOrder extends Component {
         payment_method: [],
         loader: false,
         payment_id: null,
-        error: false
+        error: false,
+        enableBtn: false
      }
      backToPrevPageHandler = () => {
         this.props.history.goBack();
@@ -57,9 +58,11 @@ class ConfirmOrder extends Component {
             this.setState({error: true, loader: true})});
     }
     confirmOrder = (data, data2, state) => {
+        // this.setState({enableBtn: true})
         if (this.state.payment_id=== null) {
             alert('please add payment method');
         } else {
+            // this.setState({enableBtn: true})
             const dayOfDelivery = state.date;
             const timeOfDelivery = state.time;
             const scheduled_time = `${dayOfDelivery} ${timeOfDelivery}`
@@ -118,6 +121,7 @@ class ConfirmOrder extends Component {
         if (this.state.payment_id=== null) {
             alert('please add payment method');
         } else {
+            // this.setState({enableBtn: true})
             this.props.history.push({
                 pathname: 'refil',
                 search: '?query=refil',
@@ -127,6 +131,7 @@ class ConfirmOrder extends Component {
   
     }
     payWithCard = (data, data2) => {
+        this.setState({enableBtn: true})
         // const payment_id = '4';
         // this.props.history.push({
         //     pathname: 'paystack',
@@ -144,6 +149,7 @@ class ConfirmOrder extends Component {
     
     }
     payWithCash = () => {
+        this.setState({enableBtn: true})
         document.querySelector("#material2").style.display = 'block';
         document.querySelector("#material1").style.display = 'none';
 
@@ -235,12 +241,14 @@ class ConfirmOrder extends Component {
             </div>
                     <div className= "card-buttons">
                     <Button 
+                            disabled= {!this.state.enableBtn}
                             outline color="secondary" 
                             className = "card-button" 
                             onClick= {()=> this.confirmOrder(this.state.oldPrice, this.props.location.state, state)} 
                             size="lg">CONFIRM ORDER
                     </Button>
                     <Button 
+                            disabled= {!this.state.enableBtn}
                             outline color="secondary" 
                             className = "card-button2" 
                             onClick= {()=> this.confirmReschedule(this.state.oldPrice, this.props.location.state, this.state.payment_id)} 

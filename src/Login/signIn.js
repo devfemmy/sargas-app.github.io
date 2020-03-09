@@ -56,8 +56,8 @@ class SignIn extends Component {
       if (isFormValid) {
         this.setState({loader: false})
         const data = {
-          phone: this.state.data.phone.value,
-          password: this.state.data.password.value,
+          phone: this.state.data.phone.value.trim(),
+          password: this.state.data.password.value.trim(),
        
         }
         

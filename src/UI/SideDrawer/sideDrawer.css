@@ -22,11 +22,16 @@
       /* color: red; */
       font-size: 15px;
   }
+  h2 {
+      font-size: 20px !important;
+  }
   .universal-pad2 p {
       line-height: 0.5 !important;
   }
 }
-
+.side-bar-div {
+    background-color: red;
+}
 @media (min-width: 700px) {
     .SideDrawer {
         display: none;

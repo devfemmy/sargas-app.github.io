@@ -84,7 +84,7 @@ class Blog extends Component {
                    &nbsp; &nbsp; Blog
                 </p> 
                    
-                </div> 
+            </div> 
                 {showBlogs}
               
             </div>

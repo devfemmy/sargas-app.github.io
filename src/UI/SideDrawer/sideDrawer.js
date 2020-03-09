@@ -12,7 +12,7 @@ class SideDrawer extends Component {
     state = {  }
     
     render() { 
-        console.log(this.props)
+       console.log(this.props)
        const firstname = localStorage.getItem('usersfirstname');
        const apartment = localStorage.getItem('apartment');
        const street = localStorage.getItem('street')
@@ -30,11 +30,8 @@ class SideDrawer extends Component {
                 
                 <div className = {attachedClasses.join(' ')}>
                 <Card className = "dash-card">
-                    <div>
-                        
-                    </div>
-                    <img onClick= {this.props.closed} className= "clear-icon" src= {clearIcon} alt= "clear" />
-                    <CardBody className =  "card-body">
+                  <img onClick= {this.props.closed} className= "clear-icon" src= {clearIcon} alt= "clear" />
+                  <CardBody className =  "card-body">
                       
                     <Row>
                      <Col xs="4" sm="4" md="3">

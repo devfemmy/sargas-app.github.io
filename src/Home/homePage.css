@@ -1,12 +1,19 @@
 .home {
     background-image: linear-gradient(to bottom,  #8CC63F, #009245);
-    min-height: 100vh;
-    /* min-width: 50vh; */
+    min-height: 94.65vh;
+    overflow: scroll;
+    background-size: cover;
 }
 .counter2 {
     padding-left: 20%;
     padding-right: 20%;
     padding-top: 3px;
+}
+.sticky-div {
+    width: 100%;
+    position: sticky;
+    top: 0;
+    background-color: #8CC63F;
 }
 .menu {
     padding-top: 5%;
@@ -18,6 +25,7 @@
 .timer-div {
     width: 100%;
     padding: 6%;
+    padding-top: 2%;
    
     /* position: absolute;
     bottom: 15%; */

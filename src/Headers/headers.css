@@ -1,0 +1,23 @@
+.menulogo {
+    width: 20px;
+
+}
+/* .menu-div {
+  display: flex;
+  flex-direction: row;
+  padding: 18px;
+  padding-left: 8%;
+} */
+/* .menu-div h5 {
+    margin-bottom: 0px;
+    padding-left: 20px;
+    font-weight: bold;
+    color: black;
+} */
+#sticky_header {
+  background-color: transparent;
+  position: sticky;
+  top: 0;
+  z-index: 99;
+  /* opacity: 0.1; */
+}
