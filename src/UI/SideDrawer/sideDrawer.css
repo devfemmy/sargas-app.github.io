@@ -22,6 +22,9 @@
       /* color: red; */
       font-size: 15px;
   }
+  .order-header p {
+    font-size: 15px;
+}
   h2 {
       font-size: 20px !important;
   }

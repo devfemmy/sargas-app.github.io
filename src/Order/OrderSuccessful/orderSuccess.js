@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Button, Row, Col} from 'reactstrap'
+import {Button} from 'reactstrap'
 import './orderSuccess.css';
 import orderCheck from '../../assets/success.svg';
 // import { MdCheckCircle } from 'react-icons/md';
@@ -24,10 +24,8 @@ class OrderSuccess extends Component {
     render() { 
       const apartment = localStorage.getItem('apartment');
       const street = localStorage.getItem('street')
-      const bstop = localStorage.getItem('bstop')
-      const firstname = localStorage.getItem('usersfirstname');
-      const lastname = localStorage.getItem('userslastname');
-      const usersName = `${firstname} ${lastname}`
+
+
         return ( 
             <div style={{backgroundColor: 'white'}} className= "order-success">
                 <div className= "order-header">
@@ -44,7 +42,7 @@ class OrderSuccess extends Component {
                     <h3>Transaction Successful</h3>
                 </div>
                 <br />
-                <hr />
+                {/* <hr />
                <div className= "order-wrapper">
                   <div className= "wrapper-contents">
                     <Row>
@@ -59,15 +57,15 @@ class OrderSuccess extends Component {
                     </Row>
                      
                   </div>
-               </div>
+               </div> */}
                   
-                  <div className= "grade-icons">
+                  {/* <div className= "grade-icons">
                   <i className="material-icons">grade</i>
                   <i className="material-icons">grade</i>
                   <i className="material-icons">grade</i>
                   <i className="material-icons">grade</i>
                   <i style = {{color: "grey"}} className="material-icons">grade</i>
-                  </div>
+                  </div> */}
                 <div className = "section3">
                  <Button style= {{color: "white"}} 
 

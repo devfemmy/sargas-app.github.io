@@ -35,22 +35,20 @@ class HomePage extends Component {
         const data = {
             token: localStorage.getItem('token')
         }
-        axios.post('http://sargasoms.com/api/customer/?API_flag=fetchcustomertransactions', data)
+        axios.post('http://sargasoms.com/api/customer/?API_flag=getordertime', data)
         .then(res => {
             console.log("orders", res)
             const response = res.data;
                  if (response.status === 1001) {
-                const orders = response.data;
-                const firstOrder = orders[0].order_id;
-                localStorage.setItem('order_id', firstOrder);
-                const data2 = {
-                    token: localStorage.getItem('token'),
-                    order_id: firstOrder
-                }
-                axios.post('http://sargasoms.com/api/customer/?API_flag=getordertime', data2)
-                .then(res => {
-                    console.log ("fetchtime", res)
-                    if (res.data.status === 1001) {
+                // const orders = response.data;
+                // const firstOrder = orders[0].order_id;
+                // localStorage.setItem('order_id', firstOrder);
+                // const data2 = {
+                //     token: localStorage.getItem('token'),
+                //     order_id: firstOrder
+                // }
+              
+                   
                         const status = Number(res.data.order_status);
                         localStorage.setItem('delivery_status', status);
                         let getStatus = localStorage.getItem('delivery_status');
@@ -65,26 +63,27 @@ class HomePage extends Component {
                         localStorage.setItem('delivery_status', 0);
                         const time = res.data.time;
                         const status = res.data.status_name;
-                        const riderFirstName = res.data.rider_firstname.toUpperCase();
-                        const riderLastName = res.data.rider_lastname.toUpperCase();
-                        const rider = `${riderFirstName} ${riderLastName}`
-                        const riderPhone = res.data.rider_phone;
-                        this.setState({phone: riderPhone, time: time, rider: rider, showButton: true, order_status: status, showSpinner: false})
+                        const checkStatus = Number(res.data.order_status);
+                        if (checkStatus >= 3) {
+                            const riderFirstName = res.data.rider_firstname.toUpperCase();
+                            const riderLastName = res.data.rider_lastname.toUpperCase();
+                            const rider = `${riderFirstName} ${riderLastName}`
+                            const riderPhone = res.data.rider_phone;
+                            this.setState({rider: rider, phone: riderPhone})
+                        }
+                       
+                        this.setState({time: time, showButton: true, order_status: status, showSpinner: false})
                         }
                         
-                    } else {
-                        this.setState({enableButton: true})
-                    }
+                  
                    
-                }).catch(  error => {
-                           
-                this.setState({error: true, loader: true})});
+              
                
             } else {
                 this.setState({enableButton: true})
             }
         })
-
+        //fetch profile
         axios.post('http://sargasoms.com/api/customer/?API_flag=fetchcusprofile', data)
         .then(res => {
             console.log(res.data)
@@ -146,6 +145,7 @@ class HomePage extends Component {
            });
      }
     render() {
+        console.log('rider', this.state.rider)
         let reloadSpinner = null;
         if (this.state.showSpinner) {
             reloadSpinner = (
@@ -246,7 +246,7 @@ class HomePage extends Component {
                             <p>DISPATCHER:</p>
                             </Col>
                             <Col xs= "5">
-                            <p>{this.state.rider}</p>
+                            <p>{this.state.rider?this.state.rider:"-"}</p>
                             </Col>
                         </Row>
                     </div>
@@ -257,7 +257,7 @@ class HomePage extends Component {
                             </Col>
                             <Col xs= "5">
                             <p  type="tel" name="phone">
-                                {this.state.phone}
+                                {this.state.phone?this.state.phone:"-"}
                             </p>
                             </Col>
                         </Row>
@@ -283,17 +283,18 @@ class HomePage extends Component {
 
         return ( 
         <div>
-               <SideDrawer 
+             
+              <SideDrawer 
                 open = {this.state.showSideDrawer}
                 closed = {this.sideDrawerToggleHandler}
                 props = {this.props}
                 />
-            <ReactPullToRefresh onRefresh={this.RefreshHandler}>
-                <div className= "sticky-div">
-                <img  src={menu} onClick= {this.sideDrawerToggleHandler} className="menu" alt="logo" />
-                </div>
+           
                 <div className = "home">
-          
+                <ReactPullToRefresh onRefresh={this.RefreshHandler}>
+                   
+                    <img  src={menu} onClick= {this.sideDrawerToggleHandler} className="menu" alt="logo" />
+                   
                 
                     <div className= "counter2">
                     <img src={trackImg} className="Track-Img" alt="img" />   
@@ -302,13 +303,17 @@ class HomePage extends Component {
                     </div>
                     </div>
                 
-    
+                  
                     <div className = "home-content">
                     <h2>Hi, {firstname.toUpperCase()}</h2>
                     </div>
+                    
                     {displayButton}
+                    </ReactPullToRefresh>
+           
                 </div>
-            </ReactPullToRefresh>
+             
+         
 
 
 

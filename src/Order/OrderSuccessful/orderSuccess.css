@@ -5,6 +5,9 @@
     padding-left: 10%;
     /* padding-top: 3vmin; */
 }
+.order-header p {
+    font-size: 16px;
+}
 .para-header {
     color: white;
     font-weight: bold;
@@ -56,7 +59,9 @@
     color: gold;
 }
 .transaction-success {
-    padding-top: 10%
+    padding-top: 20%;
+    padding-right: 8%;
+    padding-left: 8%;
 }
 .transaction-success h3{
     text-align: center;
@@ -83,11 +88,12 @@ h5{
 .Track-btn {
     border-radius: 50px !important;
     border: none !important;
-    width: 100%;
+    width: 80%;
     font-size: 15px !important;
     height: 3.4rem !important;
     background-image: linear-gradient( #8CC63F, #009245) !important;
-    margin-top: 2rem
+    position: absolute;
+    bottom: 8%;
     /* border: 1px solid green !important;
      */
 }
@@ -95,7 +101,7 @@ h5{
  border-top: 1px solid rgba(0,0,0,0.5);
 }
 .section3 {
-    padding-top: 10%;
-    padding-left: 15%;
-    padding-right: 15%
+    /* padding-top: 10%; */
+    padding-left: 10%;
+    padding-right: 10%
 }
