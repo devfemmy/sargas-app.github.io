@@ -11,6 +11,7 @@ import Timer from 'react-compound-timer'
 import RefreshSpinner from '../UI/Spinner/refreshSpinner';
 // import Spinners from '../UI/Spinner/spinner';
 import ReactPullToRefresh from 'react-pull-to-refresh';
+import ConfirmModal from '../UI/Modal/confirmModal';
 // import Headers from '../Headers/headers';
 
 class HomePage extends Component {
@@ -25,7 +26,9 @@ class HomePage extends Component {
         order_status: null,
         showSpinner: false,
         rider: null,
-        phone: null
+        phone: null,
+        showModal: false,
+        order_id: null
      }
      sideDrawerHandler = () => {
         this.setState({showSideDrawer: false})
@@ -39,6 +42,7 @@ class HomePage extends Component {
         .then(res => {
             console.log("orders", res)
             const response = res.data;
+            const message = response.message;
                  if (response.status === 1001) {
                 // const orders = response.data;
                 // const firstOrder = orders[0].order_id;
@@ -49,20 +53,25 @@ class HomePage extends Component {
                 // }
               
                    
-                        const status = Number(res.data.order_status);
-                        localStorage.setItem('delivery_status', status);
-                        let getStatus = localStorage.getItem('delivery_status');
-                        if (Number(getStatus) >= 4) {
-                            localStorage.setItem('delivery_status', 1);
+                        // const status = Number(res.data.order_status);
+                        if (message === "No New Orders") {
+                            const delivery_status = Number(localStorage.getItem('delivery_status'))
+                            if (delivery_status !== 2) {
+                                this.setState({showModal: true})
+                                localStorage.setItem('delivery_status', 1);
+                            }
+                            
                             // let confirmBtn = window.confirm('Confirm Order Delivery!');
                             // if (confirmBtn === true) {
                             //     localStorage.setItem('delivery_status', null)
                             // }
                             this.setState({showButton: false, enableButton: true})
                         }else {
+                      
                         localStorage.setItem('delivery_status', 0);
                         const time = res.data.time;
                         const status = res.data.status_name;
+                        const order_id = res.data.order_id;
                         const checkStatus = Number(res.data.order_status);
                         if (checkStatus >= 3) {
                             const riderFirstName = res.data.rider_firstname.toUpperCase();
@@ -72,7 +81,7 @@ class HomePage extends Component {
                             this.setState({rider: rider, phone: riderPhone})
                         }
                        
-                        this.setState({time: time, showButton: true, order_status: status, showSpinner: false})
+                        this.setState({time: time, showButton: true, order_status: status, order_id: order_id, showSpinner: false})
                         }
                         
                   
@@ -82,7 +91,9 @@ class HomePage extends Component {
             } else {
                 this.setState({enableButton: true})
             }
-        })
+        }).catch(  error => {
+                   
+            this.setState({error: true, loader: true})});
         //fetch profile
         axios.post('http://sargasoms.com/api/customer/?API_flag=fetchcusprofile', data)
         .then(res => {
@@ -145,6 +156,22 @@ class HomePage extends Component {
            });
      }
     render() {
+        const timerCount = Number(localStorage.getItem('delivery_status'));
+        const checkCount = localStorage.getItem('timerCount');
+
+        if (timerCount !== 2 && checkCount === 'value3') {
+            console.log('STOP CHECK')
+            setInterval(() => {
+                this.RefreshHandler();
+                localStorage.setItem('timerCount', 'value2');
+
+            }, 10000)
+            
+        }
+        let displayModal = null;
+        if (this.state.showModal) {
+            displayModal = <ConfirmModal />
+        }
         console.log('rider', this.state.rider)
         let reloadSpinner = null;
         if (this.state.showSpinner) {
@@ -168,7 +195,7 @@ class HomePage extends Component {
         localStorage.setItem('bstop', b_stop);
         localStorage.setItem('city', city)
         localStorage.setItem('state', state)
-        let order_id = localStorage.getItem('order_id');
+        // let order_id = localStorage.getItem('order_id');
         let apartment2 = this.state.home_details.apartment;
         let street2 = this.state.home_details.street;
         console.log(apartment2, street2)
@@ -196,14 +223,14 @@ class HomePage extends Component {
                     <div className= "even-div">
                         <Row>
                             <Col xs= "7">
-                            <p>ORDER ARRIVES IN:</p>
+                            <p>ARRIVES IN:</p>
                             </Col>
                             <Timer
                     initialTime={milliseconds}
                     direction="backward">
                         <Col xs= "5">
                             <p className="animated infinite pulse delay-6s" style={{fontWeight: 'bolder', color: 'white', fontSize: '11px'}}>
-                            <Timer.Hours />hr: <Timer.Minutes />mn: <Timer.Seconds />
+                            <Timer.Minutes />mins: <Timer.Seconds />s
                             </p>
                         </Col>     
                     </Timer>
@@ -226,7 +253,7 @@ class HomePage extends Component {
                             <p>ORDER ID:</p>
                             </Col>
                             <Col xs= "5">
-                            <p>{order_id}</p>
+                            <p>{this.state.order_id}</p>
                             </Col>
                         </Row>
                     </div>
@@ -307,7 +334,7 @@ class HomePage extends Component {
                     <div className = "home-content">
                     <h2>Hi, {firstname.toUpperCase()}</h2>
                     </div>
-                    
+                    {displayModal}
                     {displayButton}
                     </ReactPullToRefresh>
            

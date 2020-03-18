@@ -28,8 +28,8 @@ class OrderSuccess extends Component {
 
         return ( 
             <div style={{backgroundColor: 'white'}} className= "order-success">
-                <div className= "order-header">
-        <p className= "para-header"><span onClick= {this.backToPrevPageHandler}>&larr; </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Sargas to  {apartment} {street}</p>
+                <div style= {{display: 'flex', alignItems: 'center', justifyContent: 'center', paddingLeft: '0%'}} className= "order-header">
+                <p style= {{textAlign: 'center', fontSize: '15px', marginBottom: '0rem'}} className= "para-header">Sargas to  {apartment} {street}</p>
                 </div>  
                
                 <div className= "transaction-success">
