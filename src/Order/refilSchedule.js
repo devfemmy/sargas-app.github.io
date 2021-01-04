@@ -72,7 +72,7 @@ class RefilSchedule extends Component {
                 cylinder_size: localStorage.getItem('cylinder_size')
             }
             // this.setState({loader: false})
-            axios.post('http://sargasoms.com/api/customer/?API_flag=order', data4)
+            axios.post('https://sargasoms.com/api/customer/?API_flag=order', data4)
             .then(res => {
                 this.setState({loader: false})
                 const response = res.data;

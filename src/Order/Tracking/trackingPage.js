@@ -26,7 +26,7 @@ class TrackingPage extends Component {
             token: localStorage.getItem('token'),
             order_id: firstOrder
         }
-        axios.post('http://sargasoms.com/api/customer/?API_flag=getordertime', data2)
+        axios.post('https://sargasoms.com/api/customer/?API_flag=getordertime', data2)
         .then(res => {
             if (res.data.status === 2001) {
                 const message = res.data.message;

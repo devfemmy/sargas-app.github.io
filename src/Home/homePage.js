@@ -12,6 +12,7 @@ import RefreshSpinner from '../UI/Spinner/refreshSpinner';
 // import Spinners from '../UI/Spinner/spinner';
 import ReactPullToRefresh from 'react-pull-to-refresh';
 import ConfirmModal from '../UI/Modal/confirmModal';
+import SetTimer from './setTimer';
 // import Headers from '../Headers/headers';
 
 class HomePage extends Component {
@@ -34,7 +35,33 @@ class HomePage extends Component {
         this.setState({showSideDrawer: false})
      }
      componentDidMount() {
+        const data2 = {
+            token: localStorage.getItem('token')
+        }
         // const home_details = this.props.location.state.home_details;
+        axios.post('https://sargasoms.com/api/customer/?API_flag=fetchcusprofile', data2)
+        .then(res => {
+            console.log(res.data)
+            const home_details = res.data
+            // const home_details = response.home_details;
+            // const usersfirstname = home_details.firstname;
+            // const userslastname = home_details.lastname;
+            // console.log(usersfirstname)
+            // localStorage.setItem('usersfirstname', usersfirstname);
+            // localStorage.setItem('userslastname', userslastname);
+        
+                    if (home_details.apartment === '' && home_details.firstname === '') {
+                        this.setState({enableButton: false})
+                        this.props.history.push({
+                            pathname: 'profile'
+                        })
+              
+                    }
+        
+            this.setState({home_details: home_details, loader: true});
+        }).catch(  error => {
+                   
+            this.setState({error: true, loader: true, showSpinner:false})});
         const data = {
             token: localStorage.getItem('token')
         }
@@ -65,7 +92,7 @@ class HomePage extends Component {
                             // if (confirmBtn === true) {
                             //     localStorage.setItem('delivery_status', null)
                             // }
-                            this.setState({showButton: false, enableButton: true})
+                            this.setState({showButton: false, enableButton: true, showSpinner: false})
                         }else {
                       
                         localStorage.setItem('delivery_status', 0);
@@ -81,7 +108,9 @@ class HomePage extends Component {
                             this.setState({rider: rider, phone: riderPhone})
                         }
                        
-                        this.setState({time: time, showButton: true, order_status: status, order_id: order_id, showSpinner: false})
+                        this.setState({time: time, 
+                            showButton: true, order_status: status, 
+                            order_id: order_id, showSpinner: false})
                         }
                         
                   
@@ -89,40 +118,13 @@ class HomePage extends Component {
               
                
             } else {
-                this.setState({enableButton: true})
+                this.setState({enableButton: true, showSpinner:false})
             }
         }).catch(  error => {
                    
-            this.setState({error: true, loader: true})});
+            this.setState({error: true, loader: true, showSpinner: false})});
         //fetch profile
-        axios.post('http://sargasoms.com/api/customer/?API_flag=fetchcusprofile', data)
-        .then(res => {
-            console.log(res.data)
-            const home_details = res.data
-            // const home_details = response.home_details;
-            // const usersfirstname = home_details.firstname;
-            // const userslastname = home_details.lastname;
-            // console.log(usersfirstname)
-            // localStorage.setItem('usersfirstname', usersfirstname);
-            // localStorage.setItem('userslastname', userslastname);
-            setTimeout(
-                function() {
-                    if (home_details.apartment === '' && home_details.firstname === '') {
-                        this.props.history.push({
-                            pathname: 'profile'
-                        })
-              
-                    }
-                  
-                }
-                .bind(this),
-                1000
-            );
-        
-            this.setState({home_details: home_details, loader: true});
-        }).catch(  error => {
-                   
-            this.setState({error: true, loader: true})});
+
       
      }
      pushToNextPage = (home_details) => {
@@ -131,7 +133,9 @@ class HomePage extends Component {
         // const state = home_details.state;
         // const customer_address = localStorage.getItem('customer_address');
             if (home_details === null) {
-                
+                this.props.history.push({
+                    pathname: 'profile'
+                })
             }else {
                 this.props.history.push({
                     pathname: 'pricing',
@@ -143,9 +147,15 @@ class HomePage extends Component {
         
      }
      RefreshHandler = () => {
-         this.setState({showSpinner: true})
-         this.componentDidMount()
-         this.forceUpdate()
+        const deliveryStatus = Number(localStorage.getItem('delivery_status'));
+        if (deliveryStatus !== 2) {
+            this.setState({showSpinner: true})
+            this.componentDidMount()
+            
+        }
+     
+        
+        //  this.forceUpdate()
          console.log(this.state.loader, "loader9")
          
      }
@@ -156,18 +166,28 @@ class HomePage extends Component {
            });
      }
     render() {
-        const timerCount = Number(localStorage.getItem('delivery_status'));
-        const checkCount = localStorage.getItem('timerCount');
-
-        if (timerCount !== 2 && checkCount === 'value3') {
-            console.log('STOP CHECK')
-            setInterval(() => {
-                this.RefreshHandler();
-                localStorage.setItem('timerCount', 'value2');
-
-            }, 10000)
+        const deliveryStatus = Number(localStorage.getItem('delivery_status'));
+        let runTimerFunc = null;
+        if (deliveryStatus !== 2) {
+            runTimerFunc = 
+                <SetTimer runTimer= {this.RefreshHandler} />
             
         }
+        // const timerCount = Number(localStorage.getItem('delivery_status'));
+        // const checkCount = localStorage.getItem('timerCount');
+        // let loop1;
+
+        // if (timerCount !== 2) {
+        //     loop1 = 
+        //     setTimeout(() => {
+        //         alert('loop 1')
+        //         localStorage.setItem('timerCount', 'value2');
+
+        //     }, 5000)
+           
+            
+        // }
+        // clearTimeout(loop1)
         let displayModal = null;
         if (this.state.showModal) {
             displayModal = <ConfirmModal />
@@ -283,9 +303,12 @@ class HomePage extends Component {
                             <p>DISPATCHER'S N0:</p>
                             </Col>
                             <Col xs= "5">
-                            <p  type="tel" name="phone">
+                           <a href= {`tel:${this.state.phone}`}>
+                           <p type="tel" name="phone">
                                 {this.state.phone?this.state.phone:"-"}
                             </p>
+                           </a>
+                     
                             </Col>
                         </Row>
                     </div>
@@ -334,6 +357,7 @@ class HomePage extends Component {
                     <div className = "home-content">
                     <h2>Hi, {firstname.toUpperCase()}</h2>
                     </div>
+                    {runTimerFunc}
                     {displayModal}
                     {displayButton}
                     </ReactPullToRefresh>

@@ -27,7 +27,7 @@ class ConfirmOrder extends Component {
         const data2 = {
             token : localStorage.getItem('token'),
         }
-        axios.post('http://sargasoms.com/api/customer/?API_flag=paymentmethod', data2 )
+        axios.post('https://sargasoms.com/api/customer/?API_flag=paymentmethod', data2 )
         .then(res => {
             const response = res.data;
             if (response.status === 1001) {
@@ -42,7 +42,7 @@ class ConfirmOrder extends Component {
             size: 3,
             city_id: localStorage.getItem('city_id')
         }
-        axios.post('http://sargasoms.com/api/customer/?API_flag=getprice', data )
+        axios.post('https://sargasoms.com/api/customer/?API_flag=getprice', data )
         .then(
             res => {
                 const response = res.data;
@@ -88,7 +88,7 @@ class ConfirmOrder extends Component {
                 cylinder_size: localStorage.getItem('cylinder_size')
             }
             this.setState({loader: false})
-            axios.post('http://sargasoms.com/api/customer/?API_flag=order', data)
+            axios.post('https://sargasoms.com/api/customer/?API_flag=order', data)
             .then(res => {
                 const response = res.data;
                 if (response.status === 1001) {

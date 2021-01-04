@@ -54,7 +54,7 @@ const NavigationItems = (props) => (
     <p className= "side-icons">
     <strong><span>
         <img src={freebies} className="home-logo" alt="logo" />
-        </span>&nbsp;&nbsp;&nbsp;<span className= "nav-text">Blog</span></strong>
+        </span>&nbsp;&nbsp;&nbsp;<span className= "nav-text">Catch Up</span></strong>
     </p>
     </NavigationItem>
  

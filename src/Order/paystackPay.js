@@ -32,7 +32,7 @@ class PayStackPay extends Component {
             cylinder_size: localStorage.getItem('cylinder_size')
         }
         if (response.status === 'success') {
-            axios.post('http://sargasoms.com/api/customer/?API_flag=order', data)
+            axios.post('https://sargasoms.com/api/customer/?API_flag=order', data)
             .then(res => {
                 const response = res.data;
                 if (response.status === 1001) {
@@ -81,7 +81,8 @@ class PayStackPay extends Component {
                 </p> 
                    
             </div> 
-          <PaystackButton
+            <div style= {{marginTop: '20px'}}>
+            <PaystackButton
                 text="Make Payment"
                 class="payButton"
                 callback={this.callback}
@@ -94,7 +95,13 @@ class PayStackPay extends Component {
                 paystackkey={this.state.key}
                 tag="button"
               />
-
+            </div>
+ 
+            <div style= {{textAlign: 'center'}}>
+           <p>Card Number: 408 408 408 408 408 1</p> 
+            <p>Expiry Date: any date in the future</p>
+            <p>CVV: 408</p>
+            </div>
           <div className= "card-buttons">
           {/* <Button 
                   outline color="secondary" 

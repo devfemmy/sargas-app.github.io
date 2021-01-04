@@ -5,6 +5,7 @@
     width: 70%;
     color: black;
     border: 1px solid #ccc;
+    border-radius: 5px;
     box-shadow: 1px 1px 1px black;
     padding: 16px;
     left: 15%;

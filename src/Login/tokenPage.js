@@ -19,7 +19,7 @@ class TokenPage extends Component {
              otp : value,
         }
    
-          axios.post('http://sargasoms.com/api/customer/?API_flag=validateotp', data)
+          axios.post('https://sargasoms.com/api/customer/?API_flag=validateotp', data)
               .then((res) => {
               this.setState({loader: true})
                   const response = res.data;

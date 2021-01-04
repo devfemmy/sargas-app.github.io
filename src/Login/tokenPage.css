@@ -61,7 +61,10 @@
     padding-right: 10%;
 }
 .preview-body-header {
-    padding-top: 50%;
+    padding-top: 15%;
+}
+.preview-body-header .form-control {
+    margin-bottom: 8px !important;
 }
 .pin-input {
     background-color: red;

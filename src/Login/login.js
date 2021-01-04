@@ -31,7 +31,7 @@ class Login extends Component {
   }
 
   handleChange(event, inputValue, inputName, validationState, isRequired) {
-    const value = (event && event.target.value) || inputValue;
+    const value = (event && event.target.value.trim()) || inputValue.trim();
     const { data } = this.state;
     data[inputName] = { value, validation: validationState, isRequired };
     this.setState({
@@ -70,7 +70,7 @@ class Login extends Component {
         const phone_number = this.state.data.phone.value;
         localStorage.setItem('phone', phone_number)
         console.log(phone_number)
-        axios.post('http://sargasoms.com/api/customer/?API_flag=registercustomer', {...data})
+        axios.post('https://sargasoms.com/api/customer/?API_flag=registercustomer', {...data})
         .then((res) => {
         this.setState({loader: true})
             const response = res.data;

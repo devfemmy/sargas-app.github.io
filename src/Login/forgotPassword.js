@@ -23,7 +23,7 @@ class ForgotPassword extends Component {
         const data = { 
             email: document.querySelector('#email').value
         }
-        axios.post('http://sargasoms.com/api/customer/?API_flag=forgot_pass', data)
+        axios.post('https://sargasoms.com/api/customer/?API_flag=forgot_pass', data)
         .then(res => {
             console.log(res)
             this.setState({loader: true})

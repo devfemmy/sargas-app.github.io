@@ -27,7 +27,7 @@ class AddCard extends Component {
 
 
     }
-    axios.post('http://sargasoms.com/api/customer/?API_flag=addcard', data )
+    axios.post('https://sargasoms.com/api/customer/?API_flag=addcard', data )
     .then(res => {
         console.log(res)
     }).catch(

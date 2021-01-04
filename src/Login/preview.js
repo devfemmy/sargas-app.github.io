@@ -8,14 +8,15 @@ class PreviewPage extends Component {
     state = { 
       cylinder_size: [],
       error: false,
-      loader: false
+      loader: false,
+      zone: [], 
+      state: [],
+      city: []
      }
     pushToNextPage = () => {
-      const home_details = this.props.location.state.home_details
+      // const home_details = this.props.location.state.home_details
         this.props.history.push({
           pathname: '/home',
-          search: '?query=home',
-          state: {home_details: home_details}
         })
       
       }
@@ -23,10 +24,12 @@ class PreviewPage extends Component {
       const  data = {
           token: localStorage.getItem('token')
         }
-        axios.post('http://sargasoms.com/api/customer/?API_flag=fetchstate', data)
+        axios.post('https://sargasoms.com/api/customer/?API_flag=fetchstate', data)
         .then(res => {
           console.log(res)
           const response = res.data;
+          const state = response.data;
+          this.setState({state: state});
           if (response.status === 1001) {
             localStorage.setItem('state', response.data[0].state);
             localStorage.setItem('state_id', response.data[0].state_id);
@@ -40,6 +43,8 @@ class PreviewPage extends Component {
             res => {
               console.log(res)
               const response = res.data;
+              const city = response.data;
+              this.setState({city: city});
               if (response.status === 1001) {
                 localStorage.setItem('city', response.data[0].city);
                 localStorage.setItem('city_id', response.data[0].city_id);
@@ -53,6 +58,8 @@ class PreviewPage extends Component {
                 res => {
                   console.log(res)
                   const response = res.data;
+                  const zone = response.data;
+                  this.setState({zone: zone, loader: true});
                   if (response.status === 1001) {
                     localStorage.setItem('zone', response.data[0].zone);
                     localStorage.setItem('zone_id', response.data[0].zone_id);
@@ -77,7 +84,7 @@ class PreviewPage extends Component {
           (res) => {
             const response = res.data
             const cylinder_size = response.data;
-            this.setState({cylinder_size: cylinder_size, loader: true});
+            this.setState({cylinder_size: cylinder_size,});
             console.log(res)
           }
         ).catch(  error => {
@@ -92,7 +99,9 @@ class PreviewPage extends Component {
       const zone = localStorage.getItem('zone');
       // customer_address = city + " " + zone + " " + state;
       customer_address = `${city}, ${zone}, ${state}`
-      localStorage.setItem('customer_address', customer_address)
+      localStorage.setItem('customer_address', customer_address);
+
+
       let showPrev = <Spinners />
       if (this.state.loader) {
         showPrev = (
@@ -112,8 +121,47 @@ class PreviewPage extends Component {
                        
                         
                         </Input>
+                        <Label className= "preview-label" for="exampleSelect">Select City:</Label>
+                        <Input type="select" name="select" id="city">
+                          {this.state.city.map(
+                            (city, id) => {
+                              localStorage.setItem('sargas_city', city.city)
+                              return (
+                                <option  key = {id}>{city.city}</option>
+                              )
+                            }
+                          )}
+                       
+                        
+                        </Input>
+                        <Label className= "preview-label" for="exampleSelect">Select State:</Label>
+                        <Input type="select" name="select" id="state" >
+                          {this.state.state.map(
+                            (state, id) => {
+                              localStorage.setItem('sargas_state', state.state)
+                              return (
+                                <option key = {id}>{state.state}</option>
+                              )
+                            }
+                          )}
+                       
+                        
+                        </Input>
+                        <Label className= "preview-label" for="exampleSelect">Select Zone:</Label>
+                        <Input type="select" name="select" id="zone">
+                          {this.state.zone.map(
+                            (zone, id) => {
+                              localStorage.setItem('sargas_zone', zone.zone)
+                              return (
+                                <option key = {id}>{zone.zone}</option>
+                              )
+                            }
+                          )}
+                       
+                        
+                        </Input>
                     </FormGroup>
-                    <Button style= {{color: "white", width: '100%', border: '2px solid white'}} 
+                    <Button style= {{color: "green", width: '100%', border: 'none', background: 'white'}} 
                     outline color="secondary" 
                     onClick= {this.pushToNextPage}
                     className = "Login-button2"  
@@ -122,6 +170,12 @@ class PreviewPage extends Component {
           </div>
         )
       }
+      // if (this.state.loader === true && this.state.zone !== '') {
+      //   const city1 = document.querySelector('#city').value;
+      //   const state2 = document.querySelector('#state').value;
+      //   const zone3 = document.querySelector('#zone').value;
+      //   console.log('city', city1, state2, zone3)
+      // }
         return ( 
             <div className = "preview2">
             <div className = "preview-body">

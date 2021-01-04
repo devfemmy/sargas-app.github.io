@@ -21,6 +21,7 @@ class Profile extends Component {
         nearest_bstop: null,
         city: null,
         state: null,
+        zone: null,
         loader: true,
         error: false,
         inputDisabled: false
@@ -35,7 +36,7 @@ class Profile extends Component {
             token : localStorage.getItem('token')
         }
         this.setState({loader: false})
-        axios.post('http://sargasoms.com/api/customer/?API_flag=fetchcusprofile', data )
+        axios.post('https://sargasoms.com/api/customer/?API_flag=fetchcusprofile', data )
                 .then((res) => {
                 console.log(res);
                 this.setState({loader: true})
@@ -51,17 +52,19 @@ class Profile extends Component {
                     const street_name = response.street;
                     const nearest_bstop= response.street2;
                     const city= response.city;
-                    const state = response.state
+                    const state = response.state;
+                    const zone = response.zone;
                     this.setState({
                         first_name: firstname, last_name:lastname,
                         phone_no: phone_no, email: email, gender: gender,
                         apart_no: apart_no, street_name: street_name,
                         nearest_bstop: nearest_bstop,
-                        city: city, state: state
+                        city: city, state: state,
+                        zone: zone
 
                     })
                     if (firstname === '' || lastname === '' || gender === '' || apart_no === '' || city === ''
-                        || nearest_bstop === '' || state === ''
+                        || nearest_bstop === '' || state === '' || zone === ''
                     ) {
                         this.setState({inputDisabled: true})
                     }
@@ -146,6 +149,9 @@ class Profile extends Component {
     }
     render() { 
         console.log('red', this.state.first_name)
+        const state = localStorage.getItem('sargas_state')
+        const city = localStorage.getItem('sargas_city')
+        const zone = localStorage.getItem('sargas_zone')
         let showProfile = <Spinners />
         if (this.state.loader) {
             showProfile = (
@@ -221,12 +227,12 @@ class Profile extends Component {
                     <Col>
                     <Label className= "profile-label">City:</Label>
                     <InputGroup>
-                    <Input disabled id= "city" type= "select"  className = "profile-input" placeholder="city">
+                    <Input disabled= {!this.state.inputDisabled}  type= "select"  className = "profile-input" placeholder="city">
                     <option id="">
-                            Select
+                            Select City
                         </option>
                     <option selected id="">
-                            {this.state.city}
+                            {city}
                     </option>
                 
                     </Input>
@@ -235,16 +241,33 @@ class Profile extends Component {
                     <Col>
                     <Label className= "profile-label">State:</Label>
                         <InputGroup>
-                        <Input disabled id= "state" type= "select"  className = "profile-input" placeholder="state">
+                        <Input disabled= {!this.state.inputDisabled} type= "select"  className = "profile-input" placeholder="state">
                             <option id="">
-                                Select
+                                Select State
                             </option>
                             <option selected id="">
-                                {this.state.state}
+                                {state}
                             </option>
                     
                         </Input>
                         </InputGroup>
+                    </Col>
+                </Row>
+                <br />
+                <Row>
+                    <Col>
+                    <Label className= "profile-label">Zone:</Label>
+                    <InputGroup>
+                    <Input disabled= {!this.state.inputDisabled}  id= "zone" type= "select"  className = "profile-input" placeholder="city">
+                    <option id="">
+                            Select Zone
+                        </option>
+                    <option selected  id="">
+                            {zone}
+                    </option>
+                
+                    </Input>
+                    </InputGroup>
                     </Col>
                 </Row>
                 

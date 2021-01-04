@@ -23,7 +23,7 @@ class History extends Component {
         const data = {
             token: localStorage.getItem('token')
         }
-        axios.post('http://sargasoms.com/api/customer/?API_flag=fetchcustomertransactions', data)
+        axios.post('https://sargasoms.com/api/customer/?API_flag=fetchcustomertransactions', data)
         .then(res => {
             console.log('history', res)
             const response = res.data;

@@ -62,7 +62,7 @@ class SignIn extends Component {
         }
         
         
-        axios.post('http://sargasoms.com/api/customer/?API_flag=customerlogin', {...data})
+        axios.post('https://sargasoms.com/api/customer/?API_flag=customerlogin', {...data})
           .then((res) => {
           this.setState({loader: true})
               const response = res.data;
@@ -78,10 +78,10 @@ class SignIn extends Component {
                 console.log(usersfirstname)
                 localStorage.setItem('usersfirstname', usersfirstname);
                 localStorage.setItem('userslastname', userslastname);
-                const city_id = home_details.city_id;
+                // const city_id = home_details.city_id;
                 const zone_id = home_details.zone_id;
                 const state = home_details.state;
-                localStorage.setItem('city_id', city_id);
+                // localStorage.setItem('city_id', city_id);
                 localStorage.setItem('zone_id', zone_id);
                 localStorage.setItem('state', state);
                 this.setState({home_details: home_details})

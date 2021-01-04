@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {HashRouter} from 'react-router-dom'
+import {BrowserRouter} from 'react-router-dom'
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
@@ -18,9 +18,9 @@ if ("serviceWorker" in navigator) {
   }
 
 const app = (
-    <HashRouter>
+    <BrowserRouter>
         <App />
-    </HashRouter>
+    </BrowserRouter>
 )
 ReactDOM.render(app, document.getElementById('root'));
 
